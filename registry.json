@@ -551,10 +551,28 @@
       ]
     },
     {
+      "name": "code-block",
+      "type": "registry:ui",
+      "title": "CodeBlock",
+      "description": "a block of code with a copy button. long lines scroll inside the block.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://ui.pyospect.com/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/code-block.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "pyospect",
       "type": "registry:ui",
       "title": "pyospectui (전체)",
-      "description": "테마와 19개 컴포넌트를 한 번에 받아요. npx shadcn add https://ui.pyospect.com/r/pyospect.json",
+      "description": "테마와 20개 컴포넌트를 한 번에 받아요. npx shadcn add https://ui.pyospect.com/r/pyospect.json",
       "registryDependencies": [
         "https://ui.pyospect.com/r/theme.json",
         "https://ui.pyospect.com/r/button.json",
@@ -575,7 +593,8 @@
         "https://ui.pyospect.com/r/versions.json",
         "https://ui.pyospect.com/r/chat.json",
         "https://ui.pyospect.com/r/connection.json",
-        "https://ui.pyospect.com/r/copy-command.json"
+        "https://ui.pyospect.com/r/copy-command.json",
+        "https://ui.pyospect.com/r/code-block.json"
       ]
     }
   ]

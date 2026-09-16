@@ -6,8 +6,9 @@
 npx pyospectui
 ```
 
-이 한 줄이면 설정 없이 테마와 컴포넌트 19개가 전부 들어와요. 몇 개만 고르려면 `npx pyospectui button card`처럼 이름을 붙여요. shadcn 명령을 그대로 쓰고 싶으면 `npx shadcn add https://ui.pyospect.com/r/pyospect.json`이에요.
+이 한 줄이면 설정 없이 테마와 컴포넌트 20개가 전부 들어와요. 몇 개만 고르려면 `npx pyospectui button card`처럼 이름을 붙여요. shadcn 명령을 그대로 쓰고 싶으면 `npx shadcn add https://ui.pyospect.com/r/pyospect.json`이에요.
 
+- 문서: https://ui.pyospect.com/#/docs/button (컴포넌트마다 미리보기, 설치 명령, 사용 코드, 다섯 줄 문서)
 - 규칙: [docs/TASTE.md](docs/TASTE.md)
 - AI용 요약: [public/llms.txt](public/llms.txt)
 - 컴포넌트: `registry/ui` (기본), `registry/ai` (AI 협업 패턴)

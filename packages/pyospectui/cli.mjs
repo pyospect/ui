@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// npx pyospectui            -> installs the whole system (theme + 19 components)
+// npx pyospectui            -> installs the whole system (theme + 20 components)
 // npx pyospectui button card -> installs only those
 // extra flags pass through to shadcn (for example --overwrite)
 import { spawn } from "node:child_process"
