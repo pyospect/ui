@@ -1,0 +1,107 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "pyospect",
+  "homepage": "https://ui.pyospect.dev",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "title": "pyospect theme",
+      "description": "4px grid, neutral surfaces, one warm green brand scale, Pretendard. Rules in docs/TASTE.md.",
+      "files": [{ "path": "src/index.css", "type": "registry:file", "target": "~/app/pyospect.css" }]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [{ "path": "src/lib/utils.ts", "type": "registry:lib" }]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "primary, secondary, ghost, tint. full radius, one primary per screen, labels are verbs.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ui/button.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "surface with a meaningful 1px line. Field, Label, Help included. label always on top.",
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ui/input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "track 28, handle 20, padding 4. Control row keeps label and switch on one line.",
+      "dependencies": ["@radix-ui/react-switch"],
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ui/switch.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "surface level. no border, no shadow, never inside another card. media radius = card radius minus padding.",
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ui/card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "tag",
+      "type": "registry:ui",
+      "title": "Tag",
+      "description": "full radius pill. colored tones are solid with white text.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ui/tag.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "the only place a shadow lives. title is a question, primary button is the answer.",
+      "dependencies": ["@radix-ui/react-dialog"],
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ui/dialog.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "thinking",
+      "type": "registry:ui",
+      "title": "Thinking",
+      "description": "the agent's collapsible reasoning block. live dot pulses, done title is past tense.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ai/thinking.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "validation-card",
+      "type": "registry:ui",
+      "title": "ValidationCard",
+      "description": "one check the agent ran: title, one-line reason, status tag.",
+      "registryDependencies": ["@pyospect/utils", "@pyospect/tag"],
+      "files": [{ "path": "registry/ai/validation-card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "steps",
+      "type": "registry:ui",
+      "title": "Steps",
+      "description": "filled circle = the agent handles it, dashed circle = a person decides. legend included.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@pyospect/utils"],
+      "files": [{ "path": "registry/ai/steps.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "decision-card",
+      "type": "registry:ui",
+      "title": "DecisionCard",
+      "description": "what the agent made and the ways forward. the person presses to move on.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@pyospect/utils", "@pyospect/button"],
+      "files": [{ "path": "registry/ai/decision-card.tsx", "type": "registry:ui" }]
+    }
+  ]
+}
