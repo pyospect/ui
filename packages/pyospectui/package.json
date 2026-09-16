@@ -5,10 +5,30 @@
   "license": "MIT",
   "author": "Kyoungpyo Koh <pyospect@gmail.com>",
   "homepage": "https://ui.pyospect.com",
-  "repository": { "type": "git", "url": "https://github.com/pyospect/ui", "directory": "packages/pyospectui" },
-  "keywords": ["design-system", "shadcn", "tailwind", "react", "korean", "pretendard", "ai"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pyospect/ui.git",
+    "directory": "packages/pyospectui"
+  },
+  "keywords": [
+    "design-system",
+    "shadcn",
+    "tailwind",
+    "react",
+    "korean",
+    "pretendard",
+    "ai"
+  ],
   "type": "module",
-  "bin": { "pyospectui": "./bin.mjs" },
-  "files": ["bin.mjs", "README.md", "LICENSE"],
-  "engines": { "node": ">=18" }
+  "bin": {
+    "pyospectui": "cli.mjs"
+  },
+  "files": [
+    "cli.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
 }
