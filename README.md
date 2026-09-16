@@ -3,10 +3,10 @@
 고경표의 취향을 담은 AI 친화적 디자인 시스템이에요. shadcn 레지스트리 형식이라 어떤 React + Tailwind v4 프로젝트에서든 한 줄로 시작할 수 있어요.
 
 ```bash
-npx shadcn add https://ui.pyospect.com/r/pyospect.json
+npx pyospectui
 ```
 
-이 한 줄이면 설정 없이 테마와 컴포넌트 18개가 전부 들어와요. 하나씩 고르려면 `@pyospect/button`처럼 이름으로 받을 수도 있어요.
+이 한 줄이면 설정 없이 테마와 컴포넌트 18개가 전부 들어와요. 몇 개만 고르려면 `npx pyospectui button card`처럼 이름을 붙여요. shadcn 명령을 그대로 쓰고 싶으면 `npx shadcn add https://ui.pyospect.com/r/pyospect.json`이에요.
 
 - 규칙: [docs/TASTE.md](docs/TASTE.md)
 - AI용 요약: [public/llms.txt](public/llms.txt)
@@ -32,7 +32,7 @@ cd my-app
 전부 받아요. 첫 설치에는 `--overwrite`를 붙여요. init이 만든 기본 button을 pyospect 것으로 바꿔야 하니까요.
 
 ```bash
-npx shadcn@latest add https://ui.pyospect.com/r/pyospect.json --overwrite
+npx pyospectui --overwrite
 ```
 
 하나씩 고르고 싶으면 `components.json`에 레지스트리를 등록하고 이름으로 받아요.
