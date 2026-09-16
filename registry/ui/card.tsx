@@ -4,7 +4,7 @@
  * Variant    media: none | top. selected: true | false.
  * Token      bg surface, radius md, padding 20 (media card padding 4, inner media radius = 12 - 4 = 8), glow 1px in dark only. no shadow.
  * Structure  level: surface. sits on bg only. never inside another Card or Panel. inner groups use surface-2 with no glow.
- * Usage Rule selected is the only state with a line (accent-ink 1px + tint). titles are one line.
+ * Usage Rule selected is the only state with a line (brand-ink 1px + tint). titles are one line.
  */
 import * as React from "react"
 import { cn } from "@/lib/utils"
@@ -21,7 +21,7 @@ function Card({ className, selected, media, ...props }: CardProps) {
       className={cn(
         "grid min-w-0 content-start gap-3 overflow-hidden rounded-md bg-surface glow",
         media ? "p-1" : "p-5",
-        selected && "bg-accent-tint outline outline-1 -outline-offset-1 outline-accent-ink",
+        selected && "bg-brand-tint outline outline-1 -outline-offset-1 outline-brand-ink",
         className
       )}
       {...props}

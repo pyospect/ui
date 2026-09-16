@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "registry:build": "shadcn build --output public/r"
+    "registry:build": "shadcn build --output public/r && node scripts/theme-item.mjs && cp docs/TASTE.md public/TASTE.md"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",

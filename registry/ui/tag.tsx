@@ -1,7 +1,7 @@
 /**
  * Tag
  * Naming     Tag, Tag/Status.
- * Variant    tone: neutral | accent | ok | warn | danger.
+ * Variant    tone: neutral | brand | ok | warn | danger.
  * Token      height 24, padding-x 8, radius full, 12px medium. colored tones are solid fills with white text (AA in both themes).
  * Structure  text only, one line, truncates. not interactive.
  * Usage Rule status is shown only as a Tag. tints are for surfaces, never for pills.
@@ -14,7 +14,7 @@ const tagVariants = cva("inline-flex h-6 max-w-full items-center gap-1 rounded-f
   variants: {
     tone: {
       neutral: "bg-surface-2 text-text-2",
-      accent: "bg-accent text-accent-text",
+      accent: "bg-brand text-brand-text",
       ok: "bg-ok-fill text-white",
       warn: "bg-warn-fill text-white",
       danger: "bg-danger-fill text-white",

@@ -1,107 +1,536 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "pyospect",
-  "homepage": "https://ui.pyospect.dev",
+  "homepage": "https://pyospect.github.io/pyospectui",
   "items": [
     {
       "name": "theme",
       "type": "registry:theme",
       "title": "pyospect theme",
-      "description": "4px grid, neutral surfaces, one warm green brand scale, Pretendard. Rules in docs/TASTE.md.",
-      "files": [{ "path": "src/index.css", "type": "registry:file", "target": "~/app/pyospect.css" }]
+      "description": "4px grid, neutral surfaces, one warm green brand scale, Pretendard. Defines every shadcn variable plus pyospect tokens. Rules: TASTE.md",
+      "cssVars": {
+        "theme": {
+          "font-sans": "var(--font-sans)",
+          "font-mono": "var(--font-mono)",
+          "color-background": "var(--background)",
+          "color-foreground": "var(--foreground)",
+          "color-card": "var(--card)",
+          "color-card-foreground": "var(--card-foreground)",
+          "color-popover": "var(--popover)",
+          "color-popover-foreground": "var(--popover-foreground)",
+          "color-primary": "var(--primary)",
+          "color-primary-foreground": "var(--primary-foreground)",
+          "color-secondary": "var(--secondary)",
+          "color-secondary-foreground": "var(--secondary-foreground)",
+          "color-muted": "var(--muted)",
+          "color-muted-foreground": "var(--muted-foreground)",
+          "color-accent": "var(--accent)",
+          "color-accent-foreground": "var(--accent-foreground)",
+          "color-destructive": "var(--destructive)",
+          "color-destructive-foreground": "var(--destructive-foreground)",
+          "color-border": "var(--border)",
+          "color-input": "var(--input)",
+          "color-ring": "var(--ring)",
+          "color-chart-1": "var(--chart-1)",
+          "color-chart-2": "var(--chart-2)",
+          "color-chart-3": "var(--chart-3)",
+          "color-chart-4": "var(--chart-4)",
+          "color-chart-5": "var(--chart-5)",
+          "color-sidebar": "var(--sidebar)",
+          "color-sidebar-foreground": "var(--sidebar-foreground)",
+          "color-sidebar-primary": "var(--sidebar-primary)",
+          "color-sidebar-primary-foreground": "var(--sidebar-primary-foreground)",
+          "color-sidebar-accent": "var(--sidebar-accent)",
+          "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
+          "color-sidebar-border": "var(--sidebar-border)",
+          "color-sidebar-ring": "var(--sidebar-ring)",
+          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-md": "var(--radius)",
+          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-xl": "calc(var(--radius) + 8px)",
+          "color-bg": "var(--bg)",
+          "color-surface": "var(--surface)",
+          "color-surface-2": "var(--surface-2)",
+          "color-surface-3": "var(--surface-3)",
+          "color-text": "var(--text)",
+          "color-text-2": "var(--text-2)",
+          "color-text-3": "var(--text-3)",
+          "color-line": "var(--line)",
+          "color-glow": "var(--glow)",
+          "color-scrim": "var(--scrim)",
+          "color-skeleton": "var(--skeleton)",
+          "color-brand": "var(--brand)",
+          "color-brand-text": "var(--brand-text)",
+          "color-brand-hover": "var(--brand-hover)",
+          "color-brand-ink": "var(--brand-ink)",
+          "color-brand-tint": "var(--brand-tint)",
+          "color-brand-tint-2": "var(--brand-tint-2)",
+          "color-brand-50": "var(--brand-50)",
+          "color-brand-100": "var(--brand-100)",
+          "color-brand-200": "var(--brand-200)",
+          "color-brand-300": "var(--brand-300)",
+          "color-brand-400": "var(--brand-400)",
+          "color-brand-500": "var(--brand-500)",
+          "color-brand-600": "var(--brand-600)",
+          "color-brand-700": "var(--brand-700)",
+          "color-brand-800": "var(--brand-800)",
+          "color-brand-900": "var(--brand-900)",
+          "color-brand-950": "var(--brand-950)",
+          "color-ok": "var(--ok)",
+          "color-ok-fill": "var(--ok-fill)",
+          "color-ok-tint": "var(--ok-tint)",
+          "color-warn": "var(--warn)",
+          "color-warn-fill": "var(--warn-fill)",
+          "color-warn-tint": "var(--warn-tint)",
+          "color-danger": "var(--danger)",
+          "color-danger-fill": "var(--danger-fill)",
+          "color-danger-tint": "var(--danger-tint)",
+          "shadow-overlay": "var(--shadow-overlay)"
+        },
+        "light": {
+          "font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
+          "font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
+          "radius": "12px",
+          "brand-50": "#E7FBEB",
+          "brand-100": "#CEF7D8",
+          "brand-200": "#AEECBE",
+          "brand-300": "#86DB9D",
+          "brand-400": "#5CC87F",
+          "brand-500": "#3AAF65",
+          "brand-600": "#118846",
+          "brand-700": "#1E7942",
+          "brand-800": "#175F33",
+          "brand-900": "#144927",
+          "brand-950": "#0A2F17",
+          "bg": "#FAFAFA",
+          "surface": "#FFFFFF",
+          "surface-2": "#F2F2F3",
+          "surface-3": "#E6E6E8",
+          "text": "#111111",
+          "text-2": "#5C5C5F",
+          "text-3": "#6F6F73",
+          "line": "#767676",
+          "glow": "transparent",
+          "scrim": "rgba(0, 0, 0, .32)",
+          "skeleton": "#E6E6E8",
+          "shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
+          "brand": "var(--brand-600)",
+          "brand-text": "#FFFFFF",
+          "brand-hover": "var(--brand-700)",
+          "brand-ink": "var(--brand-700)",
+          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
+          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
+          "ok": "#1E8843",
+          "warn": "#AC6600",
+          "danger": "#CE4846",
+          "ok-fill": "#1E8843",
+          "warn-fill": "#AC6600",
+          "danger-fill": "#CE4846",
+          "ok-tint": "color-mix(in srgb, var(--ok) 10%, var(--surface))",
+          "warn-tint": "color-mix(in srgb, var(--warn) 12%, var(--surface))",
+          "danger-tint": "color-mix(in srgb, var(--danger) 10%, var(--surface))",
+          "background": "var(--bg)",
+          "foreground": "var(--text)",
+          "card": "var(--surface)",
+          "card-foreground": "var(--text)",
+          "popover": "var(--surface)",
+          "popover-foreground": "var(--text)",
+          "primary": "var(--brand)",
+          "primary-foreground": "var(--brand-text)",
+          "secondary": "var(--surface-2)",
+          "secondary-foreground": "var(--text)",
+          "muted": "var(--surface-2)",
+          "muted-foreground": "var(--text-2)",
+          "accent": "var(--surface-2)",
+          "accent-foreground": "var(--text)",
+          "destructive": "var(--danger)",
+          "destructive-foreground": "#FFFFFF",
+          "border": "var(--surface-3)",
+          "input": "var(--line)",
+          "ring": "var(--brand-ink)",
+          "chart-1": "var(--brand-600)",
+          "chart-2": "var(--brand-400)",
+          "chart-3": "var(--brand-800)",
+          "chart-4": "var(--brand-300)",
+          "chart-5": "var(--brand-900)",
+          "sidebar": "var(--surface)",
+          "sidebar-foreground": "var(--text)",
+          "sidebar-primary": "var(--brand)",
+          "sidebar-primary-foreground": "var(--brand-text)",
+          "sidebar-accent": "var(--surface-2)",
+          "sidebar-accent-foreground": "var(--text)",
+          "sidebar-border": "var(--surface-3)",
+          "sidebar-ring": "var(--brand-ink)"
+        },
+        "dark": {
+          "bg": "#0C0C0C",
+          "surface": "#161616",
+          "surface-2": "#1F1F1F",
+          "surface-3": "#2A2A2A",
+          "text": "#F5F5F5",
+          "text-2": "#A3A3A6",
+          "text-3": "#8E8E92",
+          "line": "#7A7A7E",
+          "glow": "rgba(255, 255, 255, .06)",
+          "scrim": "rgba(0, 0, 0, .56)",
+          "skeleton": "#2A2A2A",
+          "shadow-overlay": "none",
+          "brand": "var(--brand-600)",
+          "brand-text": "#FFFFFF",
+          "brand-hover": "var(--brand-500)",
+          "brand-ink": "var(--brand-300)",
+          "brand-tint": "color-mix(in srgb, var(--brand-400) 14%, var(--surface))",
+          "brand-tint-2": "color-mix(in srgb, var(--brand-400) 24%, var(--surface))",
+          "ok": "#67D283",
+          "warn": "#F4A437",
+          "danger": "#FF8079",
+          "ok-fill": "#1E8843",
+          "warn-fill": "#AC6600",
+          "danger-fill": "#CE4846",
+          "ok-tint": "color-mix(in srgb, var(--ok) 14%, var(--surface))",
+          "warn-tint": "color-mix(in srgb, var(--warn) 14%, var(--surface))",
+          "danger-tint": "color-mix(in srgb, var(--danger) 14%, var(--surface))",
+          "destructive": "var(--danger-fill)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "*": {
+            "min-width": "0",
+            "border-color": "var(--border)"
+          },
+          "body": {
+            "font-family": "var(--font-sans)",
+            "font-weight": "400",
+            "word-break": "keep-all",
+            "overflow-wrap": "break-word",
+            "-webkit-font-smoothing": "antialiased"
+          },
+          ":focus-visible": {
+            "outline": "2px solid var(--ring)",
+            "outline-offset": "2px"
+          }
+        },
+        "@utility one-line": {
+          "white-space": "nowrap",
+          "overflow": "hidden",
+          "text-overflow": "ellipsis",
+          "min-width": "0"
+        },
+        "@utility glow": {
+          "box-shadow": "0 0 0 1px var(--glow)"
+        },
+        "@utility tabular": {
+          "font-variant-numeric": "tabular-nums"
+        }
+      }
     },
     {
       "name": "utils",
       "type": "registry:lib",
-      "dependencies": ["clsx", "tailwind-merge"],
-      "files": [{ "path": "src/lib/utils.ts", "type": "registry:lib" }]
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
     },
     {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
       "description": "primary, secondary, ghost, tint. full radius, one primary per screen, labels are verbs.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ui/button.tsx", "type": "registry:ui" }]
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
       "description": "surface with a meaningful 1px line. Field, Label, Help included. label always on top.",
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ui/input.tsx", "type": "registry:ui" }]
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
       "description": "track 28, handle 20, padding 4. Control row keeps label and switch on one line.",
-      "dependencies": ["@radix-ui/react-switch"],
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ui/switch.tsx", "type": "registry:ui" }]
+      "dependencies": [
+        "@radix-ui/react-switch"
+      ],
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
       "description": "surface level. no border, no shadow, never inside another card. media radius = card radius minus padding.",
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ui/card.tsx", "type": "registry:ui" }]
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "tag",
       "type": "registry:ui",
       "title": "Tag",
       "description": "full radius pill. colored tones are solid with white text.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ui/tag.tsx", "type": "registry:ui" }]
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/tag.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
       "description": "the only place a shadow lives. title is a question, primary button is the answer.",
-      "dependencies": ["@radix-ui/react-dialog"],
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ui/dialog.tsx", "type": "registry:ui" }]
+      "dependencies": [
+        "@radix-ui/react-dialog"
+      ],
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "thinking",
       "type": "registry:ui",
       "title": "Thinking",
       "description": "the agent's collapsible reasoning block. live dot pulses, done title is past tense.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ai/thinking.tsx", "type": "registry:ui" }]
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/thinking.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "validation-card",
       "type": "registry:ui",
       "title": "ValidationCard",
       "description": "one check the agent ran: title, one-line reason, status tag.",
-      "registryDependencies": ["@pyospect/utils", "@pyospect/tag"],
-      "files": [{ "path": "registry/ai/validation-card.tsx", "type": "registry:ui" }]
+      "registryDependencies": [
+        "@pyospect/utils",
+        "@pyospect/tag"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/validation-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "steps",
       "type": "registry:ui",
       "title": "Steps",
       "description": "filled circle = the agent handles it, dashed circle = a person decides. legend included.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@pyospect/utils"],
-      "files": [{ "path": "registry/ai/steps.tsx", "type": "registry:ui" }]
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/steps.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "decision-card",
       "type": "registry:ui",
       "title": "DecisionCard",
       "description": "what the agent made and the ways forward. the person presses to move on.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@pyospect/utils", "@pyospect/button"],
-      "files": [{ "path": "registry/ai/decision-card.tsx", "type": "registry:ui" }]
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@pyospect/utils",
+        "@pyospect/button"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/decision-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "list",
+      "type": "registry:ui",
+      "title": "List",
+      "description": "rows are buttons. hover and selected shown by row background only, no dividers.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "numbers right and tabular, header surface-2, no lines between rows, scrolls inside its wrap.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "gray bars, no illustration, no spinner.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "title, one line of text, one button. left aligned.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "diff",
+      "type": "registry:ui",
+      "title": "Diff",
+      "description": "JetBrains Mono, additions and deletions by tint only.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/diff.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "versions",
+      "type": "registry:ui",
+      "title": "Versions",
+      "description": "only the current version has a fill.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/versions.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chat",
+      "type": "registry:ui",
+      "title": "Chat",
+      "description": "the person on the brand side, the agent on a plain surface.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/chat.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "connection",
+      "type": "registry:ui",
+      "title": "Connection",
+      "description": "tool connection rows: ok dot when connected, ring dot and a ghost action when not.",
+      "registryDependencies": [
+        "@pyospect/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/ai/connection.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

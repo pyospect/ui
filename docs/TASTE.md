@@ -16,6 +16,7 @@
 - line-height는 국문 기준 1.5~1.6, 4배수로 맞춘 px 값 (예: 16px → 24px).
 
 ## 3. Color: neutral 베이스 + accent 1개
+- 이름 규칙: 디자인 문서에서는 "accent"라고 부르지만 코드 토큰은 `brand`(brand, brand-text, brand-ink, brand-tint). shadcn의 `accent`(hover 배경)와 충돌하기 때문. shadcn 표준 변수(background, primary, muted, border...)는 전부 pyospect 토큰에 매핑돼 있어서 shadcn 기본 컴포넌트도 같은 표정이 난다.
 - 베이스는 무채색 램프 하나. 색기 없는 순수 gray (blue-tint 금지).
   - light: bg `#FAFAFA`, surface `#FFFFFF`, surface-2 `#F2F2F3`, surface-3 `#E6E6E8`
   - dark: bg `#0C0C0C`, surface `#161616`, surface-2 `#1F1F1F`, surface-3 `#2A2A2A`
@@ -26,7 +27,7 @@
 - accent는 버튼 primary, 선택 상태, 링크, 진행 표시 외에는 쓰지 않는다.
 - tint(accent-tint, 상태 tint)는 rgba 반투명이 아니라 `color-mix`로 surface에 섞은 불투명 단색. 반투명이면 뒤의 선이나 콘텐츠가 비쳐서 어색해진다.
 - 색조 있는 면(accent-tint 카드 등) 위에는 뉴트럴 회색 채움(secondary 버튼, surface-2 조각)을 올리지 않는다. 그 자리에는 accent를 조금 더 섞은 tint 버튼(accent-tint-2 + accent 글자)이나 ghost.
-- 상태색은 success / warning / danger 3개: light `#12733F` / `#8C5400` / `#B8261B`, dark `#34C071` / `#E5A028` / `#F0584B`. 색 있는 pill은 단색 채움 + 흰 글자. pill fill 토큰은 따로 둔다: light는 상태색 그대로, dark는 `#15834A` / `#A66400` / `#CC3D2F`(흰 글자 4.7 이상). 다크의 밝은 상태색은 글자와 점에만. 반투명 tint pill은 눈에 안 들어오므로 금지. tint는 면(선택 row, 카드, 완료 원)에만.
+- 상태색은 success / warning / danger 3개. brand와 같은 방식으로 OKLCH에서 뽑았다(hue 150 / 70 / 25, brand-600과 같은 명도): light와 pill fill `#1E8843` / `#AC6600` / `#CE4846`(흰 글자 4.5 이상), dark 글자와 점 `#67D283` / `#F4A437` / `#FF8079`. 색 있는 pill은 단색 채움 + 흰 글자. pill fill은 두 테마 공통으로 light 상태색을 쓴다. 다크의 밝은 상태색은 글자와 점에만. 반투명 tint pill은 눈에 안 들어오므로 금지. tint는 면(선택 row, 카드, 완료 원)에만.
 
 ## 4. Surface: 선보다 면
 - 영역 구분의 기본은 border가 아니라 surface 톤 차이 한 단계 (bg → surface → surface-2).
