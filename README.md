@@ -3,8 +3,10 @@
 고경표의 취향을 담은 AI 친화적 디자인 시스템이에요. shadcn 레지스트리 형식이라 어떤 React + Tailwind v4 프로젝트에서든 한 줄로 시작할 수 있어요.
 
 ```bash
-npx shadcn add @pyospect/button
+npx shadcn add https://ui.pyospect.com/r/pyospect.json
 ```
+
+이 한 줄이면 설정 없이 테마와 컴포넌트 18개가 전부 들어와요. 하나씩 고르려면 `@pyospect/button`처럼 이름으로 받을 수도 있어요.
 
 - 규칙: [docs/TASTE.md](docs/TASTE.md)
 - AI용 요약: [public/llms.txt](public/llms.txt)
@@ -27,16 +29,20 @@ npx shadcn@latest init -t vite -b radix -p nova -y --no-monorepo -n my-app
 cd my-app
 ```
 
-`components.json`을 열어 맨 아래에 레지스트리 한 줄을 넣어요.
+전부 받아요. 첫 설치에는 `--overwrite`를 붙여요. init이 만든 기본 button을 pyospect 것으로 바꿔야 하니까요.
+
+```bash
+npx shadcn@latest add https://ui.pyospect.com/r/pyospect.json --overwrite
+```
+
+하나씩 고르고 싶으면 `components.json`에 레지스트리를 등록하고 이름으로 받아요.
 
 ```json
 "registries": { "@pyospect": "https://ui.pyospect.com/r/{name}.json" }
 ```
 
-그다음 테마와 컴포넌트를 받아요. 첫 설치에는 `--overwrite`를 붙여요. init이 만든 기본 button을 pyospect 것으로 바꿔야 하니까요.
-
 ```bash
-npx shadcn@latest add @pyospect/theme @pyospect/button @pyospect/card @pyospect/thinking --overwrite
+npx shadcn@latest add @pyospect/button @pyospect/card
 ```
 
 `index.html`의 `<head>`에 Pretendard를 넣어요.
