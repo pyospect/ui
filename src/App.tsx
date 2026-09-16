@@ -18,10 +18,11 @@ import { Diff, DiffLine } from "@/components/ai/diff"
 import { Versions, Version } from "@/components/ai/versions"
 import { Chat, Bubble, ChatTime } from "@/components/ai/chat"
 import { ConnectionList, Connection } from "@/components/ai/connection"
+import { CopyCommand } from "@/components/ui/copy-command"
 
-function Section({ title, sub, children }: { title: string; sub: string; children: React.ReactNode }) {
+function Section({ id, title, sub, children }: { id: string; title: string; sub: string; children: React.ReactNode }) {
   return (
-    <section className="grid gap-8">
+    <section id={id} className="grid scroll-mt-24 gap-8">
       <h2 className="text-xl font-semibold leading-7">
         {title}
         <small className="mt-2 block text-sm font-normal leading-5 text-text-2 text-pretty">{sub}</small>
@@ -55,6 +56,27 @@ const HERO = [
   ["이 시스템은 그 습관을 AI에게 건네주려고 만들었어요. ", "사람이 결정할 일과 시스템이 처리할 일을 나누고, ", "쓰는 사람이 덜 불안하게 다음 행동을 고를 수 있도록 다듬는 것. ", "기술이 삶에 닿는 마지막 한 뼘을, ", "누구나 설치 한 줄로 시작할 수 있으면 좋겠어요."],
 ]
 
+const NAV: [string, string][] = [["시작하기", "#install"], ["Components", "#components"], ["AI 패턴", "#ai"], ["규칙", "#rules"], ["GitHub", "https://github.com/pyospect/ui"]]
+const FOOTER: [string, string][] = [["GitHub", "https://github.com/pyospect/ui"], ["npm", "https://www.npmjs.com/package/pyospectui"], ["TASTE.md", "https://ui.pyospect.com/TASTE.md"], ["llms.txt", "https://ui.pyospect.com/llms.txt"], ["pyospect.com", "https://pyospect.com"]]
+const INSTALL: [string, string, string][] = [
+  ["1. 새 프로젝트", "shadcn이 Vite와 Tailwind까지 만들어 줘요.", "npx shadcn@latest init -t vite -b radix -p nova -y --no-monorepo -n my-app"],
+  ["2. 전부 받기", "테마와 컴포넌트 19개예요. 첫 설치에는 --overwrite를 붙여요.", "cd my-app && npx pyospectui --overwrite"],
+  ["3. 실행", "화면을 만들면 돼요.", "npm run dev"],
+]
+const RULES: [string, string][] = [
+  ["Grid", "간격과 크기는 전부 4의 배수예요. 글자 크기 14만 예외이고, 그 줄 높이 20이 4배수를 지켜요."],
+  ["Type", "Pretendard 400, 500, 600만 써요. 기본은 500이고, 위계는 크기보다 톤과 굵기로 내요. 코드만 JetBrains Mono예요."],
+  ["Text", "줄바꿈은 단어 단위예요. 태그, 버튼, 제목, 라벨은 한 줄에 말줄임표예요. 라벨과 컨트롤은 갈라지지 않아요."],
+  ["Writing", "친절하게 풀어쓴 해요체예요. 명사로 끝내지 않고 영어 직역을 쓰지 않아요. 버튼은 동사예요."],
+  ["Color", "무채색 면 4단계에 brand 스케일 하나, 상태색 셋이에요. 색 있는 pill은 단색에 흰 글자예요."],
+  ["Surface", "영역은 톤 차이로 나눠요. 선은 input, 스위치 트랙, focus, 선택, 오류처럼 의미가 있을 때만이에요."],
+  ["Depth", "bg 위에 surface, 2단계까지예요. 카드 속 카드는 없어요."],
+  ["Radius", "full 아니면 12예요. 겹치면 바깥 r은 안쪽 r에 padding을 더한 값이에요."],
+  ["Motion", "120ms ease-out 하나예요. 색과 투명도만 움직여요."],
+  ["A11y", "WCAG AA예요. 키보드로 모든 것에 닿고 focus는 2px 선이에요."],
+  ["AI", "모든 컴포넌트에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. 에이전트가 처리한 것과 사람이 결정할 것은 항상 모양이 달라요."],
+]
+
 const rows = [
   ["2026-03-02", "서울역", "천안아산역", "고속철도", "96", "14,100원", "개인카드", "hint"],
   ["2026-03-02", "천안아산역", "세종청사", "택시", "24", "31,200원", "법인카드", "receipt"],
@@ -73,15 +95,26 @@ export default function App() {
   }, [dark])
 
   return (
-    <div className="mx-auto grid max-w-[1040px] gap-24 px-6 py-8 pb-24">
-      <div className="flex justify-end">
-        <Control className="shrink-0">
-          <Label htmlFor="theme">다크 모드</Label>
-          <Switch id="theme" checked={dark} onCheckedChange={setDark} />
-        </Control>
-      </div>
+    <div className="min-h-dvh">
+      <nav className="sticky top-0 z-40 bg-bg/90 backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-[1040px] items-center gap-6 px-6">
+          <a href="#" className="flex shrink-0 items-center gap-2 text-base font-semibold leading-6 text-text">
+            <span className="size-4 rounded-full bg-brand" aria-hidden />pyospectui
+          </a>
+          <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto text-sm font-medium leading-5 text-text-2 [scrollbar-width:none]">
+            {NAV.map(([label, href]) => (
+              <a key={href} href={href} className="shrink-0 rounded-full px-3 py-2 transition-colors duration-[120ms] hover:bg-surface-2 hover:text-text">{label}</a>
+            ))}
+          </div>
+          <Control className="shrink-0">
+            <Label htmlFor="theme" className="hidden sm:block">다크 모드</Label>
+            <Switch id="theme" checked={dark} onCheckedChange={setDark} aria-label="다크 모드" />
+          </Control>
+        </div>
+      </nav>
 
-      <header className="grid justify-items-center gap-6 py-16 text-center">
+    <div className="mx-auto grid max-w-[1040px] gap-24 px-6 pb-24">
+      <header className="grid justify-items-center gap-6 py-20 text-center">
         <div className="text-xs font-medium leading-4 tracking-wide text-text-3">Work. Build. Taste.</div>
         <h1 className="text-[40px] font-semibold leading-12 tracking-tight">pyospectui</h1>
         <div className="grid max-w-[640px] gap-5 text-sm leading-6 text-text-2">
@@ -96,10 +129,25 @@ export default function App() {
           ))}
         </div>
         <p className="text-xs leading-4 text-text-3">고경표, Product Designer</p>
-        <code className="mt-2 rounded-sm bg-surface-2 px-3 py-2 font-mono text-xs leading-4 text-text">npx shadcn add @pyospect/button</code>
+        <CopyCommand command="npx pyospectui" size="lg" className="mt-2 w-full max-w-[400px]" />
       </header>
 
-      <Section title="Components" sub="기본 컴포넌트예요. 각 파일 맨 위에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. shadcn 표준 변수도 전부 정의돼 있어서 shadcn 컴포넌트를 같이 설치해도 같은 모습이에요.">
+      <Section id="install" title="시작하기" sub="Node.js만 있으면 돼요. 새 프로젝트를 만들고, 전부 받고, 화면을 만들면 끝이에요.">
+        <div className="grid gap-4">
+          {INSTALL.map(([title, text, cmd]) => (
+            <div key={cmd} data-level="surface" className="grid gap-3 rounded-md bg-surface p-5 glow">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h4 className="one-line text-sm font-semibold leading-5 text-text">{title}</h4>
+                <p className="text-sm leading-5 text-text-2">{text}</p>
+              </div>
+              <CopyCommand command={cmd} />
+            </div>
+          ))}
+          <p className="text-sm leading-5 text-text-2 text-pretty">몇 개만 고르려면 <code className="font-mono text-xs">npx pyospectui button card</code>처럼 이름을 붙여요. shadcn 명령을 그대로 쓰고 싶으면 레지스트리 주소는 <code className="font-mono text-xs">https://ui.pyospect.com/r/pyospect.json</code>이에요.</p>
+        </div>
+      </Section>
+
+      <Section id="components" title="Components" sub="기본 컴포넌트예요. 각 파일 맨 위에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. shadcn 표준 변수도 전부 정의돼 있어서 shadcn 컴포넌트를 같이 설치해도 같은 모습이에요.">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
           <Panel title="Button: primary, secondary, ghost, tint">
             <div className="flex flex-wrap items-center gap-2">
@@ -202,7 +250,7 @@ export default function App() {
         </div>
       </Section>
 
-      <Section title="AI 협업 패턴" sub="에이전트와 함께 일하는 화면에 반복해서 쓰는 패턴이에요. shadcn에는 없는, 이 시스템만의 패턴이에요.">
+      <Section id="ai" title="AI 협업 패턴" sub="에이전트와 함께 일하는 화면에 반복해서 쓰는 패턴이에요. shadcn에는 없는, 이 시스템만의 패턴이에요.">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
           <Panel title="Thinking: 접히는 생각 블록">
             <Thinking
@@ -263,6 +311,35 @@ export default function App() {
           </Panel>
         </div>
       </Section>
+      <Section id="rules" title="규칙" sub="AI에게 그대로 주는 규칙이에요. 전체는 TASTE.md에 있어요.">
+        <ul className="grid gap-0">
+          {RULES.map(([k, v]) => (
+            <li key={k} className="grid grid-cols-[112px_1fr] gap-4 py-3 text-sm leading-5 text-text-2 text-pretty">
+              <b className="font-medium text-text">{k}</b><span>{v}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-wrap gap-2">
+          <Button hierarchy="secondary" size="sm" onClick={() => window.open("https://ui.pyospect.com/TASTE.md", "_blank")}>TASTE.md 읽기</Button>
+          <Button hierarchy="ghost" size="sm" onClick={() => window.open("https://ui.pyospect.com/llms.txt", "_blank")}>llms.txt</Button>
+        </div>
+      </Section>
+    </div>
+
+      <footer className="bg-surface">
+        <div className="mx-auto grid max-w-[1040px] gap-8 px-6 py-12 sm:grid-cols-[1fr_auto]">
+          <div className="grid gap-2">
+            <div className="flex items-center gap-2 text-base font-semibold leading-6 text-text"><span className="size-4 rounded-full bg-brand" aria-hidden />pyospectui</div>
+            <p className="text-sm leading-5 text-text-2 text-pretty">생각한 것을 직접 만들어요. 쓰는 사람이 이해하고 결정하기 쉽게 다듬어요.</p>
+            <p className="text-xs leading-4 text-text-3">고경표 Kyoungpyo Koh, Product Designer. MIT License.</p>
+          </div>
+          <div className="grid content-start gap-1 text-sm font-medium leading-5 text-text-2">
+            {FOOTER.map(([label, href]) => (
+              <a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="rounded-sm py-1 transition-colors duration-[120ms] hover:text-text">{label}</a>
+            ))}
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

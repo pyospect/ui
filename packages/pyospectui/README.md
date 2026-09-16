@@ -6,7 +6,7 @@
 npx pyospectui
 ```
 
-테마와 컴포넌트 18개가 전부 들어와요. 몇 개만 고르려면 이름을 붙여요.
+테마와 컴포넌트 19개가 전부 들어와요. 몇 개만 고르려면 이름을 붙여요.
 
 ```bash
 npx pyospectui button card thinking
