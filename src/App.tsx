@@ -95,7 +95,7 @@ export default function App() {
         <code className="mt-2 rounded-sm bg-surface-2 px-3 py-2 font-mono text-xs leading-4 text-text">npx shadcn add @pyospect/button</code>
       </header>
 
-      <Section title="Components" sub="기본 컴포넌트예요. 각 파일 맨 위에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. shadcn 표준 변수도 전부 정의돼 있어서 shadcn 컴포넌트를 같이 설치해도 같은 표정이에요.">
+      <Section title="Components" sub="기본 컴포넌트예요. 각 파일 맨 위에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. shadcn 표준 변수도 전부 정의돼 있어서 shadcn 컴포넌트를 같이 설치해도 같은 모습이에요.">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
           <Panel title="Button: primary, secondary, ghost, tint">
             <div className="flex flex-wrap items-center gap-2">
@@ -198,7 +198,7 @@ export default function App() {
         </div>
       </Section>
 
-      <Section title="AI 협업 패턴" sub="에이전트와 함께 일하는 화면에 반복해서 나오는 조각들이에요. shadcn에는 없는, 이 시스템의 몫이에요.">
+      <Section title="AI 협업 패턴" sub="에이전트와 함께 일하는 화면에 반복해서 쓰는 패턴이에요. shadcn에는 없는, 이 시스템만의 패턴이에요.">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
           <Panel title="Thinking: 접히는 생각 블록">
             <Thinking

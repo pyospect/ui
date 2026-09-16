@@ -34,4 +34,4 @@ npx shadcn add @pyospect/button @pyospect/input @pyospect/switch @pyospect/card 
 npx shadcn add @pyospect/thinking @pyospect/validation-card @pyospect/steps @pyospect/decision-card @pyospect/diff @pyospect/versions @pyospect/chat @pyospect/connection
 ```
 
-테마는 파일이 아니라 변수로 들어와요. `shadcn add @pyospect/theme`가 프로젝트 전역 CSS의 `:root`, `.dark`, `@theme inline`에 pyospect 토큰과 shadcn 표준 변수를 합쳐 넣어요. 그래서 `npx shadcn add dropdown-menu` 같은 shadcn 기본 컴포넌트도 같은 표정으로 나와요. Pretendard와 JetBrains Mono는 `index.html`에서 불러와요.
+테마는 파일이 아니라 변수로 들어와요. `shadcn add @pyospect/theme`가 프로젝트 전역 CSS의 `:root`, `.dark`, `@theme inline`에 pyospect 토큰과 shadcn 표준 변수를 합쳐 넣어요. 그래서 `npx shadcn add dropdown-menu` 같은 shadcn 기본 컴포넌트도 같은 모습으로 나와요. Pretendard와 JetBrains Mono는 `index.html`에서 불러와요.

@@ -3,7 +3,7 @@
 > 고경표(pyospect)의 취향을 담은 AI 친화적 디자인 시스템. shadcn 레지스트리 형식이라 `npx shadcn add @pyospect/<name>`로 설치해요.
 
 ## 한 줄 규칙
-Pretendard 500, 4배수 간격, 무채색 표면 톤 차이로 영역 구분, 장식용 선과 그림자와 카드 중첩 금지, radius는 full 아니면 12이고 중첩 시 바깥 r = 안쪽 r + padding, accent는 따뜻한 초록 brand 스케일 하나(채움은 600에 흰 글자, 글자는 700), 단어 단위 줄바꿈에 한 줄 UI는 말줄임, 문장은 해요체에 버튼은 동사, em dash와 가운뎃점 금지, AA 대비, 에이전트 처리와 사람 결정은 모양이 다르다.
+Pretendard 500, 4배수 간격, 무채색 면의 톤 차이로 영역 구분, 장식용 선과 그림자와 카드 중첩 금지, radius는 full 아니면 12이고 중첩 시 바깥 r = 안쪽 r + padding, accent는 따뜻한 초록 brand 스케일 하나(fill은 600에 흰 글자, 글자는 700), 단어 단위 줄바꿈에 한 줄 UI는 말줄임, 문장은 해요체에 버튼은 동사, em dash와 가운뎃점 금지, AA 대비, 에이전트 처리와 사람 결정은 모양이 다르다.
 
 ## 설치
 components.json의 registries에 `"@pyospect": "https://pyospect.github.io/ui/r/{name}.json"`를 추가한 뒤:
@@ -15,9 +15,9 @@ components.json의 registries에 `"@pyospect": "https://pyospect.github.io/ui/r/
 - 면: bg, surface, surface-2, surface-3. 영역은 이 톤 차이로만 나눈다.
 - 글자: text, text-2, text-3. 위계는 크기보다 톤과 굵기.
 - 선: line (input, 스위치 off 트랙, focus에만). accent-ink는 선택과 focus.
-- brand(디자인 문서의 "accent"): brand(채움) + brand-text(흰색), brand-ink(글자와 링크), brand-tint / brand-tint-2(면). shadcn의 accent(hover 배경)와 충돌하지 않도록 코드에서는 brand라고 부른다.
-- 상태: ok, warn, danger (글자와 점), ok-fill / warn-fill / danger-fill (pill 채움, 흰 글자), *-tint (면).
-- shadcn 표준 이름(background, foreground, card, primary, secondary, muted, accent, destructive, border, input, ring, radius, chart, sidebar)도 전부 정의돼 있다. `npx shadcn add dropdown-menu`처럼 shadcn 기본 컴포넌트를 같이 설치해도 같은 표정이 난다.
+- brand(디자인 문서의 "accent"): brand(fill) + brand-text(흰색), brand-ink(글자와 링크), brand-tint / brand-tint-2(면). shadcn의 accent(hover 배경)와 충돌하지 않도록 코드에서는 brand라고 부른다.
+- 상태: ok, warn, danger (글자와 점), ok-fill / warn-fill / danger-fill (pill fill, 흰 글자), *-tint (면).
+- shadcn 표준 이름(background, foreground, card, primary, secondary, muted, accent, destructive, border, input, ring, radius, chart, sidebar)도 전부 정의돼 있다. `npx shadcn add dropdown-menu`처럼 shadcn 기본 컴포넌트를 같이 설치해도 같은 모습으로 나온다.
 - radius: rounded-sm 8, rounded-md 12, rounded-lg 20, rounded-full. 겹치면 바깥 r = 안쪽 r + padding.
 - 간격: Tailwind 기본 4px 단위 그대로. 홀수 단위(1.5, 2.5) 금지.
 - 유틸: one-line (한 줄 말줄임), glow (다크에서만 보이는 1px), tabular.
@@ -26,7 +26,7 @@ components.json의 registries에 `"@pyospect": "https://pyospect.github.io/ui/r/
 모든 컴포넌트 파일 맨 위 주석에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있다. 새 컴포넌트를 만들 때도 같은 형식으로 쓴다.
 
 ## 하지 말 것
-- outline 버튼, 카드 속 카드, 카드 외곽선, 리스트 구분선, 카드 그림자, 반투명 tint pill, 회색 채움을 brand-tint 면 위에 올리기.
+- outline 버튼, 카드 속 카드, 카드 외곽선, 리스트 구분선, 카드 그림자, 반투명 tint pill, 회색 배경을 brand-tint 면 위에 올리기.
 - bg-green-500 같은 Tailwind 기본 유채색. brand-* 와 의미 토큰만.
 - 명사로 끝나는 UI 문장("저장 완료"), 영어 직역("성공적으로 삭제되었습니다"), "확인 / 취소" 버튼.
 - 라벨과 컨트롤을 두 줄로 가르기. 콘텐츠가 카드 밖으로 나가기.
