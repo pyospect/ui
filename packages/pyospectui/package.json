@@ -1,0 +1,14 @@
+{
+  "name": "pyospectui",
+  "version": "0.1.0",
+  "description": "고경표의 취향을 담은 AI 친화적 디자인 시스템. npx pyospectui 한 줄로 shadcn 레지스트리에서 테마와 컴포넌트를 받아요.",
+  "license": "MIT",
+  "author": "Kyoungpyo Koh <pyospect@gmail.com>",
+  "homepage": "https://ui.pyospect.com",
+  "repository": { "type": "git", "url": "https://github.com/pyospect/ui", "directory": "packages/pyospectui" },
+  "keywords": ["design-system", "shadcn", "tailwind", "react", "korean", "pretendard", "ai"],
+  "type": "module",
+  "bin": { "pyospectui": "./bin.mjs" },
+  "files": ["bin.mjs", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" }
+}

@@ -87,7 +87,11 @@ export default function App() {
         <div className="grid max-w-[640px] gap-5 text-sm leading-6 text-text-2">
           {HERO.map((para, i) => (
             <p key={i}>
-              {para.map((seg, j) => <span key={j} className="inline-block">{seg}</span>)}
+              {para.map((seg, j) => (
+                <span key={j}>
+                  <span className="inline-block">{seg.trim()}</span>{" "}
+                </span>
+              ))}
             </p>
           ))}
         </div>
