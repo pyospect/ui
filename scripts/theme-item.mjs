@@ -44,4 +44,7 @@ writeFileSync("registry.json", JSON.stringify(registry, null, 2) + "\n")
 // shadcn build skips items without files, so the theme item is written to the output directly
 mkdirSync("public/r", { recursive: true })
 writeFileSync("public/r/theme.json", JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry-item.json", ...item }, null, 2) + "\n")
+// the "pyospect" bundle has no files either; it pulls everything through registryDependencies
+const bundle = registry.items.find((i) => i.name === "pyospect")
+writeFileSync("public/r/pyospect.json", JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry-item.json", ...bundle }, null, 2) + "\n")
 console.log(`theme item: ${Object.keys(theme).length} theme vars, ${Object.keys(light).length} light, ${Object.keys(dark).length} dark`)

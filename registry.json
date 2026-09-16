@@ -248,7 +248,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -263,7 +263,7 @@
       "title": "Input",
       "description": "surface with a meaningful 1px line. Field, Label, Help included. label always on top.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -281,7 +281,7 @@
         "@radix-ui/react-switch"
       ],
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -296,7 +296,7 @@
       "title": "Card",
       "description": "surface level. no border, no shadow, never inside another card. media radius = card radius minus padding.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -314,7 +314,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -332,7 +332,7 @@
         "@radix-ui/react-dialog"
       ],
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -350,7 +350,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -365,8 +365,8 @@
       "title": "ValidationCard",
       "description": "one check the agent ran: title, one-line reason, status tag.",
       "registryDependencies": [
-        "@pyospect/utils",
-        "@pyospect/tag"
+        "https://ui.pyospect.com/r/utils.json",
+        "https://ui.pyospect.com/r/tag.json"
       ],
       "files": [
         {
@@ -384,7 +384,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -402,8 +402,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@pyospect/utils",
-        "@pyospect/button"
+        "https://ui.pyospect.com/r/utils.json",
+        "https://ui.pyospect.com/r/button.json"
       ],
       "files": [
         {
@@ -418,7 +418,7 @@
       "title": "List",
       "description": "rows are buttons. hover and selected shown by row background only, no dividers.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -433,7 +433,7 @@
       "title": "Table",
       "description": "numbers right and tabular, header surface-2, no lines between rows, scrolls inside its wrap.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -448,7 +448,7 @@
       "title": "Skeleton",
       "description": "gray bars, no illustration, no spinner.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -463,7 +463,7 @@
       "title": "Empty",
       "description": "title, one line of text, one button. left aligned.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -478,7 +478,7 @@
       "title": "Diff",
       "description": "JetBrains Mono, additions and deletions by tint only.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -493,7 +493,7 @@
       "title": "Versions",
       "description": "only the current version has a fill.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -508,7 +508,7 @@
       "title": "Chat",
       "description": "the person on the brand side, the agent on a plain surface.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
@@ -523,13 +523,40 @@
       "title": "Connection",
       "description": "tool connection rows: ok dot when connected, ring dot and a ghost action when not.",
       "registryDependencies": [
-        "@pyospect/utils"
+        "https://ui.pyospect.com/r/utils.json"
       ],
       "files": [
         {
           "path": "registry/ai/connection.tsx",
           "type": "registry:ui"
         }
+      ]
+    },
+    {
+      "name": "pyospect",
+      "type": "registry:ui",
+      "title": "pyospectui (전체)",
+      "description": "테마와 18개 컴포넌트를 한 번에 받아요. npx shadcn add https://ui.pyospect.com/r/pyospect.json",
+      "registryDependencies": [
+        "https://ui.pyospect.com/r/theme.json",
+        "https://ui.pyospect.com/r/button.json",
+        "https://ui.pyospect.com/r/input.json",
+        "https://ui.pyospect.com/r/switch.json",
+        "https://ui.pyospect.com/r/card.json",
+        "https://ui.pyospect.com/r/tag.json",
+        "https://ui.pyospect.com/r/dialog.json",
+        "https://ui.pyospect.com/r/thinking.json",
+        "https://ui.pyospect.com/r/validation-card.json",
+        "https://ui.pyospect.com/r/steps.json",
+        "https://ui.pyospect.com/r/decision-card.json",
+        "https://ui.pyospect.com/r/list.json",
+        "https://ui.pyospect.com/r/table.json",
+        "https://ui.pyospect.com/r/skeleton.json",
+        "https://ui.pyospect.com/r/empty.json",
+        "https://ui.pyospect.com/r/diff.json",
+        "https://ui.pyospect.com/r/versions.json",
+        "https://ui.pyospect.com/r/chat.json",
+        "https://ui.pyospect.com/r/connection.json"
       ]
     }
   ]
