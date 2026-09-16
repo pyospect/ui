@@ -3,3 +3,4 @@ dist
 public/r
 .DS_Store
 tsconfig.tsbuildinfo
+.claude/
