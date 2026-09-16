@@ -23,7 +23,7 @@ npm run registry:build   # public/r/*.json 생성
 `components.json`에 레지스트리를 등록해요.
 
 ```json
-{ "registries": { "@pyospect": "https://pyospect.github.io/ui/r/{name}.json" } }
+{ "registries": { "@pyospect": "https://ui.pyospect.com/r/{name}.json" } }
 ```
 
 그다음 테마와 컴포넌트를 받아요.

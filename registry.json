@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "pyospect",
-  "homepage": "https://pyospect.github.io/ui",
+  "homepage": "https://ui.pyospect.com",
   "items": [
     {
       "name": "theme",
