@@ -49,6 +49,12 @@ function Block({ title, children, className = "" }: { title: string; children: R
   )
 }
 
+// hero copy: the line may only break after a comma or a period, so each clause is one unbreakable segment
+const HERO = [
+  ["저는 생각한 것을 직접 만드는 사람이에요. ", "화면으로, ", "문장으로, ", "코드로요. ", "조용한 밤에 화면 하나를 붙잡고 여백과 문장의 온도를 다듬을 때 가장 몰입하고, ", "그렇게 만든 것이 누군가의 손에 닿아 반응으로 돌아올 때 의미를 느껴요."],
+  ["이 시스템은 그 습관을 AI에게 건네주려고 만들었어요. ", "사람이 결정할 일과 시스템이 처리할 일을 나누고, ", "쓰는 사람이 덜 불안하게 다음 행동을 고를 수 있도록 다듬는 것. ", "기술이 삶에 닿는 마지막 한 뼘을, ", "누구나 설치 한 줄로 시작할 수 있으면 좋겠어요."],
+]
+
 const rows = [
   ["2026-03-02", "서울역", "천안아산역", "고속철도", "96", "14,100원", "개인카드", "hint"],
   ["2026-03-02", "천안아산역", "세종청사", "택시", "24", "31,200원", "법인카드", "receipt"],
@@ -78,9 +84,12 @@ export default function App() {
       <header className="grid justify-items-center gap-6 py-16 text-center">
         <div className="text-xs font-medium leading-4 tracking-wide text-text-3">Work. Build. Taste.</div>
         <h1 className="text-[40px] font-semibold leading-12 tracking-tight">pyospectui</h1>
-        <div className="grid max-w-[640px] gap-5 text-sm leading-6 text-text-2 text-pretty">
-          <p>저는 생각한 것을 직접 만드는 사람이에요. 화면으로, 문장으로, 코드로요. 조용한 밤에 화면 하나를 붙잡고 여백과 문장의 온도를 다듬을 때 가장 몰입하고, 그렇게 만든 것이 누군가의 손에 닿아 반응으로 돌아올 때 의미를 느껴요.</p>
-          <p>이 시스템은 그 습관을 AI에게 건네주려고 만들었어요. 사람이 결정할 일과 시스템이 처리할 일을 나누고, 쓰는 사람이 덜 불안하게 다음 행동을 고를 수 있도록 다듬는 것. 기술이 삶에 닿는 마지막 한 뼘을, 누구나 설치 한 줄로 시작할 수 있으면 좋겠어요.</p>
+        <div className="grid max-w-[640px] gap-5 text-sm leading-6 text-text-2">
+          {HERO.map((para, i) => (
+            <p key={i}>
+              {para.map((seg, j) => <span key={j} className="inline-block">{seg}</span>)}
+            </p>
+          ))}
         </div>
         <p className="text-xs leading-4 text-text-3">고경표, Product Designer</p>
         <code className="mt-2 rounded-sm bg-surface-2 px-3 py-2 font-mono text-xs leading-4 text-text">npx shadcn add @pyospect/button</code>
@@ -135,7 +144,7 @@ export default function App() {
           <Card selected>
             <CardTitle>선택된 카드</CardTitle>
             <CardText>의미 있는 상태라서 brand 1px 선을 써요. tint 배경과 같이 가요.</CardText>
-            <div className="flex flex-wrap gap-2"><Tag tone="accent">추천</Tag></div>
+            <div className="flex flex-wrap gap-2"><Tag tone="brand">추천</Tag></div>
           </Card>
           <Card>
             <CardTitle>기본 카드</CardTitle>
@@ -174,7 +183,7 @@ export default function App() {
                     <TableRow key={r[0] + r[1]}>
                       <TableCell>{r[0]}</TableCell><TableCell>{r[1]}</TableCell><TableCell>{r[2]}</TableCell><TableCell>{r[3]}</TableCell>
                       <TableCell num>{r[4]}</TableCell><TableCell num>{r[5]}</TableCell>
-                      <TableCell><Tag tone={r[6] === "법인카드" ? "accent" : "neutral"}>{r[6]}</Tag></TableCell>
+                      <TableCell><Tag tone={r[6] === "법인카드" ? "brand" : "neutral"}>{r[6]}</Tag></TableCell>
                       <TableCell>
                         {r[7] === "hint" && <TableHint><Info />정산 후 급여계좌로 입금돼요</TableHint>}
                         {r[7] === "receipt" && <Button hierarchy="secondary" size="sm">증빙 추가하기</Button>}

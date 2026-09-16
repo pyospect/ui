@@ -14,7 +14,7 @@ const tagVariants = cva("inline-flex h-6 max-w-full items-center gap-1 rounded-f
   variants: {
     tone: {
       neutral: "bg-surface-2 text-text-2",
-      accent: "bg-brand text-brand-text",
+      brand: "bg-brand text-brand-text",
       ok: "bg-ok-fill text-white",
       warn: "bg-warn-fill text-white",
       danger: "bg-danger-fill text-white",

@@ -15,18 +15,18 @@
 - 섹션 라벨 패턴: 작은 회색 라벨(Case 01) + 한 줄 아래 굵은 흰색 소제목.
 - line-height는 국문 기준 1.5~1.6, 4배수로 맞춘 px 값 (예: 16px → 24px).
 
-## 3. Color: neutral 베이스 + accent 1개
-- 이름 규칙: 디자인 문서에서는 "accent"라고 부르지만 코드 토큰은 `brand`(brand, brand-text, brand-ink, brand-tint). shadcn의 `accent`(hover 배경)와 충돌하기 때문. shadcn 표준 변수(background, primary, muted, border...)는 전부 pyospect 토큰에 매핑돼 있어서 shadcn 기본 컴포넌트도 같은 표정이 난다.
+## 3. Color: neutral 베이스 + brand 1개
+- 유채색 이름은 문서와 코드 모두 `brand`. (shadcn의 `accent`는 hover 배경이라 그 이름을 쓰지 않는다.) shadcn 표준 변수(background, primary, muted, border...)는 전부 pyospect 토큰에 매핑돼 있어서 shadcn 기본 컴포넌트도 같은 표정이 난다.
 - 베이스는 무채색 램프 하나. 색기 없는 순수 gray (blue-tint 금지).
   - light: bg `#FAFAFA`, surface `#FFFFFF`, surface-2 `#F2F2F3`, surface-3 `#E6E6E8`
   - dark: bg `#0C0C0C`, surface `#161616`, surface-2 `#1F1F1F`, surface-3 `#2A2A2A`
   - text 3단계: light `#111111` / `#5C5C5F` / `#6F6F73`, dark `#F5F5F5` / `#A3A3A6` / `#8E8E92`. 전부 AA 4.5:1 이상.
   - line 토큰 하나: light `#767676`, dark `#7A7A7E`. 의미 있는 선(input, 스위치 off 트랙, focus)에만.
 - 유채색 스케일은 brand 하나. 따뜻한 초록(OKLCH hue 152): 50 `#E7FBEB` 100 `#CEF7D8` 200 `#AEECBE` 300 `#86DB9D` 400 `#5CC87F` 500 `#3AAF65` 600 `#269451` 700 `#1E7942` 800 `#175F33` 900 `#144927` 950 `#0A2F17`. Tailwind에는 `brand`로 등록하고, 기본 팔레트의 다른 유채색은 쓰지 않는다.
-- accent는 두 역할: `accent`(채움) = brand-600 `#118846`, 흰 글씨가 AA를 딱 넘기는(4.53) 가장 밝은 초록. 라이트와 다크 공통. `accent-ink`(surface 위 글자, 링크, 선택 텍스트, focus) = light brand-700 / dark brand-300. brand-500 이상 밝은 초록에는 흰 글씨 금지.
-- accent는 버튼 primary, 선택 상태, 링크, 진행 표시 외에는 쓰지 않는다.
-- tint(accent-tint, 상태 tint)는 rgba 반투명이 아니라 `color-mix`로 surface에 섞은 불투명 단색. 반투명이면 뒤의 선이나 콘텐츠가 비쳐서 어색해진다.
-- 색조 있는 면(accent-tint 카드 등) 위에는 뉴트럴 회색 채움(secondary 버튼, surface-2 조각)을 올리지 않는다. 그 자리에는 accent를 조금 더 섞은 tint 버튼(accent-tint-2 + accent 글자)이나 ghost.
+- brand는 두 역할: `brand`(채움) = brand-600 `#118846`, 흰 글씨가 AA를 딱 넘기는(4.53) 가장 밝은 초록. 라이트와 다크 공통. `brand-ink`(surface 위 글자, 링크, 선택 텍스트, focus) = light brand-700 / dark brand-300. brand-500 이상 밝은 초록에는 흰 글씨 금지.
+- brand는 버튼 primary, 선택 상태, 링크, 진행 표시 외에는 쓰지 않는다.
+- tint(brand-tint, 상태 tint)는 rgba 반투명이 아니라 `color-mix`로 surface에 섞은 불투명 단색. 반투명이면 뒤의 선이나 콘텐츠가 비쳐서 어색해진다.
+- 색조 있는 면(brand-tint 카드 등) 위에는 뉴트럴 회색 채움(secondary 버튼, surface-2 조각)을 올리지 않는다. 그 자리에는 brand를 조금 더 섞은 tint 버튼(brand-tint-2 + brand 글자)이나 ghost.
 - 상태색은 success / warning / danger 3개. brand와 같은 방식으로 OKLCH에서 뽑았다(hue 150 / 70 / 25, brand-600과 같은 명도): light와 pill fill `#1E8843` / `#AC6600` / `#CE4846`(흰 글자 4.5 이상), dark 글자와 점 `#67D283` / `#F4A437` / `#FF8079`. 색 있는 pill은 단색 채움 + 흰 글자. pill fill은 두 테마 공통으로 light 상태색을 쓴다. 다크의 밝은 상태색은 글자와 점에만. 반투명 tint pill은 눈에 안 들어오므로 금지. tint는 면(선택 row, 카드, 완료 원)에만.
 
 ## 4. Surface: 선보다 면
@@ -75,14 +75,15 @@
 ## 10. Interaction: 절제
 - transition은 120ms ease-out 하나. 색/투명도만 애니메이션, 크기 변화 금지.
 - hover는 surface 한 단계 밝게(dark) / 어둡게(light). 그림자나 테두리로 hover 표현 금지.
-- selected는 accent tinted-bg(10%) + accent text, 필요하면 accent 1px border 추가. 의미 있는 상태에는 border를 쓴다.
+- selected는 brand tinted-bg(10%) + brand-ink text, 필요하면 brand-ink 1px border 추가. 의미 있는 상태에는 border를 쓴다.
 
 ## 11. Icon
 - Lucide, 선 굵기 1.5, 크기 16(인라인)과 20(버튼, 리스트). 채운 아이콘 금지. 항상 옆 글자와 같은 색.
 
 ## 12. Layout
 - 왼쪽 정렬이 기본. 가운데 정렬은 페이지 hero, 인용문, 빈 화면의 짧은 한 줄에만. hero는 위아래 48/32로 넓게 잡고 소개문은 720 폭.
-- 문서 hero는 시스템 요약이 아니라 만든 사람의 이야기: 누구인지, 왜 만드는지. 브랜드 문장 "생각한 것을 직접 만든다. 쓰는 사람이 이해하고 결정하기 쉽게 다듬는다"와 "기술이 삶에 닿는 마지막 한 뼘"을 축으로.
+- 문서 hero는 시스템 요약이 아니라 만든 사람의 이야기: 누구인지, 왜 만드는지. hero 문장은 본문 크기(14/24)에 폭 640, 위아래 여백 64.
+- hero 줄바꿈 예외: 잘 읽혀야 하므로 쉼표(,)와 마침표(.) 뒤에서만 줄이 바뀐다. 절 단위를 `inline-block`으로 묶는다. 이 예외는 hero에만, 본문은 단어 단위 그대로. 브랜드 문장 "생각한 것을 직접 만든다. 쓰는 사람이 이해하고 결정하기 쉽게 다듬는다"와 "기술이 삶에 닿는 마지막 한 뼘"을 축으로.
 - 컨테이너 폭은 720(읽기), 1040(앱), 1280(테이블 많은 화면) 셋 중 하나. 좌우 여백 모바일 16, 데스크톱 24.
 - 브레이크포인트 640, 1024. 모바일 터치 영역 44 이상.
 - 폼: 라벨은 항상 input 위. placeholder는 예시만, 설명은 help 줄. 오류 문구는 help 자리.
@@ -94,14 +95,14 @@
 - Dialog는 되돌릴 수 없거나 다음 단계가 갈리는 결정에만. 되돌릴 수 있는 결과는 toast.
 
 ## 14. AI 협업 패턴 (이 시스템만의 컴포넌트)
-- Thinking: 접히는 생각 블록. 진행 중이면 accent 점이 천천히 깜빡이고, 끝나면 제목이 과거형("25초 동안 생각했어요"). 본문은 text-2, 강조 없음.
+- Thinking: 접히는 생각 블록. 진행 중이면 brand 점이 천천히 깜빡이고, 끝나면 제목이 과거형("25초 동안 생각했어요"). 본문은 text-2, 강조 없음.
 - Connection: 도구 연결 상태 리스트. 연결됨은 ok 점, 미연결은 line 테두리의 빈 점 + "연결하기" ghost 버튼.
 - Validation: 제목, 이유 한 줄(말줄임), 오른쪽에 상태 pill(통과 / 확인 필요 / 실패). 패널 안에 놓이는 조각이라 surface-2, glow 없음.
 - Decision: 에이전트가 만든 결과물 한 줄 + 다음 갈림길 버튼 둘. 방향이 갈리는 순간은 사람이 눌러야 넘어간다.
 - Steps: 채운 원 = 에이전트가 처리, 점선 원 = 사람이 결정, tint 원 = 완료. 항상 범례를 같이 보여준다.
 - Diff: 본문 서체, 추가/삭제는 tint 배경만. 파일 경로 헤더에 +n -n.
 - Versions: 현재 버전만 tint. 나머지는 면 없음.
-- Chat: 사람은 accent 말풍선(오른쪽), 에이전트는 surface-2 말풍선(왼쪽). 꼬리 쪽 radius만 sm.
+- Chat: 사람은 brand 말풍선(오른쪽), 에이전트는 surface-2 말풍선(왼쪽). 꼬리 쪽 radius만 sm.
 - 원칙: 에이전트가 처리한 것과 사람이 결정할 것은 항상 모양이 다르다.
 
 ## 15. AI-Ready 문서 형식 (컴포넌트마다 다섯 줄)
@@ -115,17 +116,17 @@
 - 데모, 문서, 목업의 데이터는 전부 가상. 실제 프로젝트 키(PROJ-, COMMERCE-), 사람 이름, 사내 시스템명, 실제 파일 경로, 실제 이메일을 쓰지 않는다. TASK-101, ORDER-42, hello@example.com 같은 명백한 예시값.
 
 ## 17. Accessibility
-- WCAG AA 기준. 글자, accent, 상태색 4.5:1. 의미 있는 경계선(input, 스위치 트랙) 3:1은 line 토큰으로.
+- WCAG AA 기준. 글자, brand, 상태색 4.5:1. 의미 있는 경계선(input, 스위치 트랙) 3:1은 line 토큰으로.
 - 모든 인터랙션에 키보드로 닿는다. 리스트 row도 button. focus는 2px ring, offset 2.
 - 오류 input은 aria-invalid + aria-describedby. 스위치는 role=switch + aria-checked + label.
 - 터치 영역 24 이상, 모바일 44. reduced-motion이면 전환과 애니메이션 끔.
 
 ## 18. 대표 컴포넌트 표정
-- Button: primary = accent 채움 + 검정 글씨 + full radius. secondary = surface-2 채움 + primary text. ghost = 텍스트만. tint = accent-tint-2 채움 + accent 글자, 색조 면 위의 secondary 대용. outline 버튼 없음.
-- Tag/Chip: full radius, 12px 500. 중립은 surface-2 채움 + text-2. 상태와 accent tag는 단색 채움 + 흰 글자.
+- Button: primary = brand 채움 + 검정 글씨 + full radius. secondary = surface-2 채움 + primary text. ghost = 텍스트만. tint = brand-tint-2 채움 + brand 글자, 색조 면 위의 secondary 대용. outline 버튼 없음.
+- Tag/Chip: full radius, 12px 500. 중립은 surface-2 채움 + text-2. 상태와 brand tag는 단색 채움 + 흰 글자.
 - Card: surface 채움, radius 12, padding 20, 그림자·테두리 없음.
-- Input: surface 채움 + line 1px(의미 있는 선), hover surface-2, focus accent 2px. radius 8.
+- Input: surface 채움 + line 1px(의미 있는 선), hover surface-2, focus brand-ink 2px. radius 8.
 - List item: 선택/hover는 row 배경 톤 변화로만.
 
 ## 19. AI에게 주는 한 줄 요약
-"Pretendard 500, 4배수 간격, 무채색 표면 톤 차이로 영역 구분, 장식용 선과 그림자와 카드 중첩 금지, radius는 full 아니면 12이고 중첩 시 바깥 r = 안쪽 r + padding, accent는 따뜻한 초록 brand 스케일 하나(채움은 500에 검정 글자, 글자는 700), 단어 단위 줄바꿈에 한 줄 UI는 말줄임, 문장은 해요체에 버튼은 동사, em dash와 가운뎃점과 monospace 금지, AA 대비, 에이전트 처리와 사람 결정은 모양이 다르다."
+"Pretendard 500, 4배수 간격, 무채색 표면 톤 차이로 영역 구분, 장식용 선과 그림자와 카드 중첩 금지, radius는 full 아니면 12이고 중첩 시 바깥 r = 안쪽 r + padding, brand는 따뜻한 초록 brand 스케일 하나(채움은 500에 검정 글자, 글자는 700), 단어 단위 줄바꿈에 한 줄 UI는 말줄임, 문장은 해요체에 버튼은 동사, em dash와 가운뎃점과 monospace 금지, AA 대비, 에이전트 처리와 사람 결정은 모양이 다르다."
