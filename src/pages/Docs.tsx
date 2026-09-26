@@ -18,7 +18,7 @@ export function Docs({ slug }: { slug: string }) {
   const next = DEMOS[idx + 1]
 
   return (
-    <div className="mx-auto grid max-w-[1040px] gap-8 px-6 py-8 pb-24 lg:grid-cols-[200px_1fr] lg:gap-12">
+    <div className="mx-auto grid max-w-[1040px] gap-8 px-4 py-8 pb-24 sm:px-6 lg:grid-cols-[200px_1fr] lg:gap-12">
       <aside className="lg:sticky lg:top-24 lg:self-start">
         <nav aria-label="컴포넌트" className="flex gap-1 overflow-x-auto [scrollbar-width:none] lg:grid lg:gap-6 lg:overflow-visible">
           {GROUPS.map((g) => (
@@ -30,7 +30,7 @@ export function Docs({ slug }: { slug: string }) {
                   href={href(`/docs/${d.slug}`)}
                   aria-current={d.slug === demo.slug ? "page" : undefined}
                   className={
-                    "one-line shrink-0 rounded-full px-3 py-2 text-sm leading-5 transition-colors duration-[120ms] lg:rounded-sm " +
+                    "one-line shrink-0 rounded-full px-3 py-2 text-sm leading-5 transition-colors lg:rounded-sm " +
                     (d.slug === demo.slug ? "bg-brand-tint font-medium text-brand-ink" : "text-text-2 hover:bg-surface-2 hover:text-text")
                   }
                 >
@@ -52,6 +52,9 @@ export function Docs({ slug }: { slug: string }) {
         <section className="grid gap-3">
           <h2 className="text-sm font-semibold leading-5">설치</h2>
           <CopyCommand command={`npx pyospectui ${demo.slug}`} />
+          <p className="text-sm leading-5 text-text-2 text-pretty">
+            프로젝트에 pyospect 테마가 없으면 테마를 먼저 같이 받아요. 이미 있으면 컴포넌트만 받고 색은 그대로예요. 브랜드 색은 <a href={href("/themes")} className="font-medium text-brand-ink underline underline-offset-4">테마 페이지</a>에서 골라요.
+          </p>
         </section>
 
         <section className="grid gap-3">
@@ -61,7 +64,10 @@ export function Docs({ slug }: { slug: string }) {
               {showCode ? "코드 닫기" : "코드 보기"}
             </Button>
           </div>
-          <div data-level="surface" className="rounded-md bg-surface p-6 glow">{demo.demo}</div>
+          {/* surface components sit on bg; everything else is shown on a surface panel */}
+          {demo.stage === "bg"
+            ? <div data-level="bg" className="rounded-md bg-bg">{demo.demo}</div>
+            : <div data-level="surface" className="rounded-md bg-surface p-6 glow">{demo.demo}</div>}
           {showCode && <CodeBlock code={demo.code} />}
         </section>
 

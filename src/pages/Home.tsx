@@ -21,6 +21,7 @@ import { ConnectionList, Connection } from "@/components/ai/connection"
 
 import { CopyCommand } from "@/components/ui/copy-command"
 import { href } from "@/lib/router"
+import { PRESETS } from "@/lib/theme"
 import { DEMOS } from "@/docs/demos"
 
 function Section({ id, title, sub, children }: { id: string; title: string; sub: string; children: React.ReactNode }) {
@@ -62,22 +63,23 @@ const HERO = [
 const NAV: [string, string][] = [["시작하기", "#install"], ["Components", "#components"], ["AI 패턴", "#ai"], ["규칙", "#rules"], ["GitHub", "https://github.com/pyospect/ui"]]
 const FOOTER: [string, string][] = [["GitHub", "https://github.com/pyospect/ui"], ["npm", "https://www.npmjs.com/package/pyospectui"], ["TASTE.md", "https://ui.pyospect.com/TASTE.md"], ["llms.txt", "https://ui.pyospect.com/llms.txt"], ["pyospect.com", "https://pyospect.com"]]
 const INSTALL: [string, string, string][] = [
-  ["1. 새 프로젝트", "shadcn이 Vite와 Tailwind까지 만들어 줘요.", "npx shadcn@latest init -t vite -b radix -p nova -y --no-monorepo -n my-app"],
+  ["1. 새 프로젝트", "shadcn이 Vite와 Tailwind까지 만들어 줘요.", "npx shadcn@~4.21 init -t vite -b radix -p nova -y --no-monorepo -n my-app"],
   ["2. 전부 받기", "테마와 컴포넌트 20개예요. 첫 설치에는 --overwrite를 붙여요.", "cd my-app && npx pyospectui --overwrite"],
   ["3. 실행", "화면을 만들면 돼요.", "npm run dev"],
 ]
+const POSITIONING = "pyospectui는 한국어 제품을 만드는 팀을 위한 디자인 시스템이에요. 브랜드 색 하나만 고르면 pyospect의 규칙이 나머지 색을 만들고 검사해요."
 const RULES: [string, string][] = [
   ["Grid", "간격과 크기는 전부 4의 배수예요. 글자 크기 14만 예외이고, 그 줄 높이 20이 4배수를 지켜요."],
-  ["Type", "Pretendard 400, 500, 600만 써요. 기본은 500이고, 위계는 크기보다 톤과 굵기로 내요. 코드만 JetBrains Mono예요."],
+  ["Type", "Pretendard 400, 500, 600만 써요. 본문은 400, 라벨과 버튼은 500, 제목은 600이에요. 위계는 크기보다 톤과 굵기로 내요. 코드만 JetBrains Mono예요."],
   ["Text", "줄바꿈은 단어 단위예요. 태그, 버튼, 제목, 라벨은 한 줄에 말줄임표예요. 라벨과 컨트롤은 갈라지지 않아요."],
   ["Writing", "친절하게 풀어쓴 해요체예요. 명사로 끝내지 않고 영어 직역을 쓰지 않아요. 버튼은 동사예요."],
-  ["Color", "무채색 면 4단계에 brand 스케일 하나, 상태색 셋이에요. 색 있는 pill은 단색에 흰 글자예요."],
+  ["Color", "무채색 면 4단계에 브랜드 색 하나, 상태색 셋이에요. 브랜드 색 하나에서 규칙이 나머지를 만들고 대비를 검사해요. 색 있는 pill은 단색 fill에 그 fill의 글자색이에요."],
   ["Surface", "영역은 톤 차이로 나눠요. 선은 input, 스위치 트랙, focus, 선택, 오류처럼 의미가 있을 때만이에요."],
   ["Depth", "bg 위에 surface, 2단계까지예요. 카드 속 카드는 없어요."],
-  ["Radius", "full 아니면 12예요. 겹치면 바깥 r은 안쪽 r에 padding을 더한 값이에요."],
-  ["Motion", "120ms ease-out 하나예요. 색과 투명도만 움직여요."],
-  ["A11y", "WCAG AA예요. 키보드로 모든 것에 닿고 focus는 2px 선이에요."],
-  ["AI", "모든 컴포넌트에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. 에이전트가 처리한 것과 사람이 결정할 것은 항상 모양이 달라요."],
+  ["Radius", "full, 20, 12, 8 네 단계예요. 겹치면 바깥 r은 안쪽 r에 padding을 더한 값이에요."],
+  ["Motion", "120ms ease-out 하나예요. 색과 투명도만 움직이고, 동작 줄이기 설정이면 멈춰요."],
+  ["A11y", "WCAG AA예요. 키보드로 모든 것에 닿고 focus는 brand-ink 2px 선이에요."],
+  ["AI", "모든 컴포넌트에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. 에이전트가 처리한 것과 사람이 결정할 것은 항상 모양이 다르고, brand 채움은 에이전트 쪽이에요."],
 ]
 
 const rows = [
@@ -90,7 +92,7 @@ const rows = [
 export function Home() {
   const [selected, setSelected] = useState(0)
   return (
-    <div className="mx-auto grid max-w-[1040px] gap-24 px-6 pb-24">
+    <div className="mx-auto grid max-w-[1040px] gap-24 px-4 pb-24 sm:px-6">
       <header className="grid justify-items-center gap-6 py-20 text-center">
         <div className="text-xs font-medium leading-4 tracking-wide text-text-3">Work. Build. Taste.</div>
         <h1 className="text-[40px] font-semibold leading-12 tracking-tight">pyospectui</h1>
@@ -111,6 +113,7 @@ export function Home() {
 
       <Section id="install" title="시작하기" sub="Node.js만 있으면 돼요. 새 프로젝트를 만들고, 전부 받고, 화면을 만들면 끝이에요.">
         <div className="grid gap-4">
+          <p className="text-base leading-6 text-text text-pretty">{POSITIONING}</p>
           {INSTALL.map(([title, text, cmd]) => (
             <div key={cmd} data-level="surface" className="grid gap-3 rounded-md bg-surface p-5 glow">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -120,21 +123,30 @@ export function Home() {
               <CopyCommand command={cmd} />
             </div>
           ))}
+          <div data-level="surface" className="grid gap-3 rounded-md bg-surface p-5 glow">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h4 className="one-line text-sm font-semibold leading-5 text-text">내 브랜드 색으로</h4>
+              <p className="text-sm leading-5 text-text-2">2번 대신 써요. 규칙이 나머지 색을 만들고 대비를 검사한 뒤에 설치해요.</p>
+            </div>
+            <CopyCommand command={'cd my-app && npx pyospectui --brand "#3366FF" --overwrite'} />
+            <p className="text-sm leading-5 text-text-2 text-pretty">미리 만든 프리셋 {PRESETS.length}개와 미리보기는 <a href={href("/themes")} className="font-medium text-brand-ink underline underline-offset-4">테마 페이지</a>에 있어요. 이미 설치한 프로젝트에서 이 명령을 쓰면 색 변수만 바뀌어요.</p>
+          </div>
           <p className="text-sm leading-5 text-text-2 text-pretty">몇 개만 고르려면 <code className="font-mono text-xs">npx pyospectui button card</code>처럼 이름을 붙여요. shadcn 명령을 그대로 쓰고 싶으면 레지스트리 주소는 <code className="font-mono text-xs">https://ui.pyospect.com/r/pyospect.json</code>이에요.</p>
         </div>
       </Section>
 
-      <Section id="components" title="Components" sub="기본 컴포넌트예요. 각 파일 맨 위에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. shadcn 표준 변수도 전부 정의돼 있어서 shadcn 컴포넌트를 같이 설치해도 같은 모습이에요.">
+      <Section id="components" title="Components" sub="기본 컴포넌트예요. 각 파일 맨 위에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. shadcn 표준 변수도 전부 pyospect 토큰에 연결돼 있어서 shadcn 컴포넌트를 같이 설치해도 같은 색과 radius를 써요. 모양 규칙까지 따라오지는 않아서 기본 Card는 테두리와 그림자를 그대로 가져요.">
         <div className="flex flex-wrap gap-2">
           {DEMOS.map((d) => (
-            <a key={d.slug} href={href(`/docs/${d.slug}`)} className="rounded-full bg-surface px-3 py-2 text-sm font-medium leading-5 text-text-2 glow transition-colors duration-[120ms] hover:bg-surface-2 hover:text-text">{d.title}</a>
+            <a key={d.slug} href={href(`/docs/${d.slug}`)} className="rounded-full bg-surface px-3 py-2 text-sm font-medium leading-5 text-text-2 glow transition-colors hover:bg-surface-2 hover:text-text">{d.title}</a>
           ))}
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
           <Panel title="Button: primary, secondary, ghost, tint">
             <div className="flex flex-wrap items-center gap-2">
               <Button>저장하기</Button>
-              <Button hierarchy="secondary">취소</Button>
+              <Button hierarchy="secondary">되돌리기</Button>
+              <Button hierarchy="tint">검토하기</Button>
               <Button hierarchy="ghost">더 보기</Button>
             </div>
             <div className="flex flex-wrap items-center gap-2">
@@ -177,7 +189,7 @@ export function Home() {
           </Card>
           <Card selected>
             <CardTitle>선택된 카드</CardTitle>
-            <CardText>의미 있는 상태라서 brand 1px 선을 써요. tint 배경과 같이 가요.</CardText>
+            <CardText>의미 있는 상태라서 brand-ink 1px 선을 써요. tint 배경과 같이 가요.</CardText>
             <div className="flex flex-wrap gap-2"><Tag tone="brand">추천</Tag></div>
           </Card>
           <Card>
@@ -192,7 +204,7 @@ export function Home() {
                   <DialogDescription>ORDER-42 변경안을 기준으로 Spec 초안을 만들어요. 만든 뒤에 블록 단위로 고칠 수 있어요.</DialogDescription>
                   <DialogNote>Dialog는 그림자가 허용되는 유일한 곳이에요. 다크에서는 그림자 대신 glow예요.</DialogNote>
                   <DialogActions>
-                    <DialogClose asChild><Button hierarchy="ghost">취소</Button></DialogClose>
+                    <DialogClose asChild><Button hierarchy="ghost">나중에 하기</Button></DialogClose>
                     <DialogClose asChild><Button>작성하기</Button></DialogClose>
                   </DialogActions>
                 </DialogContent>
@@ -275,10 +287,10 @@ export function Home() {
               <Version label="v1" meta="어제" note="처음 작성한 스펙이에요" />
             </Versions>
           </Panel>
-          <Panel title="Chat: 사람은 brand 쪽, 에이전트는 면" className="col-span-full">
+          <Panel title="Chat: 사람은 brand tint, 에이전트는 면" className="col-span-full">
             <Chat>
-              <Bubble from="me">ORDER-42 변경안 작성해줘.</Bubble>
-              <Bubble from="ai">ORDER-42 분석이 끝났어요. 아래 내용을 검토해 주세요. 고칠 게 있으면 이 채팅에서 바로 말해 주시면 돼요.</Bubble>
+              <Bubble who="human">ORDER-42 변경안 작성해줘.</Bubble>
+              <Bubble who="agent">ORDER-42 분석이 끝났어요. 아래 내용을 검토해 주세요. 고칠 게 있으면 이 채팅에서 바로 말해 주시면 돼요.</Bubble>
               <ChatTime>방금</ChatTime>
             </Chat>
           </Panel>
