@@ -29,12 +29,12 @@ function CodeBlock({ code, language = "tsx", className, ...props }: CodeBlockPro
           onClick={copy}
           aria-label={copied ? "복사했어요" : "코드 복사하기"}
           className={cn(
-            "inline-flex h-8 shrink-0 items-center gap-1 rounded-full px-2 text-xs font-medium leading-4 transition-colors duration-[120ms] ease-out",
+            "inline-flex h-8 shrink-0 items-center gap-1 rounded-full px-2 text-xs font-medium leading-4 transition-colors",
             copied ? "text-brand-ink" : "text-text-2 hover:bg-surface-3 hover:text-text"
           )}
         >
           {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-          {copied ? "복사했어요" : "복사"}
+          {copied ? "복사했어요" : "복사하기"}
         </button>
       </div>
       <pre className="overflow-x-auto px-4 pb-4 pt-2 font-mono text-xs leading-4 text-text"><code>{code}</code></pre>

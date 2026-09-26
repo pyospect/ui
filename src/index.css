@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
-/* pyospectui v0.2
-   4px grid, neutral surfaces, one warm green brand scale, Pretendard.
-   shadcn's standard variables are all defined, so any shadcn component picks up this look.
-   pyospect-only tokens (surface-2, brand-ink, line, glow...) sit next to them.
+/* pyospectui v0.3
+   4px grid, neutral surfaces, Pretendard, and one brand color. the brand scale, the brand roles, status and chart
+   are generated from that one seed by the color rules (docs/TASTE.md, packages/pyospectui/theme/generate.mjs).
+   shadcn's standard variables are all mapped, so shadcn components pick up these colors and radii;
+   stock components keep their own details (Card still has its border and shadow-sm).
+   pyospect-only tokens (surface-2, brand-ink, brand-graphic, line, glow...) sit next to them.
    Rules: docs/TASTE.md */
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-sans: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --pyo-seed: #118846;
+  --pyo-font-sans: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", system-ui, sans-serif;
+  --pyo-font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   --radius: 12px;
 
-  /* brand scale: warm green, OKLCH hue 152. the only chromatic scale in the system */
+  /* brand scale: generated from the seed at OKLCH hue 152. 600 is the seed, the lightest step that carries white at AA */
   --brand-50: #E7FBEB; --brand-100: #CEF7D8; --brand-200: #AEECBE; --brand-300: #86DB9D; --brand-400: #5CC87F;
   --brand-500: #3AAF65; --brand-600: #118846; --brand-700: #1E7942; --brand-800: #175F33; --brand-900: #144927; --brand-950: #0A2F17;
 
@@ -24,27 +27,37 @@
   --surface-3: #E6E6E8;
   --text: #111111;
   --text-2: #5C5C5F;
-  --text-3: #6F6F73;
+  --text-3: #6D6D71;
   --line: #767676;
   --glow: transparent;
   --scrim: rgba(0, 0, 0, .32);
   --skeleton: #E6E6E8;
-  --shadow-overlay: 0 4px 12px rgba(0, 0, 0, .08);
+  --pyo-shadow-overlay: 0 4px 12px rgba(0, 0, 0, .08);
 
-  /* brand as a fill (white text at AA) and as ink (text and links on a surface). tints are opaque mixes */
+  /* brand as a fill, as ink (text and links on a surface) and as a graphic (dots and tracks, 3:1 on bg and surface).
+     an X-text token passes 4.5:1 on X and on X-hover. tints are opaque mixes */
   --brand: var(--brand-600);
   --brand-text: #FFFFFF;
   --brand-hover: var(--brand-700);
   --brand-ink: var(--brand-700);
   --brand-tint: color-mix(in srgb, var(--brand-500) 12%, var(--surface));
   --brand-tint-2: color-mix(in srgb, var(--brand-500) 22%, var(--surface));
+  --brand-tint-2-hover: color-mix(in srgb, var(--brand-500) 32%, var(--surface));
+  --brand-tint-2-text: var(--brand-800);
+  --brand-graphic: var(--brand);
+  --brand-graphic-text: var(--brand-text);
 
-  /* status: OKLCH hues 150 / 70 / 25 at the same lightness as brand-600. fills carry white text at AA */
-  --ok: #1E8843; --warn: #AC6600; --danger: #CE4846;
-  --ok-fill: #1E8843; --warn-fill: #AC6600; --danger-fill: #CE4846;
-  --ok-tint: color-mix(in srgb, var(--ok) 10%, var(--surface));
-  --warn-tint: color-mix(in srgb, var(--warn) 12%, var(--surface));
-  --danger-tint: color-mix(in srgb, var(--danger) 10%, var(--surface));
+  /* status: fills sit at the white-AA boundary (OKLCH hues 183 / 65 / 25) and carry the fill-text color.
+     ok, warn and danger are text colors: at least 4.6:1 on bg, surface-2 and their own tint. tints mix from the fills */
+  --ok: #00796E; --warn: #9B5B00; --danger: #C13C3B;
+  --ok-fill: #008578; --warn-fill: #AC6600; --danger-fill: #CE4846;
+  --ok-fill-text: #FFFFFF; --warn-fill-text: #FFFFFF; --danger-fill-text: #FFFFFF;
+  --ok-tint: color-mix(in srgb, var(--ok-fill) 10%, var(--surface));
+  --warn-tint: color-mix(in srgb, var(--warn-fill) 12%, var(--surface));
+  --danger-tint: color-mix(in srgb, var(--danger-fill) 10%, var(--surface));
+
+  /* chart: the brand, then hue + 72 each at the white-AA boundary. 3:1 on white and on the dark surface */
+  --chart-1: var(--brand); --chart-2: #0081A2; --chart-3: #8366C3; --chart-4: #BE536C; --chart-5: #9C6E00;
 
   /* shadcn standard names, mapped onto the tokens above */
   --background: var(--bg);
@@ -61,12 +74,11 @@
   --muted-foreground: var(--text-2);
   --accent: var(--surface-2);
   --accent-foreground: var(--text);
-  --destructive: var(--danger);
-  --destructive-foreground: #FFFFFF;
+  --destructive: var(--danger-fill);
+  --destructive-foreground: var(--danger-fill-text);
   --border: var(--surface-3);
   --input: var(--line);
   --ring: var(--brand-ink);
-  --chart-1: var(--brand-600); --chart-2: var(--brand-400); --chart-3: var(--brand-800); --chart-4: var(--brand-300); --chart-5: var(--brand-900);
   --sidebar: var(--surface);
   --sidebar-foreground: var(--text);
   --sidebar-primary: var(--brand);
@@ -84,21 +96,42 @@
   --glow: rgba(255, 255, 255, .06);
   --scrim: rgba(0, 0, 0, .56);
   --skeleton: #2A2A2A;
-  --shadow-overlay: none;
-  --brand: var(--brand-600); --brand-text: #FFFFFF; --brand-hover: var(--brand-500); --brand-ink: var(--brand-300);
+  --pyo-shadow-overlay: none;
+  --brand: var(--brand-600); --brand-text: #FFFFFF; --brand-hover: var(--brand-700); --brand-ink: var(--brand-300);
   --brand-tint: color-mix(in srgb, var(--brand-400) 14%, var(--surface));
   --brand-tint-2: color-mix(in srgb, var(--brand-400) 24%, var(--surface));
-  --ok: #67D283; --warn: #F4A437; --danger: #FF8079;
-  --ok-fill: #1E8843; --warn-fill: #AC6600; --danger-fill: #CE4846;
+  --brand-tint-2-hover: color-mix(in srgb, var(--brand-400) 34%, var(--surface));
+  --brand-tint-2-text: var(--brand-300);
+  --brand-graphic: var(--brand); --brand-graphic-text: var(--brand-text);
+  --ok: #00D4C0; --warn: #F4A437; --danger: #FF8079;
+  --ok-fill: #008578; --warn-fill: #AC6600; --danger-fill: #CE4846;
+  --ok-fill-text: #FFFFFF; --warn-fill-text: #FFFFFF; --danger-fill-text: #FFFFFF;
   --ok-tint: color-mix(in srgb, var(--ok) 14%, var(--surface));
   --warn-tint: color-mix(in srgb, var(--warn) 14%, var(--surface));
   --danger-tint: color-mix(in srgb, var(--danger) 14%, var(--surface));
-  --destructive: var(--danger-fill);
+  --chart-1: var(--brand);
+
+  /* the var() mappings again: a custom property resolves where it is declared, so a nested .dark
+     (a dark preview inside a light page) needs its own copies to pick up the dark values above */
+  --background: var(--bg); --foreground: var(--text);
+  --card: var(--surface); --card-foreground: var(--text); --popover: var(--surface); --popover-foreground: var(--text);
+  --primary: var(--brand); --primary-foreground: var(--brand-text);
+  --secondary: var(--surface-2); --secondary-foreground: var(--text);
+  --muted: var(--surface-2); --muted-foreground: var(--text-2);
+  --accent: var(--surface-2); --accent-foreground: var(--text);
+  --destructive: var(--danger-fill); --destructive-foreground: var(--danger-fill-text);
+  --border: var(--surface-3); --input: var(--line); --ring: var(--brand-ink);
+  --sidebar: var(--surface); --sidebar-foreground: var(--text);
+  --sidebar-primary: var(--brand); --sidebar-primary-foreground: var(--brand-text);
+  --sidebar-accent: var(--surface-2); --sidebar-accent-foreground: var(--text);
+  --sidebar-border: var(--surface-3); --sidebar-ring: var(--brand-ink);
 }
 
 @theme inline {
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-sans: var(--pyo-font-sans);
+  --font-mono: var(--pyo-font-mono);
+  --default-transition-duration: 120ms;
+  --default-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 
   /* shadcn */
   --color-background: var(--background);
@@ -132,7 +165,8 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 8px);
-  --radius-xl: calc(var(--radius) + 8px);
+  --radius-xl: var(--radius);
+  --radius-2xl: calc(var(--radius) + 8px); --radius-3xl: calc(var(--radius) + 8px); --radius-4xl: calc(var(--radius) + 8px);
 
   /* pyospect */
   --color-bg: var(--bg);
@@ -152,14 +186,18 @@
   --color-brand-ink: var(--brand-ink);
   --color-brand-tint: var(--brand-tint);
   --color-brand-tint-2: var(--brand-tint-2);
+  --color-brand-tint-2-hover: var(--brand-tint-2-hover);
+  --color-brand-tint-2-text: var(--brand-tint-2-text);
+  --color-brand-graphic: var(--brand-graphic);
+  --color-brand-graphic-text: var(--brand-graphic-text);
   --color-brand-50: var(--brand-50); --color-brand-100: var(--brand-100); --color-brand-200: var(--brand-200);
   --color-brand-300: var(--brand-300); --color-brand-400: var(--brand-400); --color-brand-500: var(--brand-500);
   --color-brand-600: var(--brand-600); --color-brand-700: var(--brand-700); --color-brand-800: var(--brand-800);
   --color-brand-900: var(--brand-900); --color-brand-950: var(--brand-950);
-  --color-ok: var(--ok); --color-ok-fill: var(--ok-fill); --color-ok-tint: var(--ok-tint);
-  --color-warn: var(--warn); --color-warn-fill: var(--warn-fill); --color-warn-tint: var(--warn-tint);
-  --color-danger: var(--danger); --color-danger-fill: var(--danger-fill); --color-danger-tint: var(--danger-tint);
-  --shadow-overlay: var(--shadow-overlay);
+  --color-ok: var(--ok); --color-ok-fill: var(--ok-fill); --color-ok-fill-text: var(--ok-fill-text); --color-ok-tint: var(--ok-tint);
+  --color-warn: var(--warn); --color-warn-fill: var(--warn-fill); --color-warn-fill-text: var(--warn-fill-text); --color-warn-tint: var(--warn-tint);
+  --color-danger: var(--danger); --color-danger-fill: var(--danger-fill); --color-danger-fill-text: var(--danger-fill-text); --color-danger-tint: var(--danger-tint);
+  --shadow-overlay: var(--pyo-shadow-overlay);
 }
 
 @layer base {
@@ -171,6 +209,10 @@
     overflow-wrap: break-word;
   }
   :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  svg.lucide { stroke-width: 1.5; }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { transition-duration: 0ms !important; animation: none !important; }
+  }
 }
 
 @utility one-line {

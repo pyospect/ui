@@ -50,6 +50,8 @@ export type Demo = {
   source: string
   demo: ReactNode
   code: string
+  /** "bg" for components that are a surface themselves (Card, List, Table, Empty): they sit on bg, never inside a panel */
+  stage?: "bg"
 }
 
 export const DEMOS: Demo[] = [
@@ -60,7 +62,7 @@ export const DEMOS: Demo[] = [
     demo: (
       <div className="grid gap-3">
         <div className="flex flex-wrap items-center gap-2">
-          <Button>저장하기</Button><Button hierarchy="secondary">취소</Button><Button hierarchy="ghost">더 보기</Button>
+          <Button>저장하기</Button><Button hierarchy="secondary">되돌리기</Button><Button hierarchy="tint">검토하기</Button><Button hierarchy="ghost">더 보기</Button>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Button size="sm">작게</Button><Button>기본</Button><Button size="lg">크게</Button><Button disabled>비활성</Button>
@@ -70,7 +72,8 @@ export const DEMOS: Demo[] = [
     code: `import { Button } from "@/components/ui/button"
 
 <Button>저장하기</Button>
-<Button hierarchy="secondary">취소</Button>
+<Button hierarchy="secondary">되돌리기</Button>
+<Button hierarchy="tint">검토하기</Button>
 <Button hierarchy="ghost">더 보기</Button>
 <Button size="sm">작게</Button>`,
   },
@@ -122,6 +125,7 @@ import { Label } from "@/components/ui/input"
     slug: "card", title: "Card", group: "기본",
     summary: "선도 그림자도 없이 surface 톤 하나로 bg 위에 놓여요. 카드 속 카드는 없어요.",
     source: cardSrc,
+    stage: "bg",
     demo: (
       <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
         <Card media>
@@ -148,7 +152,7 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "tag", title: "Tag", group: "기본",
-    summary: "full radius pill. 색이 있는 톤은 단색에 흰 글자예요.",
+    summary: "full radius pill. 색이 있는 톤은 단색 fill에 그 fill의 글자색이에요. 밝은 브랜드면 brand 태그는 검은 글자예요.",
     source: tagSrc,
     demo: <div className="flex flex-wrap gap-2"><Tag>기본</Tag><Tag tone="brand">선택됨</Tag><Tag tone="ok">통과</Tag><Tag tone="warn">확인 필요</Tag><Tag tone="danger">실패</Tag></div>,
     code: `import { Tag } from "@/components/ui/tag"
@@ -170,7 +174,7 @@ import { Label } from "@/components/ui/input"
           <DialogDescription>ORDER-42 변경안을 기준으로 Spec 초안을 만들어요.</DialogDescription>
           <DialogNote>되돌릴 수 없거나 다음 단계가 갈리는 결정에만 써요.</DialogNote>
           <DialogActions>
-            <DialogClose asChild><Button hierarchy="ghost">취소</Button></DialogClose>
+            <DialogClose asChild><Button hierarchy="ghost">나중에 하기</Button></DialogClose>
             <DialogClose asChild><Button>작성하기</Button></DialogClose>
           </DialogActions>
         </DialogContent>
@@ -184,7 +188,7 @@ import { Label } from "@/components/ui/input"
     <DialogTitle>스펙을 작성할까요?</DialogTitle>
     <DialogDescription>ORDER-42 변경안을 기준으로 초안을 만들어요.</DialogDescription>
     <DialogActions>
-      <DialogClose asChild><Button hierarchy="ghost">취소</Button></DialogClose>
+      <DialogClose asChild><Button hierarchy="ghost">나중에 하기</Button></DialogClose>
       <DialogClose asChild><Button>작성하기</Button></DialogClose>
     </DialogActions>
   </DialogContent>
@@ -194,6 +198,7 @@ import { Label } from "@/components/ui/input"
     slug: "list", title: "List", group: "기본",
     summary: "row는 button이라 키보드로 닿아요. hover와 선택은 row 배경으로만이에요.",
     source: listSrc,
+    stage: "bg",
     demo: (
       <List aria-label="일감" className="max-w-[400px]">
         <ListItem meta="TASK-101" selected>장바구니 쿠폰 적용 순서 정리</ListItem>
@@ -212,6 +217,7 @@ import { Label } from "@/components/ui/input"
     slug: "table", title: "Table", group: "기본",
     summary: "숫자는 오른쪽 정렬에 tabular, 행 사이에 선이 없어요. 넓으면 안에서만 가로 스크롤이에요.",
     source: tableSrc,
+    stage: "bg",
     demo: (
       <TableWrap>
         <Table>
@@ -250,6 +256,7 @@ import { Label } from "@/components/ui/input"
     slug: "empty", title: "Empty", group: "기본",
     summary: "제목 한 줄, 설명 한 줄, 버튼 하나. 왼쪽 정렬이에요.",
     source: emptySrc,
+    stage: "bg",
     demo: <Empty className="max-w-[400px]" title="아직 일감이 없어요" text="Jira에서 일감을 가져오면 여기에 나타나요." action={<Button size="sm">Jira 연결하기</Button>} />,
     code: `import { Empty } from "@/components/ui/empty"
 
@@ -374,20 +381,20 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "chat", title: "Chat", group: "AI 협업 패턴",
-    summary: "사람은 brand 쪽, 에이전트는 면이에요.",
+    summary: "사람은 오른쪽 brand 틴트, 에이전트는 왼쪽 면이에요. brand 채움은 에이전트가 처리한 것에만 써요.",
     source: chatSrc,
     demo: (
       <Chat className="max-w-[520px]">
-        <Bubble from="me">ORDER-42 변경안 작성해줘.</Bubble>
-        <Bubble from="ai">ORDER-42 분석이 끝났어요. 아래 내용을 검토해 주세요.</Bubble>
+        <Bubble who="human">ORDER-42 변경안 작성해줘.</Bubble>
+        <Bubble who="agent">ORDER-42 분석이 끝났어요. 아래 내용을 검토해 주세요.</Bubble>
         <ChatTime>방금</ChatTime>
       </Chat>
     ),
     code: `import { Chat, Bubble, ChatTime } from "@/components/ui/chat"
 
 <Chat>
-  <Bubble from="me">ORDER-42 변경안 작성해줘.</Bubble>
-  <Bubble from="ai">분석이 끝났어요. 검토해 주세요.</Bubble>
+  <Bubble who="human">ORDER-42 변경안 작성해줘.</Bubble>
+  <Bubble who="agent">분석이 끝났어요. 검토해 주세요.</Bubble>
   <ChatTime>방금</ChatTime>
 </Chat>`,
   },

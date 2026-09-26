@@ -18,7 +18,7 @@ function Table({ className, ...props }: React.TableHTMLAttributes<HTMLTableEleme
 function TableHead(props: React.HTMLAttributes<HTMLTableSectionElement>) { return <thead {...props} /> }
 function TableBody(props: React.HTMLAttributes<HTMLTableSectionElement>) { return <tbody {...props} /> }
 function TableRow({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) {
-  return <tr className={cn("[&>td]:transition-colors [&>td]:duration-[120ms] hover:[&>td]:bg-surface-2", className)} {...props} />
+  return <tr className={cn("[&>td]:transition-colors hover:[&>td]:bg-surface-2", className)} {...props} />
 }
 function TableHeader({ className, num, ...props }: React.ThHTMLAttributes<HTMLTableCellElement> & { num?: boolean }) {
   return (

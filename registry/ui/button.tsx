@@ -1,11 +1,13 @@
 /**
  * Button
  * Naming     Button/Primary, Button/Secondary, Button/Ghost, Button/Tint. hierarchy is in the name.
- * Variant    hierarchy: primary | secondary | ghost | tint. size: sm | md | lg. state: default | hover | disabled. icon: none | leading | trailing.
- * Token      bg brand, text brand-text, radius full, height 40, padding-x 20, motion 120ms.
+ * Variant    hierarchy: primary | secondary | ghost | tint. size: sm | md | lg. state: default | hover | disabled. icons go in as children, leading or trailing.
+ * Token      primary brand + brand-text (hover brand-hover). secondary surface-2 + text (hover surface-3). ghost text-2 (hover surface-2 + text).
+ *            tint brand-tint-2 + brand-tint-2-text (hover brand-tint-2-hover). radius full, height 32 / 40 / 48, padding-x 16 / 20 / 24, motion 120ms.
  * Structure  one label and at most one icon. no tags, no second line. overflow truncates with an ellipsis.
  * Usage Rule one primary per screen. labels are verbs that say what happens: 저장하기, 보내기, 작성하기.
- *            secondary for reversible side actions, ghost for quiet ones, tint instead of secondary on an brand-tint ground.
+ *            secondary for reversible side actions, ghost for quiet ones, tint instead of secondary on a brand-tint ground.
+ *            on tint the only text color is brand-tint-2-text (icons included); text-2 and text-3 miss 4.5:1 there.
  *            there is no outline button.
  */
 import * as React from "react"
@@ -13,14 +15,14 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 max-w-full items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap overflow-hidden text-ellipsis transition-[background-color,color,opacity] duration-[120ms] ease-out disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer [&_svg]:size-5 [&_svg]:shrink-0",
+  "inline-flex shrink-0 max-w-full items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap overflow-hidden text-ellipsis transition-[background-color,color,opacity] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer [&_svg]:size-5 [&_svg]:shrink-0",
   {
     variants: {
       hierarchy: {
         primary: "bg-brand text-brand-text hover:bg-brand-hover",
         secondary: "bg-surface-2 text-text hover:bg-surface-3",
         ghost: "bg-transparent text-text-2 hover:bg-surface-2 hover:text-text",
-        tint: "bg-brand-tint-2 text-brand-ink hover:bg-[color-mix(in_srgb,var(--brand)_32%,var(--surface))]",
+        tint: "bg-brand-tint-2 text-brand-tint-2-text hover:bg-brand-tint-2-hover",
       },
       size: {
         sm: "h-8 px-4 text-xs leading-4 [&_svg]:size-4",

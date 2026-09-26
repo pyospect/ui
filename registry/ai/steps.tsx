@@ -2,7 +2,8 @@
  * Steps
  * Naming     Steps, Step/Agent, Step/Human, Step/Done.
  * Variant    who: agent | human. done: true | false.
- * Token      circle 40 full. agent = brand fill + brand-text. human = surface + 2px dashed brand-ink. done = brand-tint + brand-ink. line surface-3 2px.
+ * Token      circle 40 full. agent = brand-graphic + brand-graphic-text. human = surface + 2px dashed brand-ink. done = brand-tint + brand-ink.
+ *            line surface-3 2px. legend dots 12: brand-graphic and dashed brand-ink.
  * Structure  a horizontal row of Step (circle + title + text). always render the Legend with it.
  * Usage Rule filled circle = the agent handles it, dashed circle = a person decides. the shapes must differ; never rely on color alone.
  */
@@ -25,7 +26,7 @@ function Step({ index, who, done, title, text, className, ...props }: StepProps)
         className={cn(
           "grid size-10 place-items-center rounded-full text-sm font-semibold leading-5",
           done ? "bg-brand-tint text-brand-ink"
-            : who === "agent" ? "bg-brand text-brand-text"
+            : who === "agent" ? "bg-brand-graphic text-brand-graphic-text"
             : "bg-surface text-text outline-2 outline-dashed -outline-offset-2 outline-brand-ink"
         )}
         aria-label={`${index}단계, ${who === "agent" ? "에이전트가 처리해요" : "사람이 결정해요"}${done ? ", 완료" : ""}`}
@@ -50,7 +51,7 @@ function Steps({ className, children, ...props }: React.HTMLAttributes<HTMLDivEl
 function StepsLegend({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn("flex flex-wrap gap-4 text-xs leading-4 text-text-2", className)} {...props}>
-      <span className="inline-flex items-center gap-2"><i className="size-3 rounded-full bg-brand" />에이전트가 처리하는 지점</span>
+      <span className="inline-flex items-center gap-2"><i className="size-3 rounded-full bg-brand-graphic" />에이전트가 처리하는 지점</span>
       <span className="inline-flex items-center gap-2"><i className="size-3 rounded-full outline-2 outline-dashed -outline-offset-2 outline-brand-ink" />사람이 결정하는 지점</span>
     </div>
   )

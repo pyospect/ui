@@ -1,7 +1,7 @@
 /**
  * CopyCommand
  * Naming     CopyCommand. a terminal command with a copy button.
- * Variant    size: md | lg.
+ * Variant    size: md | lg. label: the copy button's name for screen readers (default 명령어 복사하기), a verb like 설치 명령 복사하기.
  * Token      bg surface-2 (level: inset, no glow), radius sm, JetBrains Mono 12/14, copy button ghost 32.
  * Structure  prompt sign (text-3) + command (one line, scrolls sideways if long) + icon button. lives on a surface or on bg.
  * Usage Rule the button turns into a check and says 복사했어요 for 1.2초, then returns. never auto-select the text; copying is the button's job.
@@ -13,9 +13,10 @@ import { cn } from "@/lib/utils"
 interface CopyCommandProps extends React.HTMLAttributes<HTMLDivElement> {
   command: string
   size?: "md" | "lg"
+  label?: string
 }
 
-function CopyCommand({ command, size = "md", className, ...props }: CopyCommandProps) {
+function CopyCommand({ command, size = "md", label = "명령어 복사하기", className, ...props }: CopyCommandProps) {
   const [copied, setCopied] = React.useState(false)
   const copy = async () => {
     try { await navigator.clipboard.writeText(command); setCopied(true); setTimeout(() => setCopied(false), 1200) } catch {}
@@ -35,14 +36,14 @@ function CopyCommand({ command, size = "md", className, ...props }: CopyCommandP
       <button
         type="button"
         onClick={copy}
-        aria-label={copied ? "복사했어요" : "명령어 복사하기"}
+        aria-label={copied ? "복사했어요" : label}
         className={cn(
-          "inline-flex h-8 shrink-0 items-center gap-1 rounded-full px-2 font-sans text-xs font-medium leading-4 transition-colors duration-[120ms] ease-out",
+          "inline-flex h-8 shrink-0 items-center gap-1 rounded-full px-2 font-sans text-xs font-medium leading-4 transition-colors",
           copied ? "text-brand-ink" : "text-text-2 hover:bg-surface-3 hover:text-text"
         )}
       >
         {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-        <span className={cn(copied ? "inline" : "hidden sm:inline")}>{copied ? "복사했어요" : "복사"}</span>
+        <span className={cn(copied ? "inline" : "hidden sm:inline")}>{copied ? "복사했어요" : "복사하기"}</span>
       </button>
     </div>
   )
