@@ -1,0 +1,25 @@
+name: Check
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run check
+      # registry.json, base.json, public/themes and public/TASTE.md are generated and committed:
+      # fail when src/index.css, a preset or TASTE.md changed without npm run registry:build
+      - name: generated files are up to date
+        run: |
+          npm run registry:build
+          stale="$(git status --porcelain -- registry.json packages/pyospectui/theme/base.json public/themes public/TASTE.md)"
+          if [ -n "$stale" ]; then echo "$stale"; git diff --stat; echo "run npm run registry:build and commit the result"; exit 1; fi
+      - run: npm run build
+        env: { BASE_PATH: / }
+      - run: bash scripts/e2e-install.sh

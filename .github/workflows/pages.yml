@@ -18,10 +18,12 @@ jobs:
       - uses: actions/setup-node@v7
         with: { node-version: 22, cache: npm }
       - run: npm ci
+      - run: npm run check
       - run: npm run registry:build
       - run: npm run build
         env: { BASE_PATH: / }
-      - run: cp -r public/r dist/r && cp public/llms.txt public/TASTE.md dist/
+      # vite copies public/ (r/, themes/, llms.txt, TASTE.md) into dist; fail if the registry is not there
+      - run: test -f dist/r/registry.json && test -f dist/r/theme.json && test -f dist/themes/pyospect.md && test -f dist/TASTE.md && test -f dist/llms.txt
       - uses: actions/upload-pages-artifact@v5
         with: { path: dist }
   deploy:
