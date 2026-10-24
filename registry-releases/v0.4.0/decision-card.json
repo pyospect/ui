@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "decision-card",
+  "title": "DecisionCard",
+  "description": "what the agent made and the ways forward. the person presses to move on.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/v0.4.0/tokens.json",
+    "https://ui.pyospect.com/r/v0.4.0/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/decision-card.tsx",
+      "content": "/**\n * DecisionCard\n * Naming     DecisionCard. what the agent made, and the ways forward.\n * Variant    none.\n * Token      bg brand-tint (a tinted ground), radius sm, padding 12/16. icon brand-ink. buttons: tint (review) + primary (proceed).\n * Structure  Icon + Title (wraps) + two Buttons. below 640 the buttons drop to a second row so the title keeps its words.\n *            no neutral gray fills on this tinted ground.\n * Usage Rule use where the next step branches. the person has to press to move on; the agent never auto-advances here.\n */\nimport * as React from \"react\"\nimport { FileText } from \"lucide-react\"\nimport { Button } from \"@/components/ui/button\"\nimport { cn } from \"@/lib/utils\"\n\ninterface DecisionCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  title: string\n  reviewLabel?: string\n  proceedLabel: string\n  onReview?: () => void\n  onProceed?: () => void\n}\n\nfunction DecisionCard({ title, reviewLabel = \"검토하기\", proceedLabel, onReview, onProceed, className, ...props }: DecisionCardProps) {\n  return (\n    <div data-level=\"inset\" className={cn(\"grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-sm bg-brand-tint py-3 pl-4 pr-3 sm:grid-cols-[auto_minmax(0,1fr)_auto]\", className)} {...props}>\n      <FileText className=\"size-5 shrink-0 text-brand-ink\" />\n      <b className=\"min-w-0 text-sm font-medium leading-5 text-text text-pretty\">{title}</b>\n      <div className=\"col-span-2 flex min-w-0 flex-wrap gap-2 sm:col-span-1 sm:justify-self-end\">\n        <Button hierarchy=\"tint\" size=\"sm\" onClick={onReview}>{reviewLabel}</Button>\n        <Button size=\"sm\" onClick={onProceed}>{proceedLabel}</Button>\n      </div>\n    </div>\n  )\n}\n\nexport { DecisionCard }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

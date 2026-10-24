@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat",
+  "title": "Chat",
+  "description": "human and agent bubbles with 22px corners, readable copy and 18px conversation spacing.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/v0.4.0/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/chat.tsx",
+      "content": "/**\n * Chat\n * Naming     Chat, Bubble, ChatTime.\n * Variant    Bubble who: agent | human. from: me | ai is a deprecated alias (me = human, ai = agent).\n * Token      radius 22px, consistent on every corner. human = brand-tint-2 + brand-tint-2-text, right. agent = surface-2 + text, left. max width 80%. agent copy 15px / 1.85, padding 16px 18px; human copy 14px / 1.5, padding 12px 18px.\n * Structure  Chat is a vertical stack with gap pyo-chat-gap (18). ChatTime is 12px text-3 under a bubble.\n * Usage Rule a brand fill always means the agent processed it, so no bubble uses one: the person gets the brand tint, the agent a plain surface.\n *            on the human bubble every text is brand-tint-2-text (text-2 and text-3 miss 4.5:1 there). no avatars inside bubbles. copy in 해요체.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Chat({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"grid gap-[var(--pyo-chat-gap)]\", className)} {...props} />\n}\n\ntype BubbleProps = React.HTMLAttributes<HTMLDivElement> &\n  ({ who: \"agent\" | \"human\"; from?: never } | { /** @deprecated use who. me = human, ai = agent */ from: \"me\" | \"ai\"; who?: never })\n\nfunction Bubble({ who, from, className, ...props }: BubbleProps) {\n  const human = (who ?? (from === \"me\" ? \"human\" : \"agent\")) === \"human\"\n  return (\n    <div\n      className={cn(\n        \"max-w-[80%] rounded-[var(--pyo-bubble-radius)] px-[var(--pyo-chat-padding-inline)] tracking-[var(--pyo-body-tracking)] text-pretty\",\n        human ? \"justify-self-end bg-brand-tint-2 py-3 text-sm leading-[1.5] text-brand-tint-2-text\" : \"justify-self-start bg-surface-2 py-[var(--pyo-chat-padding-block)] text-[length:var(--pyo-chat-size)] leading-[var(--pyo-chat-leading)] text-text\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ChatTime({ className, ...props }: React.TimeHTMLAttributes<HTMLTimeElement>) {\n  return <time className={cn(\"text-xs leading-4 text-text-3\", className)} {...props} />\n}\n\nexport { Chat, Bubble, ChatTime }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

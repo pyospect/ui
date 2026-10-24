@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "steps",
+  "title": "Steps",
+  "description": "filled circle = the agent handles it, dashed circle = a person decides. legend included.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/v0.4.0/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/steps.tsx",
+      "content": "/**\n * Steps\n * Naming     Steps, Step/Agent, Step/Human, Step/Done.\n * Variant    who: agent | human. done: true | false.\n * Token      circle 40 full. agent = brand-graphic + brand-graphic-text. human = surface + 2px dashed brand-ink. done = brand-tint + brand-ink.\n *            line surface-3 2px. legend dots 12: brand-graphic and dashed brand-ink.\n * Structure  a horizontal row of Step (circle + title + text), one column on narrow screens. always render the Legend with it.\n * Usage Rule filled circle = the agent handles it, dashed circle = a person decides. the shapes must differ; never rely on color alone.\n */\nimport * as React from \"react\"\nimport { Check } from \"lucide-react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface StepProps extends React.HTMLAttributes<HTMLDivElement> {\n  index: number\n  who: \"agent\" | \"human\"\n  done?: boolean\n  title: string\n  text: string\n}\n\nfunction Step({ index, who, done, title, text, className, ...props }: StepProps) {\n  return (\n    <div className={cn(\"relative grid justify-items-start gap-2\", className)} {...props}>\n      <span\n        className={cn(\n          \"grid size-10 place-items-center rounded-full text-sm font-medium leading-5\",\n          done ? \"bg-brand-tint text-brand-ink\"\n            : who === \"agent\" ? \"bg-brand-graphic text-brand-graphic-text\"\n            : \"bg-surface text-text outline-2 outline-dashed -outline-offset-2 outline-brand-ink\"\n        )}\n        aria-label={`${index}단계, ${who === \"agent\" ? \"에이전트가 처리해요\" : \"사람이 결정해요\"}${done ? \", 완료\" : \"\"}`}\n      >\n        {done ? <Check className=\"size-4\" /> : index}\n      </span>\n      <h4 className=\"one-line mt-1 max-w-full text-sm font-medium leading-5 text-text\">{title}</h4>\n      <p className=\"text-xs leading-[1.7] text-text-2 text-pretty\">{text}</p>\n    </div>\n  )\n}\n\nfunction Steps({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"relative grid grid-cols-1 gap-6 sm:grid-cols-[repeat(auto-fit,minmax(min(100%,160px),1fr))]\", className)} {...props}>\n      <span className=\"absolute left-5 right-5 top-5 hidden h-0.5 -translate-y-px bg-surface-3 sm:block\" aria-hidden />\n      {children}\n    </div>\n  )\n}\n\nfunction StepsLegend({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"flex flex-wrap gap-4 text-xs leading-4 text-text-2\", className)} {...props}>\n      <span className=\"inline-flex items-center gap-2\"><i className=\"size-3 rounded-full bg-brand-graphic\" />에이전트가 처리하는 지점</span>\n      <span className=\"inline-flex items-center gap-2\"><i className=\"size-3 rounded-full outline-2 outline-dashed -outline-offset-2 outline-brand-ink\" />사람이 결정하는 지점</span>\n    </div>\n  )\n}\n\nexport { Steps, Step, StepsLegend }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

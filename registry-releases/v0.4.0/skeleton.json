@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "gray bars, no illustration, no spinner.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/v0.4.0/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/skeleton.tsx",
+      "content": "/**\n * Skeleton\n * Naming     Skeleton, SkeletonText.\n * Variant    none. width is set per bar.\n * Token      bg skeleton (surface-3 tone), height 12, radius full, gap 8. no animation.\n * Structure  gray bars only. no illustration, no spinner.\n * Usage Rule show while loading. SkeletonText is a role=status with a screen reader line in 해요체 (불러오는 중이에요).\n *            set aria-busy on the region that is loading.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"h-3 rounded-full bg-skeleton\", className)} {...props} />\n}\n\nfunction SkeletonText({ lines = 4, className, ...props }: React.HTMLAttributes<HTMLDivElement> & { lines?: number }) {\n  const widths = [\"40%\", \"90%\", \"75%\", \"60%\", \"85%\", \"50%\"]\n  return (\n    <div role=\"status\" className={cn(\"grid gap-2\", className)} {...props}>\n      <span className=\"sr-only\">불러오는 중이에요</span>\n      {Array.from({ length: lines }, (_, i) => <Skeleton key={i} aria-hidden style={{ width: widths[i % widths.length] }} />)}\n    </div>\n  )\n}\n\nexport { Skeleton, SkeletonText }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pyospect-components",
+  "title": "pyospectui 컴포넌트",
+  "description": "테마 없이 22개 컴포넌트만 받아요. 브랜드 색을 따로 정한 프로젝트에 써요.",
+  "registryDependencies": [
+    "https://ui.pyospect.com/r/v0.4.0/button.json",
+    "https://ui.pyospect.com/r/v0.4.0/input.json",
+    "https://ui.pyospect.com/r/v0.4.0/select.json",
+    "https://ui.pyospect.com/r/v0.4.0/switch.json",
+    "https://ui.pyospect.com/r/v0.4.0/card.json",
+    "https://ui.pyospect.com/r/v0.4.0/tag.json",
+    "https://ui.pyospect.com/r/v0.4.0/dialog.json",
+    "https://ui.pyospect.com/r/v0.4.0/thinking.json",
+    "https://ui.pyospect.com/r/v0.4.0/validation-card.json",
+    "https://ui.pyospect.com/r/v0.4.0/steps.json",
+    "https://ui.pyospect.com/r/v0.4.0/decision-card.json",
+    "https://ui.pyospect.com/r/v0.4.0/list.json",
+    "https://ui.pyospect.com/r/v0.4.0/table.json",
+    "https://ui.pyospect.com/r/v0.4.0/skeleton.json",
+    "https://ui.pyospect.com/r/v0.4.0/empty.json",
+    "https://ui.pyospect.com/r/v0.4.0/diff.json",
+    "https://ui.pyospect.com/r/v0.4.0/versions.json",
+    "https://ui.pyospect.com/r/v0.4.0/chat.json",
+    "https://ui.pyospect.com/r/v0.4.0/connection.json",
+    "https://ui.pyospect.com/r/v0.4.0/copy-command.json",
+    "https://ui.pyospect.com/r/v0.4.0/code-block.json",
+    "https://ui.pyospect.com/r/v0.4.0/wash-lab.json"
+  ],
+  "type": "registry:ui"
+}
