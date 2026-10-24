@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "title": "Empty",
+  "description": "wrapping title and explanation with one action, left aligned.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/v0.4.0/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/empty.tsx",
+      "content": "/**\n * Empty\n * Naming     Empty.\n * Variant    none.\n * Token      bg surface (level: surface, glow), radius md, padding 24, left aligned.\n * Structure  Title (wraps) + Text (wraps) + one Button. nothing else, no illustration.\n * Usage Rule the title says what is missing in 해요체 (아직 일감이 없어요), the text says what will fill it, the button does that.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface EmptyProps extends React.HTMLAttributes<HTMLDivElement> {\n  title: string\n  text: string\n  action?: React.ReactNode\n}\n\nfunction Empty({ title, text, action, className, ...props }: EmptyProps) {\n  return (\n    <div data-level=\"surface\" className={cn(\"grid justify-items-start gap-[var(--pyo-card-gap)] rounded-md bg-surface p-[var(--pyo-card-padding)] glow\", className)} {...props}>\n      <h3 className=\"max-w-full text-base font-medium leading-6 text-text text-pretty\">{title}</h3>\n      <p className=\"brand-copy text-text-2 text-pretty\">{text}</p>\n      {action}\n    </div>\n  )\n}\n\nexport { Empty }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

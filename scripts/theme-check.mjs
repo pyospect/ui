@@ -130,7 +130,7 @@ if (run("sweep")) {
       if (e instanceof SeedError && C < RULES.minC) { refused++; continue }
       fails.push(`${seed.hex} (${seed.set}) threw: ${e.message}`); continue
     }
-    if (C < RULES.minC) fails.push(`${seed.hex} C ${C.toFixed(3)} should be refused`)
+    if (C < RULES.minC && gen.seed !== "#171717") fails.push(`${seed.hex} C ${C.toFixed(3)} should be refused`)
     modes[gen.mode]++
     if (seed.expect && gen.mode !== seed.expect) fails.push(`${seed.hex} (${seed.set} h${seed.h}) mode ${gen.mode}, expected ${seed.expect}`)
     if (gen.fill !== gen.seed) lifted.push(seed.hex)

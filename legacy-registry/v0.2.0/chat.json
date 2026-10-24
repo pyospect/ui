@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat",
+  "title": "Chat",
+  "description": "the person on the brand side, the agent on a plain surface.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/chat.tsx",
+      "content": "/**\n * Chat\n * Naming     Chat, Bubble, ChatTime.\n * Variant    Bubble who: agent | human. from: me | ai is a deprecated alias (me = human, ai = agent).\n * Token      radius lg (20) with the tail corner at sm (8). human = brand-tint-2 + brand-tint-2-text, right. agent = surface-2 + text, left. max width 80%.\n * Structure  Chat is a vertical stack with gap 12. ChatTime is 12px text-3 under a bubble.\n * Usage Rule a brand fill always means the agent processed it, so no bubble uses one: the person gets the brand tint, the agent a plain surface.\n *            on the human bubble every text is brand-tint-2-text (text-2 and text-3 miss 4.5:1 there). no avatars inside bubbles. copy in 해요체.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Chat({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"grid gap-3\", className)} {...props} />\n}\n\ntype BubbleProps = React.HTMLAttributes<HTMLDivElement> &\n  ({ who: \"agent\" | \"human\"; from?: never } | { /** @deprecated use who. me = human, ai = agent */ from: \"me\" | \"ai\"; who?: never })\n\nfunction Bubble({ who, from, className, ...props }: BubbleProps) {\n  const human = (who ?? (from === \"me\" ? \"human\" : \"agent\")) === \"human\"\n  return (\n    <div\n      className={cn(\n        \"max-w-[80%] rounded-lg px-4 py-3 text-sm leading-5 text-pretty\",\n        human ? \"justify-self-end rounded-br-sm bg-brand-tint-2 text-brand-tint-2-text\" : \"justify-self-start rounded-bl-sm bg-surface-2 text-text\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ChatTime({ className, ...props }: React.TimeHTMLAttributes<HTMLTimeElement>) {\n  return <time className={cn(\"text-xs leading-4 text-text-3\", className)} {...props} />\n}\n\nexport { Chat, Bubble, ChatTime }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

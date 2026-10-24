@@ -12,14 +12,18 @@ jobs:
       - uses: actions/setup-node@v7
         with: { node-version: 22, cache: npm }
       - run: npm ci
+      - run: node scripts/version-check.mjs
       - run: npm run check
-      # registry.json, base.json, public/themes and public/TASTE.md are generated and committed:
-      # fail when src/index.css, a preset or TASTE.md changed without npm run registry:build
+      # Generated registry, theme and documentation copies must match their sources.
+      # This includes DESIGN.md in both the public site and the npm package.
       - name: generated files are up to date
         run: |
           npm run registry:build
-          stale="$(git status --porcelain -- registry.json packages/pyospectui/theme/base.json public/themes public/TASTE.md)"
+          stale="$(git status --porcelain -- registry.json packages/pyospectui/theme/base.json public/themes public/TASTE.md public/DESIGN.md packages/pyospectui/DESIGN.md)"
           if [ -n "$stale" ]; then echo "$stale"; git diff --stat; echo "run npm run registry:build and commit the result"; exit 1; fi
       - run: npm run build
         env: { BASE_PATH: / }
       - run: bash scripts/e2e-install.sh
+        env: { E2E_DIR: "${{ runner.temp }}/pyospect-install" }
+      - run: bash scripts/e2e-release-compat.sh
+        env: { E2E_TEMPLATE: "${{ runner.temp }}/pyospect-install/base/app" }

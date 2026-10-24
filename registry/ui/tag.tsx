@@ -24,8 +24,8 @@ const tagVariants = cva("inline-flex h-6 max-w-full items-center gap-1 rounded-f
   defaultVariants: { tone: "neutral" },
 })
 
-function Tag({ className, tone, ...props }: React.HTMLAttributes<HTMLSpanElement> & VariantProps<typeof tagVariants>) {
-  return <span className={cn(tagVariants({ tone }), className)} {...props} />
+function Tag({ className, tone, children, ...props }: React.HTMLAttributes<HTMLSpanElement> & VariantProps<typeof tagVariants>) {
+  return <span className={cn(tagVariants({ tone }), className)} {...props}><span className="one-line">{children}</span></span>
 }
 
 export { Tag, tagVariants }

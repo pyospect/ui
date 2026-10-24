@@ -10,7 +10,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 function TableWrap({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div data-level="surface" className={cn("overflow-x-auto rounded-md bg-surface glow", className)} {...props} />
+  return <div data-level="surface" className={cn("w-full max-w-full overflow-x-auto rounded-md bg-surface glow", className)} {...props} />
 }
 function Table({ className, ...props }: React.TableHTMLAttributes<HTMLTableElement>) {
   return <table className={cn("w-full border-collapse text-sm leading-5", className)} {...props} />
@@ -36,7 +36,7 @@ function TableCell({ className, num, ...props }: React.TdHTMLAttributes<HTMLTabl
   return <td className={cn("one-line max-w-60 px-4 py-3 text-text", num && "text-right tabular", className)} {...props} />
 }
 function TableHint({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
-  return <span className={cn("inline-flex items-center gap-1 text-xs leading-4 text-text-3 [&_svg]:size-4", className)} {...props} />
+  return <span className={cn("inline-flex max-w-full items-center gap-1 text-xs leading-4 text-text-3 [&_svg]:size-4 [&_svg]:shrink-0", className)} {...props} />
 }
 
 export { TableWrap, Table, TableHead, TableBody, TableRow, TableHeader, TableCell, TableHint }

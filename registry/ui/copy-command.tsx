@@ -2,7 +2,7 @@
  * CopyCommand
  * Naming     CopyCommand. a terminal command with a copy button.
  * Variant    size: md | lg. label: the copy button's name for screen readers (default 명령어 복사하기), a verb like 설치 명령 복사하기.
- * Token      bg surface-2 (level: inset, no glow), radius sm, JetBrains Mono 12/14, copy button ghost 32.
+ * Token      bg surface-2 (level: inset, no glow), radius sm, Pretendard Medium 12/14, copy button ghost 32.
  * Structure  prompt sign (text-3) + command (one line, scrolls sideways if long) + icon button. lives on a surface or on bg.
  * Usage Rule the button turns into a check and says 복사했어요 for 1.2초, then returns. never auto-select the text; copying is the button's job.
  */

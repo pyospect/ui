@@ -6,15 +6,16 @@
 // npx pyospectui theme [--brand ...]  -> theme only; without --brand it regenerates from the recorded --pyo-seed
 // npx pyospectui presets              -> the preset catalog
 // --cwd goes to shadcn as well; other flags and everything after -- pass through to shadcn add.
-// PYOSPECTUI_REGISTRY overrides https://ui.pyospect.com/r/
+// PYOSPECTUI_REGISTRY overrides the versioned default from theme/version.mjs
 import { spawn } from "node:child_process"
 import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join, relative, resolve } from "node:path"
 import { SeedError } from "./theme/generate.mjs"
-import { themeItem, contractOf, summaryRows, modeLabel, SITE } from "./theme/item.mjs"
+import { themeItem, contractOf, summaryRows, modeLabel, SITE, REGISTRY_BASE } from "./theme/item.mjs"
+import { isPyospect } from "./theme/component-identity.mjs"
 
-const REGISTRY = (process.env.PYOSPECTUI_REGISTRY || `${SITE}/r/`).replace(/\/?$/, "/")
+const REGISTRY = (process.env.PYOSPECTUI_REGISTRY || REGISTRY_BASE).replace(/\/?$/, "/")
 const SHADCN = "shadcn@~4.21"
 const PRETENDARD = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />'
 const here = (p) => new URL(p, import.meta.url)
@@ -22,7 +23,7 @@ const base = JSON.parse(readFileSync(here("./theme/base.json"), "utf8"))
 const presets = readdirSync(here("./presets/")).filter((f) => f.endsWith(".json"))
   .map((f) => JSON.parse(readFileSync(here(`./presets/${f}`), "utf8")))
   .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
-const GREEN = presets.find((p) => p.name === "pyospect")?.brand
+const DEFAULT_SEED = presets.find((p) => p.name === "pyospect")?.brand
 
 class UsageError extends Error {}
 const say = (s = "") => console.log(s)
@@ -92,11 +93,6 @@ function uiDir(cwd) {
     return [join(cwd, "src", rel), join(cwd, rel)].find((d) => existsSync(d)) ?? null
   } catch { return null }
 }
-// shadcn drops the five-line header on install, so tell the files apart by their class names: every pyospect component
-// is written in pyospect tokens (bg-surface, text-text-2, bg-brand-tint, bg-skeleton...), a stock shadcn file in shadcn's own
-// (bg-primary, text-muted-foreground)
-const isPyospect = (src) => /\b(bg|text)-(surface(-[23])?|text(-[23])?|brand(-[\w-]+)?|skeleton|scrim)\b/.test(src)
-
 // the component names an install writes: the requested registry items and their pyospect dependencies. null when offline
 async function componentNames(items) {
   const seen = new Set(), names = new Set()
@@ -201,10 +197,10 @@ try {
     describe(item, gen, `${p.label}(${p.name}) 프리셋 테마를 받아요. 브랜드 색(${p.brand})에서 만들었어요.`)
     theme = { ref: url(`theme-${p.name}`), seed: p.brand }
   } else if (sub === "theme" || (!names.length && installed)) {
-    // keep the brand this project already recorded instead of falling back to green
+    // keep the brand this project already recorded instead of falling back to the neutral default
     const seed = seedOf(css)
     if (seed) theme = generated(seed, (g) => `기록된 브랜드 색(${g.seed})으로 테마를 다시 만들었어요.`)
-    else if (sub === "theme") theme = { ref: url("theme"), seed: GREEN }
+    else if (sub === "theme") theme = { ref: url("theme"), seed: DEFAULT_SEED }
   }
 } catch (e) {
   if (e instanceof SeedError) stop(e.message)
@@ -227,12 +223,12 @@ if (sub === "theme") {
   say(`pyospectui: 컴포넌트를 받아요: ${list}`)
 } else if (names.length) {
   items = [url("theme"), ...names]
-  expectSeed = GREEN
+  expectSeed = DEFAULT_SEED
   say(legacy ? `pyospectui: ${LEGACY}` : "pyospectui: 프로젝트 CSS에 pyospect 테마가 없어요.")
   say(`pyospectui: 테마(theme.json)와 컴포넌트를 같이 받아요: ${list}`)
 } else {
   items = [url("pyospect")]
-  expectSeed = GREEN
+  expectSeed = DEFAULT_SEED
   say("pyospectui: 테마와 컴포넌트를 전부 받아요.")
 }
 say(`규칙은 ${SITE}/TASTE.md, AI용 요약은 ${SITE}/llms.txt 예요.\n`)

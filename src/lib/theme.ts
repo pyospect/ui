@@ -11,6 +11,7 @@ const files = import.meta.glob<Preset>("../../packages/pyospectui/presets/*.json
 export const PRESETS = Object.values(files).sort((a, b) => a.order - b.order)
 export const DEFAULT_BRAND = "pyospect"
 export { modeLabel, SITE }
+export { VERSION, REGISTRY_BASE, REGISTRY_PATH } from "../../packages/pyospectui/theme/version.mjs"
 
 const base = baseJson as { cssVars: { theme: CssVars; light: CssVars; dark: CssVars }; css: Record<string, unknown> }
 

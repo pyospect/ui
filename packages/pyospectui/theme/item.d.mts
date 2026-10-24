@@ -1,7 +1,7 @@
 // types for item.mjs
 import type { Generated, ThemeItem, CssVars } from "./generate.mjs"
 import type { ContractResult, checkContract } from "./contract.mjs"
-export const SITE: string
+export { SITE, VERSION, REGISTRY_PATH, REGISTRY_BASE } from "./version.mjs"
 export function modeLabel(mode: Generated["mode"]): string
 export interface ThemeBase { cssVars: { theme: CssVars; light: CssVars; dark: CssVars }; css: Record<string, unknown>; docs: string }
 export function themeItem(seed: string, base: ThemeBase, opts?: { name?: string; label?: string; slug?: string }): { item: ThemeItem; gen: Generated }

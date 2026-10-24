@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "title": "Empty",
+  "description": "title, one line of text, one button. left aligned.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/empty.tsx",
+      "content": "/**\n * Empty\n * Naming     Empty.\n * Variant    none.\n * Token      bg surface (level: surface, glow), radius md, padding 24, left aligned.\n * Structure  Title (one line) + Text (one line) + one Button. nothing else, no illustration.\n * Usage Rule the title says what is missing in 해요체 (아직 일감이 없어요), the text says what will fill it, the button does that.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface EmptyProps extends React.HTMLAttributes<HTMLDivElement> {\n  title: string\n  text: string\n  action?: React.ReactNode\n}\n\nfunction Empty({ title, text, action, className, ...props }: EmptyProps) {\n  return (\n    <div data-level=\"surface\" className={cn(\"grid justify-items-start gap-3 rounded-md bg-surface p-6 glow\", className)} {...props}>\n      <h3 className=\"one-line max-w-full text-base font-semibold leading-6 text-text\">{title}</h3>\n      <p className=\"text-sm leading-5 text-text-2 text-pretty\">{text}</p>\n      {action}\n    </div>\n  )\n}\n\nexport { Empty }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

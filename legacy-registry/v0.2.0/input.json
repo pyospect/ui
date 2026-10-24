@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "description": "surface with a meaningful 1px line. Field, Label, Help included. label always on top.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/input.tsx",
+      "content": "/**\n * Input\n * Naming     Input. Field wraps it with Label and Help.\n * Variant    state: default | hover | focus | error | disabled.\n * Token      bg surface, line 1px (meaningful boundary, 3:1), focus brand-ink 2px, error danger 1px (2px when focused), radius sm, height 40.\n * Structure  Field > Label + Input + Help. label always above. placeholder holds an example only.\n * Usage Rule error text replaces the help line and explains what to do. pair with aria-invalid and aria-describedby.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nconst Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(\n  ({ className, ...props }, ref) => (\n    <input\n      ref={ref}\n      className={cn(\n        \"h-10 w-full rounded-sm bg-surface px-3 text-sm leading-5 text-text placeholder:text-text-3\",\n        \"shadow-[inset_0_0_0_1px_var(--line)] transition-[background-color,box-shadow]\",\n        \"hover:bg-surface-2 focus:bg-surface focus:outline-0 focus:shadow-[inset_0_0_0_2px_var(--brand-ink)]\",\n        \"aria-invalid:shadow-[inset_0_0_0_1px_var(--danger)] aria-invalid:focus:shadow-[inset_0_0_0_2px_var(--danger)] disabled:opacity-40\",\n        className\n      )}\n      {...props}\n    />\n  )\n)\nInput.displayName = \"Input\"\n\nfunction Field({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"grid gap-2\", className)} {...props} />\n}\n\nfunction Label({ className, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {\n  return <label className={cn(\"one-line text-sm font-medium leading-5 text-text\", className)} {...props} />\n}\n\nfunction Help({ className, error, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { error?: boolean }) {\n  return <p className={cn(\"text-xs leading-4\", error ? \"text-danger\" : \"text-text-3\", className)} {...props} />\n}\n\nexport { Input, Field, Label, Help }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

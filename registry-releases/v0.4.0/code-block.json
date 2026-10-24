@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block",
+  "title": "CodeBlock",
+  "description": "a block of code with a copy button. long lines scroll inside the block.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/v0.4.0/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/code-block.tsx",
+      "content": "/**\n * CodeBlock\n * Naming     CodeBlock. a block of code with a copy button.\n * Variant    none. language is a label only.\n * Token      bg surface-2 (level: inset, no glow), radius sm, Pretendard Medium 12/16, padding 16, copy button ghost 32.\n * Structure  header (language label + copy button) + pre. long lines scroll sideways inside the block, never the page.\n * Usage Rule for code the reader will paste. for a single terminal command use CopyCommand instead.\n */\nimport * as React from \"react\"\nimport { Check, Copy } from \"lucide-react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {\n  code: string\n  language?: string\n}\n\nfunction CodeBlock({ code, language = \"tsx\", className, ...props }: CodeBlockProps) {\n  const [copied, setCopied] = React.useState(false)\n  const copy = async () => {\n    try { await navigator.clipboard.writeText(code); setCopied(true); setTimeout(() => setCopied(false), 1200) } catch {}\n  }\n  return (\n    <div data-level=\"inset\" className={cn(\"overflow-hidden rounded-sm bg-surface-2\", className)} {...props}>\n      <div className=\"flex items-center justify-between gap-2 pl-4 pr-1 pt-1\">\n        <span className=\"font-mono text-xs leading-4 text-text-3\">{language}</span>\n        <button\n          type=\"button\"\n          onClick={copy}\n          aria-label={copied ? \"복사했어요\" : \"코드 복사하기\"}\n          className={cn(\n            \"inline-flex h-8 shrink-0 items-center gap-1 rounded-full px-2 text-xs font-medium leading-4 transition-colors\",\n            copied ? \"text-brand-ink\" : \"text-text-2 hover:bg-surface-3 hover:text-text\"\n          )}\n        >\n          {copied ? <Check className=\"size-4\" /> : <Copy className=\"size-4\" />}\n          {copied ? \"복사했어요\" : \"복사하기\"}\n        </button>\n      </div>\n      <pre className=\"overflow-x-auto px-4 pb-4 pt-2 font-mono text-xs leading-4 text-text\"><code>{code}</code></pre>\n    </div>\n  )\n}\n\nexport { CodeBlock }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

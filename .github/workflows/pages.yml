@@ -18,12 +18,19 @@ jobs:
       - uses: actions/setup-node@v7
         with: { node-version: 22, cache: npm }
       - run: npm ci
+      - run: node scripts/version-check.mjs
       - run: npm run check
       - run: npm run registry:build
       - run: npm run build
         env: { BASE_PATH: / }
-      # vite copies public/ (r/, themes/, llms.txt, TASTE.md) into dist; fail if the registry is not there
-      - run: test -f dist/r/registry.json && test -f dist/r/theme.json && test -f dist/themes/pyospect.md && test -f dist/TASTE.md && test -f dist/llms.txt
+      # Vite must ship the installable Select/laboratory and current design docs.
+      - name: verify published artifacts
+        run: |
+          version="$(node --input-type=module -e 'import { VERSION } from "./packages/pyospectui/theme/version.mjs"; console.log(VERSION)')"
+          test -s "registry-releases/v$version/provenance.json" || { echo "freeze the reviewed registry release before publishing"; exit 1; }
+          for artifact in r/registry.json r/theme.json "r/v$version/registry.json" "r/v$version/theme.json" "r/v$version/select.json" "r/v$version/wash-lab.json" "r/v$version/wash-engine.json" themes/pyospect.md DESIGN.md TASTE.md llms.txt; do
+            test -s "dist/$artifact" || { echo "missing published artifact: $artifact"; exit 1; }
+          done
       - uses: actions/upload-pages-artifact@v5
         with: { path: dist }
   deploy:

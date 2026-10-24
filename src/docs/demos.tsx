@@ -3,6 +3,7 @@ import { Info } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input, Field, Label, Help } from "@/components/ui/input"
 import { Switch, Control } from "@/components/ui/switch"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Card, CardMedia, CardBody, CardTitle, CardText } from "@/components/ui/card"
 import { Tag } from "@/components/ui/tag"
 import { Dialog, DialogTrigger, DialogClose, DialogContent, DialogTitle, DialogDescription, DialogNote, DialogActions } from "@/components/ui/dialog"
@@ -24,6 +25,7 @@ import { ConnectionList, Connection } from "@/components/ai/connection"
 import buttonSrc from "@/components/ui/button.tsx?raw"
 import inputSrc from "@/components/ui/input.tsx?raw"
 import switchSrc from "@/components/ui/switch.tsx?raw"
+import selectSrc from "@/components/ui/select.tsx?raw"
 import cardSrc from "@/components/ui/card.tsx?raw"
 import tagSrc from "@/components/ui/tag.tsx?raw"
 import dialogSrc from "@/components/ui/dialog.tsx?raw"
@@ -57,7 +59,7 @@ export type Demo = {
 export const DEMOS: Demo[] = [
   {
     slug: "button", title: "Button", group: "기본",
-    summary: "primary, secondary, ghost, tint. 한 화면에 primary는 하나이고 라벨은 동사예요.",
+    summary: "primary, secondary, ghost, tint. 한 화면에 primary는 하나이고 라벨은 동사예요. 아래 긴 라벨은 버튼 안에서 말줄임하는 예시예요.",
     source: buttonSrc,
     demo: (
       <div className="grid gap-3">
@@ -66,6 +68,9 @@ export const DEMOS: Demo[] = [
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Button size="sm">작게</Button><Button>기본</Button><Button size="lg">크게</Button><Button disabled>비활성</Button>
+        </div>
+        <div className="max-w-[240px]">
+          <Button hierarchy="secondary"><Info />프로젝트 검토 결과를 팀원에게 공유하기</Button>
         </div>
       </div>
     ),
@@ -79,7 +84,7 @@ export const DEMOS: Demo[] = [
   },
   {
     slug: "input", title: "Input", group: "기본",
-    summary: "면 위에 의미 있는 선 하나. Field, Label, Help가 같이 들어 있고 라벨은 항상 위예요.",
+    summary: "10% 농도의 부드러운 경계와 선명한 focus를 써요. Field, Label, Help가 같이 들어 있고 라벨은 항상 위예요.",
     source: inputSrc,
     demo: (
       <div className="grid max-w-[360px] gap-4">
@@ -104,6 +109,38 @@ export const DEMOS: Demo[] = [
 </Field>`,
   },
   {
+    slug: "select", title: "Select", group: "기본",
+    summary: "닫힌 버튼과 열린 목록 모두 같은 테마를 써요. 방향키로 살펴보고 Enter로 고르며, Escape로 닫을 수 있어요.",
+    source: selectSrc,
+    demo: (
+      <Field className="max-w-[360px]">
+        <Label htmlFor="d-select">색감</Label>
+        <Select defaultValue="natural">
+          <SelectTrigger id="d-select" aria-describedby="d-select-help"><SelectValue placeholder="색감 고르기" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="natural">기본 느낌</SelectItem>
+            <SelectItem value="pastel">부드러운 파스텔</SelectItem>
+            <SelectItem value="deep">깊고 진하게</SelectItem>
+            <SelectItem value="disabled" disabled>준비 중인 색감</SelectItem>
+          </SelectContent>
+        </Select>
+        <Help id="d-select-help">원하는 느낌에 맞춰 색감을 골라 주세요.</Help>
+      </Field>
+    ),
+    code: `import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+
+<Select defaultValue="natural">
+  <SelectTrigger aria-label="색감">
+    <SelectValue placeholder="색감 고르기" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="natural">기본 느낌</SelectItem>
+    <SelectItem value="pastel">부드러운 파스텔</SelectItem>
+    <SelectItem value="deep">깊고 진하게</SelectItem>
+  </SelectContent>
+</Select>`,
+  },
+  {
     slug: "switch", title: "Switch", group: "기본",
     summary: "트랙 28, 핸들 20, padding 4. Control 줄이 라벨과 스위치를 한 줄로 붙잡아요.",
     source: switchSrc,
@@ -114,6 +151,7 @@ export const DEMOS: Demo[] = [
       </div>
     ),
     code: `import { Switch, Control } from "@/components/ui/switch"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Label } from "@/components/ui/input"
 
 <Control>
@@ -123,17 +161,17 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "card", title: "Card", group: "기본",
-    summary: "선도 그림자도 없이 surface 톤 하나로 bg 위에 놓여요. 카드 속 카드는 없어요.",
+    summary: "surface 톤 위에 24px 여백과 20px 간격을 두고, 설명은 14px와 행간 1.85로 보여요. 카드 속 카드는 없어요.",
     source: cardSrc,
     stage: "bg",
     demo: (
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),1fr))] gap-4">
         <Card media>
           <CardMedia />
-          <CardBody><CardTitle>이미지 카드</CardTitle><CardText>이미지 radius는 12에서 4를 뺀 8이에요.</CardText></CardBody>
+          <CardBody><CardTitle>이미지 카드</CardTitle><CardText>카드 바깥은 24px, 4px 안쪽의 이미지는 20px로 곡률을 맞춰요.</CardText></CardBody>
         </Card>
         <Card selected><CardTitle>선택된 카드</CardTitle><CardText>의미 있는 상태라서 선을 써요.</CardText></Card>
-        <Card><CardTitle>기본 카드</CardTitle><CardText>surface 톤 하나로 존재해요.</CardText></Card>
+        <Card><CardTitle>팀이 함께 검토하는 제품 개선안</CardTitle><CardText>다음 행동을 고를 수 있도록 설명을 충분한 행간으로 보여줘요.</CardText></Card>
       </div>
     ),
     code: `import { Card, CardMedia, CardBody, CardTitle, CardText } from "@/components/ui/card"
@@ -152,9 +190,14 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "tag", title: "Tag", group: "기본",
-    summary: "full radius pill. 색이 있는 톤은 단색 fill에 그 fill의 글자색이에요. 밝은 브랜드면 brand 태그는 검은 글자예요.",
+    summary: "full radius pill. 색이 있는 톤은 단색 fill에 그 fill의 글자색이에요. 밝은 브랜드면 brand 태그는 검은 글자예요. 긴 라벨은 영역 안에서 말줄임해요.",
     source: tagSrc,
-    demo: <div className="flex flex-wrap gap-2"><Tag>기본</Tag><Tag tone="brand">선택됨</Tag><Tag tone="ok">통과</Tag><Tag tone="warn">확인 필요</Tag><Tag tone="danger">실패</Tag></div>,
+    demo: (
+      <div className="grid gap-3">
+        <div className="flex flex-wrap gap-2"><Tag>기본</Tag><Tag tone="brand">선택됨</Tag><Tag tone="ok">통과</Tag><Tag tone="warn">확인 필요</Tag><Tag tone="danger">실패</Tag></div>
+        <div className="max-w-[180px]"><Tag>팀원의 최종 검토를 기다리고 있어요</Tag></div>
+      </div>
+    ),
     code: `import { Tag } from "@/components/ui/tag"
 
 <Tag>기본</Tag>
@@ -164,7 +207,7 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "dialog", title: "Dialog", group: "기본",
-    summary: "그림자가 허용되는 유일한 곳. 제목은 질문이고 primary 버튼이 그 답이에요.",
+    summary: "긴 내용은 창 안에서 스크롤하고 제목은 줄바꿈해 읽을 수 있어요. 제목은 질문이고 primary 버튼이 그 답이에요.",
     source: dialogSrc,
     demo: (
       <Dialog>
@@ -254,7 +297,7 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "empty", title: "Empty", group: "기본",
-    summary: "제목 한 줄, 설명 한 줄, 버튼 하나. 왼쪽 정렬이에요.",
+    summary: "제목과 설명, 버튼 하나를 왼쪽에 정렬해요. 긴 안내 문장은 충분한 행간으로 줄바꿈해요.",
     source: emptySrc,
     stage: "bg",
     demo: <Empty className="max-w-[400px]" title="아직 일감이 없어요" text="Jira에서 일감을 가져오면 여기에 나타나요." action={<Button size="sm">Jira 연결하기</Button>} />,
@@ -289,7 +332,7 @@ import { Label } from "@/components/ui/input"
     slug: "thinking", title: "Thinking", group: "AI 협업 패턴",
     summary: "에이전트의 접히는 생각 블록이에요. 진행 중이면 점이 깜빡이고, 끝나면 제목이 과거형이에요.",
     source: thinkingSrc,
-    demo: <Thinking live open className="max-w-[520px]" title="25초 동안 생각했어요" steps={["이 티켓이 단순 문구 수정인지, 조건 분기까지 바뀌는지부터 나눠서 볼게요.", "영향받는 화면과 기능이 어디까지인지 확인할게요."]} />,
+    demo: <Thinking open className="max-w-[520px]" title="25초 동안 생각했어요" steps={["이 티켓이 단순 문구 수정인지, 조건 분기까지 바뀌는지부터 나눠서 볼게요.", "영향받는 화면과 기능이 어디까지인지 확인할게요."]} />,
     code: `import { Thinking } from "@/components/ui/thinking"
 
 <Thinking
@@ -300,7 +343,7 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "validation-card", title: "ValidationCard", group: "AI 협업 패턴",
-    summary: "에이전트가 돌린 검증 하나예요. 제목, 이유 한 줄, 오른쪽에 상태 pill이에요.",
+    summary: "에이전트가 돌린 검증 하나예요. 제목과 검증 이유는 줄바꿈해 읽을 수 있고, 오른쪽에 상태 pill이 있어요.",
     source: validationSrc,
     demo: (
       <div className="grid max-w-[520px] gap-2">
@@ -315,7 +358,7 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "steps", title: "Steps", group: "AI 협업 패턴",
-    summary: "채운 원은 에이전트가 처리하고, 점선 원은 사람이 결정해요. 범례를 항상 같이 보여줘요.",
+    summary: "채운 원은 에이전트가 처리하고, 점선 원은 사람이 결정해요. 범례를 항상 같이 보여주고 좁은 화면에서는 한 열로 놓아요.",
     source: stepsSrc,
     demo: (
       <div className="grid gap-4">
@@ -346,7 +389,7 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "diff", title: "Diff", group: "AI 협업 패턴",
-    summary: "코드 변경이에요. 추가와 삭제는 tint 배경만으로 구분해요.",
+    summary: "코드 변경이에요. 추가와 삭제는 tint 배경과 줄 앞의 +, - 기호로 구분해요.",
     source: diffSrc,
     demo: (
       <Diff className="max-w-[520px]" path="src/cart/applyCoupon.ts" added={2} removed={1}>
@@ -400,7 +443,7 @@ import { Label } from "@/components/ui/input"
   },
   {
     slug: "connection", title: "Connection", group: "AI 협업 패턴",
-    summary: "도구 연결 상태예요. 연결됐으면 ok 점, 아니면 빈 점과 연결하기 버튼이에요.",
+    summary: "도구 연결 상태예요. 연결됐으면 ok 점, 아니면 빈 점과 연결하기 버튼이에요. 좁은 영역에서도 상태 문구는 줄바꿈해서 보여줘요.",
     source: connectionSrc,
     demo: (
       <ConnectionList className="max-w-[400px]">

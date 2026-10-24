@@ -27,9 +27,9 @@ function Thinking({ title, live, steps, className, ...props }: ThinkingProps) {
       </summary>
       <ol className="grid gap-2 px-3 pb-3">
         {steps.map((s, i) => (
-          <li key={i} className="flex gap-2 text-sm leading-5 text-text-2 text-pretty">
+          <li key={i} className="brand-copy flex gap-2 text-text-2 text-pretty">
             <span className="mt-2 size-1 shrink-0 rounded-full bg-text-3" aria-hidden />
-            {s}
+            <span className="min-w-0 [overflow-wrap:anywhere]">{s}</span>
           </li>
         ))}
       </ol>

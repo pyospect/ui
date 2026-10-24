@@ -51,13 +51,13 @@ export function BrandMenu() {
           role="dialog"
           aria-label="브랜드 색"
           onBlur={(e) => { if (e.relatedTarget && !panel.current?.contains(e.relatedTarget) && e.relatedTarget !== trigger.current) setOpen(false) }}
-          className="absolute right-4 top-full z-50 mt-1 grid w-[296px] max-w-[calc(100vw-32px)] gap-3 rounded-md bg-surface p-4 shadow-overlay glow sm:right-6"
+          className="absolute right-4 top-full z-50 mt-1 grid w-[296px] max-w-[calc(100vw-32px)] max-h-[calc(100dvh-120px)] overflow-y-auto gap-3 rounded-md bg-surface p-4 shadow-overlay glow sm:right-6"
         >
           <div className="flex items-baseline justify-between gap-3">
-            <h2 className="one-line text-sm font-semibold leading-5 text-text">{name}</h2>
+            <h2 className="one-line text-sm font-medium leading-5 text-text">{name}</h2>
             <span className="shrink-0 font-mono text-xs leading-4 text-text-3">{theme.seed}</span>
           </div>
-          <Swatches className="grid grid-cols-6" />
+          <Swatches className="grid grid-cols-[repeat(auto-fit,minmax(44px,1fr))]" />
           <p className="text-xs leading-4 text-text-2 text-pretty">고르면 사이트 전체가 그 색으로 바뀌어요. 이 브라우저에 기억해 둘게요.</p>
           <div className="flex flex-wrap gap-2">
             <Button size="sm" hierarchy="secondary" onClick={resetBrand} disabled={key === DEFAULT_BRAND}>기본으로 되돌리기</Button>

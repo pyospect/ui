@@ -4,7 +4,7 @@ scripts/build-registry.mjs가 packages/pyospectui/presets 폴더에서 만든 �
 
 | 프리셋 | 이름 | 브랜드 색 | 채움 | 채움 위 글자 | 알려 드릴 점 | 바꾸는 명령 |
 |---|---|---|---|---|---|---|
-| [pyospect](https://ui.pyospect.com/themes/pyospect.md) | 초록 | `#118846` | `#118846` | 흰 글자 | 1개 | `npx pyospectui --preset pyospect` |
+| [pyospect](https://ui.pyospect.com/themes/pyospect.md) | 뉴트럴 | `#171717` | `#171717` | 흰 글자 | 0개 | `npx pyospectui --preset pyospect` |
 | [red](https://ui.pyospect.com/themes/red.md) | 빨강 | `#D34342` | `#D34342` | 흰 글자 | 2개 | `npx pyospectui --preset red` |
 | [orange](https://ui.pyospect.com/themes/orange.md) | 주황 | `#BC5A29` | `#BC5A29` | 흰 글자 | 2개 | `npx pyospectui --preset orange` |
 | [amber](https://ui.pyospect.com/themes/amber.md) | 호박 | `#FFB020` | `#FFB020` | 검은 글자 | 4개 | `npx pyospectui --preset amber` |
@@ -17,4 +17,4 @@ scripts/build-registry.mjs가 packages/pyospectui/presets 폴더에서 만든 �
 | [violet](https://ui.pyospect.com/themes/violet.md) | 보라 | `#7E61DF` | `#7E61DF` | 흰 글자 | 0개 | `npx pyospectui --preset violet` |
 | [pink](https://ui.pyospect.com/themes/pink.md) | 분홍 | `#C44696` | `#C44696` | 흰 글자 | 0개 | `npx pyospectui --preset pink` |
 
-shadcn 명령으로는 `npx shadcn add https://ui.pyospect.com/r/theme-<프리셋>.json`이에요. 목록에 없는 색은 `npx pyospectui --brand "#RRGGBB"`로 만들어요.
+shadcn 명령으로는 `npx shadcn add https://ui.pyospect.com/r/v0.4.0/theme-<프리셋>.json`이에요. 목록에 없는 색은 `npx pyospectui --brand "#RRGGBB"`로 만들어요.

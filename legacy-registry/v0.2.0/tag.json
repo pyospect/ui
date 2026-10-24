@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tag",
+  "title": "Tag",
+  "description": "full radius pill. colored tones are solid with white text.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/tag.tsx",
+      "content": "/**\n * Tag\n * Naming     Tag, Tag/Status.\n * Variant    tone: neutral | brand | ok | warn | danger.\n * Token      height 24, padding-x 8, radius full, 12px medium. neutral surface-2 + text-2. brand brand + brand-text.\n *            ok | warn | danger are solid fills: *-fill + *-fill-text (AA in both themes).\n * Structure  text only, one line, truncates. not interactive.\n * Usage Rule status is shown only as a Tag. tints are for surfaces, never for pills.\n */\nimport * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/lib/utils\"\n\nconst tagVariants = cva(\"inline-flex h-6 max-w-full items-center gap-1 rounded-full px-2 text-xs font-medium leading-4 one-line\", {\n  variants: {\n    tone: {\n      neutral: \"bg-surface-2 text-text-2\",\n      brand: \"bg-brand text-brand-text\",\n      ok: \"bg-ok-fill text-ok-fill-text\",\n      warn: \"bg-warn-fill text-warn-fill-text\",\n      danger: \"bg-danger-fill text-danger-fill-text\",\n    },\n  },\n  defaultVariants: { tone: \"neutral\" },\n})\n\nfunction Tag({ className, tone, ...props }: React.HTMLAttributes<HTMLSpanElement> & VariantProps<typeof tagVariants>) {\n  return <span className={cn(tagVariants({ tone }), className)} {...props} />\n}\n\nexport { Tag, tagVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

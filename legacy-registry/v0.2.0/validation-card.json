@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "validation-card",
+  "title": "ValidationCard",
+  "description": "one check the agent ran: title, one-line reason, status tag.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json",
+    "https://ui.pyospect.com/r/tag.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/validation-card.tsx",
+      "content": "/**\n * ValidationCard\n * Naming     ValidationCard. one check the agent ran.\n * Variant    status: ok | warn | danger.\n * Token      bg surface-2 (level: inset, no glow), radius sm, padding 16. status shown by Tag only.\n * Structure  Title (one line) + Reason (one line, truncates) + Tag on the right. stack several in a grid with gap 8.\n * Usage Rule the reason says what was found, in 해요체, one sentence. labels: 통과, 확인 필요, 실패.\n */\nimport * as React from \"react\"\nimport { Tag } from \"@/components/ui/tag\"\nimport { cn } from \"@/lib/utils\"\n\nconst labels = { ok: \"통과\", warn: \"확인 필요\", danger: \"실패\" } as const\n\ninterface ValidationCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  title: string\n  reason: string\n  status: keyof typeof labels\n}\n\nfunction ValidationCard({ title, reason, status, className, ...props }: ValidationCardProps) {\n  return (\n    <div\n      data-level=\"inset\"\n      className={cn(\"grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-1 rounded-sm bg-surface-2 p-4\", className)}\n      {...props}\n    >\n      <b className=\"one-line text-sm font-medium leading-5 text-text\">{title}</b>\n      <Tag tone={status} className=\"col-start-2 row-span-2 row-start-1\">{labels[status]}</Tag>\n      <span className=\"one-line col-start-1 text-xs leading-4 text-text-2\">{reason}</span>\n    </div>\n  )\n}\n\nexport { ValidationCard }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

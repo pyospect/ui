@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "thinking",
+  "title": "Thinking",
+  "description": "the agent's collapsible reasoning block. live dot pulses, done title is past tense.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/thinking.tsx",
+      "content": "/**\n * Thinking\n * Naming     Thinking. the agent's collapsible reasoning block.\n * Variant    live: true | false. open: controlled by the user.\n * Token      bg surface-2 (level: inset, no glow), radius sm, dot 8 brand-graphic, steps text-2 14px. the pulse stops under reduced motion.\n * Structure  Summary (dot + title + chevron) + list of steps. lives inside a surface. never nests another surface.\n * Usage Rule while live the dot pulses and the title is present tense (생각하는 중이에요). when done the title is past tense\n *            (25초 동안 생각했어요) and the dot stops. never bold or color the steps.\n */\nimport * as React from \"react\"\nimport { ChevronDown } from \"lucide-react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ThinkingProps extends React.DetailsHTMLAttributes<HTMLDetailsElement> {\n  title: string\n  live?: boolean\n  steps: string[]\n}\n\nfunction Thinking({ title, live, steps, className, ...props }: ThinkingProps) {\n  return (\n    <details data-level=\"inset\" className={cn(\"group overflow-hidden rounded-sm bg-surface-2\", className)} {...props}>\n      <summary className=\"flex cursor-pointer list-none items-center gap-2 p-3 text-sm font-medium leading-5 text-text [&::-webkit-details-marker]:hidden\">\n        <span className={cn(\"size-2 shrink-0 rounded-full bg-brand-graphic\", live && \"animate-pulse motion-reduce:animate-none\")} aria-hidden />\n        <span className=\"one-line flex-1\">{title}</span>\n        <ChevronDown className=\"size-4 shrink-0 text-text-3 transition-transform group-open:rotate-180\" />\n      </summary>\n      <ol className=\"grid gap-2 px-3 pb-3\">\n        {steps.map((s, i) => (\n          <li key={i} className=\"flex gap-2 text-sm leading-5 text-text-2 text-pretty\">\n            <span className=\"mt-2 size-1 shrink-0 rounded-full bg-text-3\" aria-hidden />\n            {s}\n          </li>\n        ))}\n      </ol>\n    </details>\n  )\n}\n\nexport { Thinking }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

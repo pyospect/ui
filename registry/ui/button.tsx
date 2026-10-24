@@ -34,13 +34,36 @@ const buttonVariants = cva(
   }
 )
 
+// Keep icons fixed while a long label truncates. Adjacent text nodes stay one label,
+// including interpolated numbers; fragments do not add extra gaps between words.
+function buttonContent(children: React.ReactNode) {
+  const out: React.ReactNode[] = []
+  let label = ""
+  const flush = () => {
+    if (!label) return
+    out.push(<span key={`label-${out.length}`} className="one-line">{label}</span>)
+    label = ""
+  }
+  const visit = (nodes: React.ReactNode) => React.Children.forEach(nodes, (child) => {
+    if (typeof child === "string" || typeof child === "number") label += child
+    else if (React.isValidElement<{ children?: React.ReactNode }>(child) && child.type === React.Fragment) visit(child.props.children)
+    else if (child != null && typeof child !== "boolean") {
+      flush()
+      out.push(<React.Fragment key={`node-${out.length}`}>{child}</React.Fragment>)
+    }
+  })
+  visit(children)
+  flush()
+  return out.length ? out : undefined
+}
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, hierarchy, size, type = "button", ...props }, ref) => (
-    <button ref={ref} type={type} className={cn(buttonVariants({ hierarchy, size }), className)} {...props} />
+  ({ className, hierarchy, size, type = "button", children, ...props }, ref) => (
+    <button ref={ref} type={type} className={cn(buttonVariants({ hierarchy, size }), className)} {...props}>{buttonContent(children)}</button>
   )
 )
 Button.displayName = "Button"

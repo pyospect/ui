@@ -3,8 +3,9 @@
 // Browser-safe: base is passed in, no node imports.
 import { generate, toThemeItem } from "./generate.mjs"
 import { resolver, checkContract } from "./contract.mjs"
+import { SITE } from "./version.mjs"
 
-export const SITE = "https://ui.pyospect.com"
+export { SITE, VERSION, REGISTRY_PATH, REGISTRY_BASE } from "./version.mjs"
 export const modeLabel = (mode) => (mode === "white" ? "흰 글자" : "검은 글자")
 
 /**

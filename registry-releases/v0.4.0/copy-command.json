@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-command",
+  "title": "CopyCommand",
+  "description": "a terminal command with a copy button. says 복사했어요 for 1.2초.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/v0.4.0/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/copy-command.tsx",
+      "content": "/**\n * CopyCommand\n * Naming     CopyCommand. a terminal command with a copy button.\n * Variant    size: md | lg. label: the copy button's name for screen readers (default 명령어 복사하기), a verb like 설치 명령 복사하기.\n * Token      bg surface-2 (level: inset, no glow), radius sm, Pretendard Medium 12/14, copy button ghost 32.\n * Structure  prompt sign (text-3) + command (one line, scrolls sideways if long) + icon button. lives on a surface or on bg.\n * Usage Rule the button turns into a check and says 복사했어요 for 1.2초, then returns. never auto-select the text; copying is the button's job.\n */\nimport * as React from \"react\"\nimport { Check, Copy } from \"lucide-react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface CopyCommandProps extends React.HTMLAttributes<HTMLDivElement> {\n  command: string\n  size?: \"md\" | \"lg\"\n  label?: string\n}\n\nfunction CopyCommand({ command, size = \"md\", label = \"명령어 복사하기\", className, ...props }: CopyCommandProps) {\n  const [copied, setCopied] = React.useState(false)\n  const copy = async () => {\n    try { await navigator.clipboard.writeText(command); setCopied(true); setTimeout(() => setCopied(false), 1200) } catch {}\n  }\n  return (\n    <div\n      data-level=\"inset\"\n      className={cn(\n        \"flex items-center gap-2 rounded-sm bg-surface-2 py-1 pl-4 pr-1\",\n        size === \"lg\" ? \"font-mono text-sm leading-5\" : \"font-mono text-xs leading-4\",\n        className\n      )}\n      {...props}\n    >\n      <span className=\"select-none text-text-3\" aria-hidden>$</span>\n      <code className=\"min-w-0 flex-1 overflow-x-auto whitespace-nowrap py-2 text-left text-text\">{command}</code>\n      <button\n        type=\"button\"\n        onClick={copy}\n        aria-label={copied ? \"복사했어요\" : label}\n        className={cn(\n          \"inline-flex h-8 shrink-0 items-center gap-1 rounded-full px-2 font-sans text-xs font-medium leading-4 transition-colors\",\n          copied ? \"text-brand-ink\" : \"text-text-2 hover:bg-surface-3 hover:text-text\"\n        )}\n      >\n        {copied ? <Check className=\"size-4\" /> : <Copy className=\"size-4\" />}\n        <span className={cn(copied ? \"inline\" : \"hidden sm:inline\")}>{copied ? \"복사했어요\" : \"복사하기\"}</span>\n      </button>\n    </div>\n  )\n}\n\nexport { CopyCommand }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

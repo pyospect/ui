@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "surface level. no border, no shadow, never inside another card. media radius = card radius minus padding.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/card.tsx",
+      "content": "/**\n * Card\n * Naming     Card, Card/Media, Card/Selected.\n * Variant    media: none | top. selected: true | false.\n * Token      bg surface, radius md, padding 20 (media card padding 4, inner media radius = 12 - 4 = 8), glow 1px in dark only. no shadow.\n * Structure  level: surface. sits on bg only. never inside another Card or Panel. inner groups use surface-2 with no glow.\n * Usage Rule selected is the only state with a line (brand-ink 1px + tint). titles are one line.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface CardProps extends React.HTMLAttributes<HTMLDivElement> {\n  selected?: boolean\n  media?: boolean\n}\n\nfunction Card({ className, selected, media, ...props }: CardProps) {\n  return (\n    <div\n      data-level=\"surface\"\n      className={cn(\n        \"grid min-w-0 content-start gap-3 overflow-hidden rounded-md bg-surface glow\",\n        media ? \"p-1\" : \"p-5\",\n        selected && \"bg-brand-tint outline outline-1 -outline-offset-1 outline-brand-ink\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction CardMedia({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"aspect-video rounded-[calc(var(--radius-md)-4px)] bg-surface-3\", className)} {...props} />\n}\n\nfunction CardBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"grid gap-2 p-4\", className)} {...props} />\n}\n\nfunction CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {\n  return <h3 className={cn(\"one-line text-base font-semibold leading-6 text-text\", className)} {...props} />\n}\n\nfunction CardText({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {\n  return <p className={cn(\"text-sm leading-5 text-text-2 text-pretty\", className)} {...props} />\n}\n\nexport { Card, CardMedia, CardBody, CardTitle, CardText }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
