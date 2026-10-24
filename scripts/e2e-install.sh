@@ -69,9 +69,21 @@ echo "  ok   empty --brand / --preset values are refused"
 step "(a) npx pyospectui --overwrite: theme and every component"
 fresh a
 cli a --overwrite
-expect a light.pyo-seed=#118846 light.brand=#118846 dark.brand=#118846 light.primary=#118846 light.background=#FAFAFA dark.background=#0C0C0C light.radius-md=12px
+expect a light.pyo-seed=#171717 light.brand=#171717 dark.brand=#F5F5F5 light.primary=#171717 dark.primary=#F5F5F5 light.background=#FAFAFA dark.background=#0A0A0A light.radius-md=24px light.pyo-body-size=16px light.pyo-body-leading=1.8 light.pyo-body-tracking=-0.015em light.pyo-copy-leading=1.85 light.pyo-card-padding=24px light.pyo-card-gap=20px light.pyo-chat-gap=18px light.pyo-chat-size=15px light.pyo-chat-leading=1.85
 test -f "$WORK/a/src/components/ui/thinking.tsx" || fail "a: thinking.tsx missing"
-build a "#118846"
+test -f "$WORK/a/src/components/ui/wash-lab.tsx" || fail "a: wash-lab.tsx missing"
+test -f "$WORK/a/src/components/ui/wash-lab.module.css" || fail "a: wash-lab.module.css missing"
+test -f "$WORK/a/src/lib/wash-engine/variants.ts" || fail "a: wash variants missing"
+# Exercise the installable laboratory and its CSS module, not just an unused source file.
+node --input-type=module - "$WORK/a/src/App.tsx" <<'NODE'
+import { writeFileSync } from 'node:fs'
+writeFileSync(process.argv[2], 'import { WashLab } from "@/components/ui/wash-lab"\nexport default function App() { return <WashLab /> }\n')
+NODE
+build a "#171717"
+
+step "(a) Select and its WashLab consumer can be added again without --overwrite"
+cli a select
+cli a wash-lab
 
 step "(a) --preset violet swaps only the theme, --preset pyospect swaps back"
 VIOLET="$(fill violet)"
@@ -82,7 +94,7 @@ expect a light.brand="$VIOLET" dark.brand="$VIOLET" light.primary="$VIOLET"
 echo "  ok   components unchanged"
 build a "$VIOLET"
 cli a --preset pyospect
-expect a light.brand=#118846 light.pyo-seed=#118846
+expect a light.brand=#171717 light.pyo-seed=#171717 dark.brand=#F5F5F5
 [ "$(hashof a)" = "$BEFORE" ] || fail "a: --preset pyospect changed component files"
 
 step "(b) --brand #2679C5, then card keeps the blue"
@@ -90,7 +102,7 @@ fresh b
 cli b --brand "#2679C5" --overwrite
 expect b light.brand=#2679C5 light.pyo-seed=#2679C5
 cli b card
-expect b light.brand=#2679C5 dark.brand=#2679C5 light.primary=#2679C5 light.radius-md=12px
+expect b light.brand=#2679C5 dark.brand=#2679C5 light.primary=#2679C5 light.radius-md=24px
 test -f "$WORK/b/src/components/ui/card.tsx" || fail "b: card.tsx missing"
 build b "#2679C5"
 
@@ -105,7 +117,7 @@ fresh c
 cli c button --overwrite
 grep -q "테마(theme.json)" "$WORK/c.log" || fail "c: the CLI did not add the theme"
 grep -q "hierarchy" "$WORK/c/src/components/ui/button.tsx" || fail "c: button.tsx is not pyospect's"
-expect c light.brand=#118846 light.primary=#118846 light.radius-md=12px
+expect c light.brand=#171717 light.primary=#171717 light.radius-md=24px
 
 step "(d) --brand #FCCA21: dark-text mode, graphic is not the fill"
 BEFORE="$(hashof c)"
@@ -132,7 +144,7 @@ node -e 'const fs = require("fs"), f = process.argv[1]; fs.writeFileSync(f, fs.r
 grep -q -- "--brand: #118846" "$cssfile" || fail "h: could not write the old theme"
 cli h switch
 grep -q -- "--pyo-seed가 없어요" "$WORK/h.log" || { cat "$WORK/h.log"; fail "h: the CLI did not say why it adds the theme"; }
-expect h light.pyo-seed=#118846 light.brand-graphic=#118846 dark.brand-graphic=#118846 dark.brand-graphic-text=#FFFFFF light.ok-fill-text=#FFFFFF
-build h "#118846"
+expect h light.pyo-seed=#171717 light.brand-graphic=#171717 dark.brand-graphic=#F5F5F5 dark.brand-graphic-text=#171717 light.ok-fill-text=#FFFFFF
+build h "#171717"
 
 printf '\ne2e passed (%s)\n' "$WORK"

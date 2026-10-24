@@ -2,7 +2,7 @@
  * Diff
  * Naming     Diff, DiffLine.
  * Variant    line kind: add | del | context.
- * Token      bg surface-2 (level: inset, no glow), radius sm, JetBrains Mono 12px, add ok-tint + ok text, del danger-tint + danger text.
+ * Token      bg surface-2 (level: inset, no glow), radius sm, Pretendard Medium 12px, add ok-tint + ok text, del danger-tint + danger text.
  * Structure  header (path, truncates + counts) + lines. lives inside a surface.
  * Usage Rule additions and deletions are told apart by tinted backgrounds only, plus a sign at the line start. lines are one line and truncate.
  */
@@ -19,7 +19,7 @@ function Diff({ path, added = 0, removed = 0, className, children, ...props }: D
   return (
     <div data-level="inset" className={cn("overflow-hidden rounded-sm bg-surface-2 text-sm leading-5", className)} {...props}>
       <div className="flex items-center justify-between gap-3 px-3 py-2">
-        <span className="one-line font-mono text-xs font-medium text-text">{path}</span>
+        <span className="one-line flex-1 font-mono text-xs font-medium text-text">{path}</span>
         <span className="shrink-0 font-mono text-xs tabular text-text-3">
           <span className="font-medium text-ok">+{added}</span> <span className="text-danger">-{removed}</span>
         </span>
@@ -42,7 +42,7 @@ function DiffLine({ kind = "context", className, children, ...props }: React.HTM
       {...props}
     >
       <span className="w-3 shrink-0 font-medium">{sign}</span>
-      {children}
+      <span className="one-line flex-1">{children}</span>
     </div>
   )
 }

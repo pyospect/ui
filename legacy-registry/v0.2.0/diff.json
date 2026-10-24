@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "diff",
+  "title": "Diff",
+  "description": "JetBrains Mono, additions and deletions by tint only.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/diff.tsx",
+      "content": "/**\n * Diff\n * Naming     Diff, DiffLine.\n * Variant    line kind: add | del | context.\n * Token      bg surface-2 (level: inset, no glow), radius sm, JetBrains Mono 12px, add ok-tint + ok text, del danger-tint + danger text.\n * Structure  header (path, truncates + counts) + lines. lives inside a surface.\n * Usage Rule additions and deletions are told apart by tinted backgrounds only, plus a sign at the line start. lines are one line and truncate.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface DiffProps extends React.HTMLAttributes<HTMLDivElement> {\n  path: string\n  added?: number\n  removed?: number\n}\n\nfunction Diff({ path, added = 0, removed = 0, className, children, ...props }: DiffProps) {\n  return (\n    <div data-level=\"inset\" className={cn(\"overflow-hidden rounded-sm bg-surface-2 text-sm leading-5\", className)} {...props}>\n      <div className=\"flex items-center justify-between gap-3 px-3 py-2\">\n        <span className=\"one-line font-mono text-xs font-medium text-text\">{path}</span>\n        <span className=\"shrink-0 font-mono text-xs tabular text-text-3\">\n          <span className=\"font-medium text-ok\">+{added}</span> <span className=\"text-danger\">-{removed}</span>\n        </span>\n      </div>\n      {children}\n    </div>\n  )\n}\n\nfunction DiffLine({ kind = \"context\", className, children, ...props }: React.HTMLAttributes<HTMLDivElement> & { kind?: \"add\" | \"del\" | \"context\" }) {\n  const sign = kind === \"add\" ? \"+\" : kind === \"del\" ? \"-\" : \" \"\n  return (\n    <div\n      className={cn(\n        \"one-line flex gap-3 px-3 py-1 font-mono text-xs leading-4 text-text-2\",\n        kind === \"add\" && \"bg-ok-tint text-ok\",\n        kind === \"del\" && \"bg-danger-tint text-danger\",\n        className\n      )}\n      {...props}\n    >\n      <span className=\"w-3 shrink-0 font-medium\">{sign}</span>\n      {children}\n    </div>\n  )\n}\n\nexport { Diff, DiffLine }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

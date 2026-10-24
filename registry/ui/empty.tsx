@@ -3,7 +3,7 @@
  * Naming     Empty.
  * Variant    none.
  * Token      bg surface (level: surface, glow), radius md, padding 24, left aligned.
- * Structure  Title (one line) + Text (one line) + one Button. nothing else, no illustration.
+ * Structure  Title (wraps) + Text (wraps) + one Button. nothing else, no illustration.
  * Usage Rule the title says what is missing in 해요체 (아직 일감이 없어요), the text says what will fill it, the button does that.
  */
 import * as React from "react"
@@ -17,9 +17,9 @@ interface EmptyProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function Empty({ title, text, action, className, ...props }: EmptyProps) {
   return (
-    <div data-level="surface" className={cn("grid justify-items-start gap-3 rounded-md bg-surface p-6 glow", className)} {...props}>
-      <h3 className="one-line max-w-full text-base font-semibold leading-6 text-text">{title}</h3>
-      <p className="text-sm leading-5 text-text-2 text-pretty">{text}</p>
+    <div data-level="surface" className={cn("grid justify-items-start gap-[var(--pyo-card-gap)] rounded-md bg-surface p-[var(--pyo-card-padding)] glow", className)} {...props}>
+      <h3 className="max-w-full text-base font-medium leading-6 text-text text-pretty">{title}</h3>
+      <p className="brand-copy text-text-2 text-pretty">{text}</p>
       {action}
     </div>
   )

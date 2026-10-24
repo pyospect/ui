@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pyospect-components",
+  "title": "pyospectui 컴포넌트",
+  "description": "테마 없이 20개 컴포넌트만 받아요. 브랜드 색을 따로 정한 프로젝트에 써요.",
+  "registryDependencies": [
+    "https://ui.pyospect.com/r/button.json",
+    "https://ui.pyospect.com/r/input.json",
+    "https://ui.pyospect.com/r/switch.json",
+    "https://ui.pyospect.com/r/card.json",
+    "https://ui.pyospect.com/r/tag.json",
+    "https://ui.pyospect.com/r/dialog.json",
+    "https://ui.pyospect.com/r/thinking.json",
+    "https://ui.pyospect.com/r/validation-card.json",
+    "https://ui.pyospect.com/r/steps.json",
+    "https://ui.pyospect.com/r/decision-card.json",
+    "https://ui.pyospect.com/r/list.json",
+    "https://ui.pyospect.com/r/table.json",
+    "https://ui.pyospect.com/r/skeleton.json",
+    "https://ui.pyospect.com/r/empty.json",
+    "https://ui.pyospect.com/r/diff.json",
+    "https://ui.pyospect.com/r/versions.json",
+    "https://ui.pyospect.com/r/chat.json",
+    "https://ui.pyospect.com/r/connection.json",
+    "https://ui.pyospect.com/r/copy-command.json",
+    "https://ui.pyospect.com/r/code-block.json"
+  ],
+  "type": "registry:ui"
+}

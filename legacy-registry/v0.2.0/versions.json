@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "versions",
+  "title": "Versions",
+  "description": "only the current version has a fill.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ai/versions.tsx",
+      "content": "/**\n * Versions\n * Naming     Versions, Version.\n * Variant    current: true | false.\n * Token      item radius sm, padding 12, 14px. current = brand-tint bg + brand-ink text. others have no fill.\n * Structure  Version = label + meta (right, 12px text-3) + one-line note. stack in a grid with gap 4.\n * Usage Rule only the current version has a fill. meta is a relative time (어제) or a state word (최신).\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Versions({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"grid gap-1\", className)} {...props} />\n}\n\ninterface VersionProps extends React.HTMLAttributes<HTMLDivElement> {\n  label: string\n  meta?: string\n  note: string\n  current?: boolean\n}\n\nfunction Version({ label, meta, note, current, className, ...props }: VersionProps) {\n  return (\n    <div className={cn(\"grid gap-1 rounded-sm p-3 text-sm leading-5 text-text-2\", current && \"bg-brand-tint text-brand-ink\", className)} {...props}>\n      <b className={cn(\"flex justify-between gap-2 font-medium text-text\", current && \"text-brand-ink\")}>\n        <span className=\"one-line\">{label}</span>\n        {meta && <span className={cn(\"shrink-0 text-xs font-normal leading-4\", current ? \"text-brand-ink\" : \"text-text-3\")}>{meta}</span>}\n      </b>\n      <span className=\"one-line\">{note}</span>\n    </div>\n  )\n}\n\nexport { Versions, Version }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

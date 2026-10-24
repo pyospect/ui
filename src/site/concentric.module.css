@@ -1,0 +1,9 @@
+/* Natural-height panels have a uniform final inset. Adjust only the filled
+   block meeting their bottom corners; middle blocks and controls stay free. */
+.insetEnd { align-self: start; --concentric-gap: var(--pyo-card-padding); }
+.compact { --concentric-gap: 16px; }
+.insetEnd > [data-level="inset"]:last-child,
+.insetEnd > :last-child > [data-level="inset"]:last-child {
+  border-bottom-left-radius: max(0px, calc(var(--radius) - var(--concentric-gap)));
+  border-bottom-right-radius: max(0px, calc(var(--radius) - var(--concentric-gap)));
+}

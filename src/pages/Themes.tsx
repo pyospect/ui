@@ -1,5 +1,5 @@
-// #/themes: a "create" screen. left, the controls (256px); right, a bento canvas of product tiles in the chosen brand.
-// ≥1024 the page is one viewport tall under the nav and the body does not scroll; below that it stacks and scrolls.
+// #/themes: a create screen with 280px controls and a responsive preview canvas.
+// Desktop controls and previews scroll independently; short viewports keep a usable minimum workspace height.
 // the canvas takes the site-wide brand (same generator output, same URL and storage state) and has its own light/dark.
 import { useEffect, useId, useMemo, useRef, useState } from "react"
 import { Info, Moon, Shuffle, Sun } from "lucide-react"
@@ -19,24 +19,25 @@ import { Thinking } from "@/components/ai/thinking"
 import { ValidationCard } from "@/components/ai/validation-card"
 import { Steps, Step, StepsLegend } from "@/components/ai/steps"
 import { DecisionCard } from "@/components/ai/decision-card"
+import concentric from "../site/concentric.module.css"
 import { Diff, DiffLine } from "@/components/ai/diff"
 import { Versions, Version } from "@/components/ai/versions"
 import { Chat, Bubble, ChatTime } from "@/components/ai/chat"
 import { ConnectionList, Connection } from "@/components/ai/connection"
 import { Swatches } from "@/site/swatches"
 import { useBrand, setBrand, resetBrand } from "@/lib/brand"
-import { DEFAULT_BRAND, PRESETS, SITE, isHex, toHex, modeLabel, varStyle, type Theme } from "@/lib/theme"
+import { DEFAULT_BRAND, PRESETS, REGISTRY_BASE, isHex, toHex, modeLabel, varStyle, type Theme } from "@/lib/theme"
 import { cn } from "@/lib/utils"
 
 type Mode = "light" | "dark"
 
-const HEX_HELP = "#3366FF처럼 여섯 자리로 적어요. 회색에 가까운 색은 쓸 수 없어요."
+const HEX_HELP = "#3366FF처럼 여섯 자리로 적어요. neutral 기본색 #171717 외의 저채도 색은 쓸 수 없어요."
 const HEX_FORMAT = "#3366FF처럼 # 뒤에 여섯 자리 hex로 적어 주세요."
 
 // ---- controls ----
 
 function Chip({ hex, className }: { hex?: string | null; className?: string }) {
-  return <span className={cn("size-4 shrink-0 rounded-full shadow-[inset_0_0_0_1px_var(--line)]", className)} style={{ backgroundColor: hex ?? undefined }} aria-hidden />
+  return <span className={cn("size-4 shrink-0 rounded-full shadow-[inset_0_0_0_1px_var(--border)]", className)} style={{ backgroundColor: hex ?? undefined }} aria-hidden />
 }
 
 // 라이트 | 다크 for the canvas only. selected = brand-tint + brand-ink (TASTE 10); track full, segments full
@@ -86,7 +87,7 @@ function Picker() {
           aria-label="색상표에서 고르기"
           value={(isHex(draft) ? toHex(draft) : theme.seed).toLowerCase()}
           onChange={(e) => pick(e.target.value)}
-          className="size-10 shrink-0 cursor-pointer appearance-none rounded-full bg-surface p-1 shadow-[inset_0_0_0_1px_var(--line)] transition-colors hover:bg-surface-2 [&::-moz-color-swatch]:rounded-full [&::-moz-color-swatch]:border-0 [&::-webkit-color-swatch]:rounded-full [&::-webkit-color-swatch]:border-0 [&::-webkit-color-swatch-wrapper]:p-0"
+          className="size-10 shrink-0 cursor-pointer appearance-none rounded-full bg-surface p-1 shadow-[inset_0_0_0_1px_var(--border)] transition-colors hover:bg-surface-2 [&::-moz-color-swatch]:rounded-full [&::-moz-color-swatch]:border-0 [&::-webkit-color-swatch]:rounded-full [&::-webkit-color-swatch]:border-0 [&::-webkit-color-swatch-wrapper]:p-0"
         />
         <Input
           id="brand-hex"
@@ -147,13 +148,13 @@ function About({ theme }: { theme: Theme }) {
     <section aria-labelledby="picked" className="grid gap-3">
       <div className="flex min-w-0 items-center gap-2">
         <Chip hex={gen.seed} />
-        <h2 id="picked" className="one-line text-sm font-semibold leading-5 text-text">{preset ? `${preset.label} 프리셋` : "직접 고른 색"}</h2>
+        <h2 id="picked" className="one-line text-sm font-medium leading-5 text-text">{preset ? `${preset.label} 프리셋` : "직접 고른 색"}</h2>
       </div>
-      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-xs leading-4">
+      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-2 text-sm leading-6">
         {facts.map(([k, v]) => (
           <div key={k} className="contents">
             <dt className="text-text-3">{k}</dt>
-            <dd className="one-line m-0 font-medium text-text">{v}</dd>
+            <dd className="m-0 break-words font-medium text-text">{v}</dd>
           </div>
         ))}
       </dl>
@@ -164,7 +165,7 @@ function About({ theme }: { theme: Theme }) {
       </p>
       <ul className="grid gap-2">
         {(gen.warnings.length ? gen.warnings : ["옮기거나 바꾼 색이 없어요. 브랜드 색과 상태색이 모두 기본 자리에 있어요."]).map((w) => (
-          <li key={w} className="flex gap-2 text-xs leading-4 text-text-2 text-pretty"><Info className="size-4 shrink-0 text-text-3" aria-hidden />{w}</li>
+          <li key={w} className="flex gap-2 text-sm leading-6 text-text-2 text-pretty"><Info className="mt-1 size-4 shrink-0 text-text-3" aria-hidden />{w}</li>
         ))}
       </ul>
       <details className="group grid">
@@ -176,7 +177,7 @@ function About({ theme }: { theme: Theme }) {
           <ul className="grid gap-1">
             {rows.map((r) => (
               <li key={r.token} className="flex min-w-0 items-center gap-2 text-xs leading-4">
-                <span className="one-line flex-1 font-mono text-text-2">{r.token}</span>
+                <span className="min-w-0 flex-1 break-all font-mono text-text-2">{r.token}</span>
                 <Chip hex={r.light} /><Chip hex={r.dark} />
                 <span className="sr-only">라이트 {r.light ?? "없음"}, 다크 {r.dark ?? "없음"}</span>
                 <span className={cn("w-8 shrink-0 text-right tabular", r.pass ? "text-text-2" : "text-danger")}>{r.low ? r.low.ratio.toFixed(2) : ""}</span>
@@ -200,8 +201,8 @@ function ShadcnCommand({ theme }: { theme: Theme }) {
   return (
     <section aria-labelledby="shadcn-cmd" className="grid gap-2">
       <h2 id="shadcn-cmd" className="text-xs font-medium leading-4 text-text-3">shadcn 명령으로 받기</h2>
-      <CopyCommand command={`npx shadcn@~4.21 add ${SITE}/r/theme-${p.name}.json`} />
-      <p className="text-xs leading-4 text-text-2 text-pretty">테마만 받아요. CSS 변수만 바뀌고 컴포넌트 파일은 그대로예요.</p>
+      <CopyCommand command={`npx shadcn@~4.21 add ${REGISTRY_BASE}theme-${p.name}.json`} />
+      <p className="text-sm leading-6 text-text-2 text-pretty">테마만 받아요. CSS 변수만 바뀌고 컴포넌트 파일은 그대로예요.</p>
     </section>
   )
 }
@@ -221,8 +222,8 @@ function Actions({ theme }: { theme: Theme }) {
     <section aria-labelledby="install-cmd" className="grid gap-2">
       <h2 id="install-cmd" className="text-xs font-medium leading-4 text-text-3">설치 명령</h2>
       <CopyCommand command={command} label="설치 명령 복사하기" />
-      <p className="text-xs leading-4 text-text-2 text-pretty">pyospect가 있으면 테마만 바꿔요. 새 프로젝트는 컴포넌트까지 받으니 <span className="whitespace-nowrap">--overwrite</span>를 붙여요.</p>
-      <div className="grid grid-cols-2 gap-2">
+      <p className="text-sm leading-6 text-text-2 text-pretty">pyospect가 있으면 테마만 바꿔요. 새 프로젝트는 컴포넌트까지 받으니 <span className="whitespace-nowrap">--overwrite</span>를 붙여요.</p>
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
         <Button hierarchy="secondary" size="sm" onClick={() => setBrand(nextPreset(key))}><Shuffle aria-hidden />무작위로 고르기</Button>
         <Button hierarchy="ghost" size="sm" onClick={resetBrand} disabled={key === DEFAULT_BRAND && !invalid}>기본으로 되돌리기</Button>
       </div>
@@ -235,7 +236,7 @@ function Actions({ theme }: { theme: Theme }) {
 function TileHead({ title, sub, className }: { title: string; sub: string; className?: string }) {
   return (
     <header className={cn("grid shrink-0 gap-1", className)}>
-      <h3 className="one-line text-sm font-semibold leading-5 text-text">{title}</h3>
+      <h3 className="one-line text-sm font-medium leading-5 text-text">{title}</h3>
       <p className="one-line text-xs leading-4 text-text-2">{sub}</p>
     </header>
   )
@@ -244,7 +245,7 @@ function TileHead({ title, sub, className }: { title: string; sub: string; class
 // a tile is a surface on the canvas bg: no line, no shadow, radius md, dark glow. insets inside are surface-2 only
 function Tile({ title, sub, className, children }: { title: string; sub: string; className?: string; children: React.ReactNode }) {
   return (
-    <section data-level="surface" className={cn("grid min-h-0 min-w-0 content-start gap-3 overflow-hidden rounded-md bg-surface p-4 glow", className)}>
+    <section data-level="surface" className={cn(concentric.insetEnd, concentric.compact, "grid min-h-0 min-w-0 content-start gap-3 rounded-md bg-surface p-4 glow", className)}>
       <TileHead title={title} sub={sub} />
       {children}
     </section>
@@ -262,23 +263,21 @@ const CHART = ["bg-chart-1", "bg-chart-2", "bg-chart-3", "bg-chart-4", "bg-chart
 const CODE = `export const total = (cart: Cart) =>
   cart.items - cart.points - cart.coupon`
 
-// placement. <640 one column, 640-1023 two. ≥1024 a 12-column bento in two pages of six tiles (01, 02), because twelve
-// tiles with all twenty components need about a quarter more room than a 1440 x 900 screen has at this density.
-// 1024-1279: the page's tiles in two columns at their own height. ≥1280: fixed 12 x 12 tracks that divide the canvas height
-// (min 684px: below that the canvas scrolls inside, the page never does)
+// Preview tiles keep their natural height. Content such as expanded reasoning and validation
+// must stay reachable rather than being cropped by a fixed bento row track.
 const AT = {
-  agent: "sm:col-span-2 lg:col-span-12 xl:col-[1/span_6] xl:row-[1/span_7]",
-  chat: "lg:col-span-6 xl:col-[7/span_3] xl:row-[1/span_12]",
-  checks: "lg:col-span-6 xl:col-[10/span_3] xl:row-[7/span_6]",
-  diff: "lg:col-span-6 xl:col-[1/span_3] xl:row-[8/span_5]",
-  code: "lg:col-span-6 xl:col-[4/span_3] xl:row-[8/span_5]",
-  workspace: "lg:col-span-6 xl:col-[10/span_3] xl:row-[1/span_6]",
-  settings: "lg:col-span-6 xl:col-[1/span_4] xl:row-[1/span_6]",
-  orders: "sm:col-span-2 lg:col-span-12 xl:col-[5/span_8] xl:row-[1/span_6]",
-  metrics: "lg:col-span-6 xl:col-[1/span_4] xl:row-[7/span_6]",
-  tasks: "lg:col-span-6 xl:col-[5/span_4] xl:row-[7/span_6]",
-  empty: "lg:col-span-6 xl:col-[9/span_4] xl:row-[7/span_3]",
-  summary: "lg:col-span-6 xl:col-[9/span_4] xl:row-[10/span_3]",
+  agent: "sm:col-span-2",
+  chat: "",
+  checks: "",
+  diff: "",
+  code: "",
+  workspace: "sm:col-span-2",
+  settings: "",
+  orders: "sm:col-span-2",
+  metrics: "",
+  tasks: "",
+  empty: "",
+  summary: "",
 }
 const PAGES = ["에이전트", "제품 화면"]
 
@@ -289,9 +288,9 @@ function Canvas({ mode, page, theme }: { mode: Mode; page: number; theme: Theme 
   // a tile of the other page leaves the desktop canvas; below 1024 every tile shows
   const on = (p: number, at: string) => cn(at, p !== page && "lg:hidden")
   return (
-    // the theme's own variables sit on the canvas, so it keeps its mode whatever the site's is; stage lg 20 = tile md 12 + 8
-    <section aria-label="미리보기" className={cn("min-w-0 rounded-lg bg-bg p-2 text-text lg:col-start-2 lg:row-[1/-1] lg:min-h-0 lg:overflow-y-auto", mode === "dark" && "dark")} style={vars}>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-flow-row-dense lg:grid-cols-12 xl:h-full xl:min-h-[684px] xl:grid-rows-12">
+    // Theme variables keep this preview independent of the site mode. The stage scrolls when content grows.
+    <section aria-label="미리보기" tabIndex={0} className={cn("min-w-0 rounded-lg bg-bg p-2 text-text lg:col-start-2 lg:row-[1/-1] lg:min-h-0 lg:overflow-y-auto", mode === "dark" && "dark")} style={vars}>
+      <div className="grid content-start gap-4 sm:grid-cols-2">
         <Tile title="에이전트 작업" sub="ORDER-42 쿠폰 적용 순서를 고치고 있어요" className={on(0, AT.agent)}>
           <Thinking live open title="생각하는 중이에요" steps={["쿠폰과 포인트 중 무엇이 먼저 빠지는지 볼게요.", "영향받는 결제 화면을 확인할게요."]} />
           <StepsLegend />
@@ -303,9 +302,9 @@ function Canvas({ mode, page, theme }: { mode: Mode; page: number; theme: Theme 
           <DecisionCard title="ORDER-42 변경안" proceedLabel="적용하기" />
         </Tile>
 
-        {/* the newest message sits on the input; older ones leave at the top when the tile is short */}
-        <Tile title="채팅" sub="에이전트와 나눈 대화예요" className={on(0, cn("grid-rows-[auto_minmax(0,1fr)_auto] content-stretch", AT.chat))}>
-          <Chat className="min-h-0 content-end overflow-hidden">
+        {/* All messages remain available when text or spacing grows. */}
+        <Tile title="채팅" sub="에이전트와 나눈 대화예요" className={on(0, cn("content-start", AT.chat))}>
+          <Chat className="min-w-0">
             <Bubble who="human">ORDER-42 변경안 작성해 줘.</Bubble>
             <Bubble who="agent">쿠폰이 포인트보다 먼저 빠지고 있어요. 순서를 바꿀까요?</Bubble>
             <Bubble who="human">응, 포인트가 먼저 빠지게 바꿔 줘.</Bubble>
@@ -418,7 +417,7 @@ function Canvas({ mode, page, theme }: { mode: Mode; page: number; theme: Theme 
           </div>
         </Tile>
 
-        <List aria-label="일감" className={on(1, cn("min-h-0 min-w-0 content-start overflow-hidden", AT.tasks))}>
+        <List aria-label="일감" className={on(1, cn("min-h-0 min-w-0 content-start", AT.tasks))}>
           <TileHead title="일감" sub="고르면 맥락을 불러와요" className="px-3 pb-2 pt-3" />
           {[["장바구니 쿠폰 적용 순서 정리", "TASK-101"], ["배송지 저장 화면", "TASK-102"], ["재고 알림 배너", "TASK-103"]].map(([t, m], i) => (
             <ListItem key={m} meta={m} selected={task === i} onClick={() => setTask(i)}>{t}</ListItem>
@@ -429,7 +428,7 @@ function Canvas({ mode, page, theme }: { mode: Mode; page: number; theme: Theme 
           title="아직 받은 리뷰가 없어요"
           text="공유하면 리뷰가 여기에 모여요."
           action={<Button size="sm" hierarchy="secondary">리뷰 요청하기</Button>}
-          className={on(1, cn("min-h-0 min-w-0 content-start overflow-hidden", AT.empty))}
+          className={on(1, cn("min-h-0 min-w-0 content-start", AT.empty))}
         />
 
         <Card aria-busy="true" className={on(1, cn("min-h-0", AT.summary))}>
@@ -465,26 +464,31 @@ function PageToggle({ page, onPage }: { page: number; onPage: (p: number) => voi
 
 export function Themes() {
   const { theme } = useBrand()
-  const [mode, setMode] = useState<Mode>(() => (document.documentElement.classList.contains("dark") ? "dark" : "light"))
+  const [mode, setMode] = useState<Mode>(() => {
+    try {
+      const saved = localStorage.getItem("pyo-theme")
+      return saved === "dark" || (saved === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light"
+    } catch { return document.documentElement.classList.contains("dark") ? "dark" : "light" }
+  })
   const [page, setPage] = useState(0)
   // the left column: header, the swatch bar (sticky under the nav below 1024), details that scroll inside, actions pinned at the bottom
   return (
-    <div className="mx-auto grid gap-4 px-4 pb-16 sm:px-6 lg:h-[calc(100dvh-64px)] lg:grid-cols-[256px_minmax(0,1fr)] lg:grid-rows-[auto_auto_minmax(0,1fr)_auto] lg:gap-x-6 lg:gap-y-4 lg:overflow-hidden lg:pb-4 lg:pt-2">
+    <div className="mx-auto grid gap-4 px-4 pb-16 sm:px-6 lg:h-[max(840px,calc(100dvh-64px))] lg:grid-cols-[280px_minmax(0,1fr)] lg:grid-rows-[auto_auto_minmax(0,1fr)_auto] lg:gap-x-6 lg:gap-y-4 lg:overflow-hidden lg:pb-4 lg:pt-2">
       <header className="grid gap-1 pt-4 lg:col-start-1 lg:pt-0">
         <p className="text-xs font-medium leading-4 text-text-3">테마</p>
-        <h1 className="one-line text-base font-semibold leading-6 text-text">브랜드 색 하나로 만드는 테마</h1>
-        <p className="text-xs leading-4 text-text-2 text-pretty">색을 고르면 규칙이 나머지 색을 만들고 검사해요. 사이트 전체가 바로 바뀌고 주소에 남아요.</p>
+        <h1 className="brand-heading text-text">테마 만들기</h1>
+        <p className="text-sm leading-6 text-text-2 text-pretty">색을 고르면 규칙이 나머지 색을 만들고 검사해요. 사이트 전체가 바로 바뀌고 주소에 남아요.</p>
       </header>
 
-      <div className="sticky top-16 z-30 -mx-4 flex items-center gap-2 bg-bg/90 px-4 py-2 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:col-start-1 lg:mx-0 lg:grid lg:gap-3 lg:bg-transparent lg:p-0 lg:backdrop-blur-none">
-        <Swatches className="min-w-0 flex-1 flex-nowrap overflow-x-auto [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:overflow-visible" />
+      <div className="sticky top-[100px] z-30 sm:top-16 -mx-4 flex items-center gap-2 bg-bg/90 px-4 py-2 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:col-start-1 lg:mx-0 lg:grid lg:gap-3 lg:bg-transparent lg:p-0 lg:backdrop-blur-none">
+        <Swatches className="min-w-0 flex-1 flex-nowrap overflow-x-auto [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:overflow-visible" />
         <div className="flex shrink-0 gap-2">
           <ModeToggle mode={mode} onMode={setMode} className="w-36 lg:w-auto lg:flex-1" />
           <PageToggle page={page} onPage={setPage} />
         </div>
       </div>
 
-      <div className="grid content-start gap-6 lg:col-start-1 lg:min-h-0 lg:overflow-y-auto lg:[scrollbar-width:thin]">
+      <div role="region" aria-label="테마 상세 설정" tabIndex={0} className="grid content-start gap-6 lg:col-start-1 lg:min-h-0 lg:overflow-y-auto lg:[scrollbar-width:thin]">
         <Picker />
         <About theme={theme} />
         <ShadcnCommand theme={theme} />

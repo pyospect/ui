@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "title": "Table",
+  "description": "numbers right and tabular, header surface-2, no lines between rows, scrolls inside its wrap.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/table.tsx",
+      "content": "/**\n * Table\n * Naming     Table, TableHead, TableBody, TableRow, TableHeader, TableCell.\n * Variant    TableCell num: true (right aligned, tabular). TableHeader num: true.\n * Token      wrap bg surface (level: surface, glow), radius md, header surface-2 12px text-3, cell padding 12/16, row hover surface-2. no lines between rows.\n * Structure  TableWrap > table. wide tables scroll inside the wrap, never the page. status uses Tag, hints use TableHint (icon + text-3).\n * Usage Rule numbers right aligned with tabular digits and units (14,100원). dates ISO. cells are one line and truncate.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction TableWrap({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div data-level=\"surface\" className={cn(\"overflow-x-auto rounded-md bg-surface glow\", className)} {...props} />\n}\nfunction Table({ className, ...props }: React.TableHTMLAttributes<HTMLTableElement>) {\n  return <table className={cn(\"w-full border-collapse text-sm leading-5\", className)} {...props} />\n}\nfunction TableHead(props: React.HTMLAttributes<HTMLTableSectionElement>) { return <thead {...props} /> }\nfunction TableBody(props: React.HTMLAttributes<HTMLTableSectionElement>) { return <tbody {...props} /> }\nfunction TableRow({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) {\n  return <tr className={cn(\"[&>td]:transition-colors hover:[&>td]:bg-surface-2\", className)} {...props} />\n}\nfunction TableHeader({ className, num, ...props }: React.ThHTMLAttributes<HTMLTableCellElement> & { num?: boolean }) {\n  return (\n    <th\n      className={cn(\n        \"whitespace-nowrap bg-surface-2 px-4 py-3 text-xs font-medium leading-4 text-text-3 first:rounded-tl-md last:rounded-tr-md\",\n        num ? \"text-right\" : \"text-left\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\nfunction TableCell({ className, num, ...props }: React.TdHTMLAttributes<HTMLTableCellElement> & { num?: boolean }) {\n  return <td className={cn(\"one-line max-w-60 px-4 py-3 text-text\", num && \"text-right tabular\", className)} {...props} />\n}\nfunction TableHint({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {\n  return <span className={cn(\"inline-flex items-center gap-1 text-xs leading-4 text-text-3 [&_svg]:size-4\", className)} {...props} />\n}\n\nexport { TableWrap, Table, TableHead, TableBody, TableRow, TableHeader, TableCell, TableHint }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "list",
+  "title": "List",
+  "description": "rows are buttons. hover and selected shown by row background only, no dividers.",
+  "registryDependencies": [
+    "utils",
+    "https://ui.pyospect.com/r/tokens.json"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/list.tsx",
+      "content": "/**\n * List\n * Naming     List, ListItem.\n * Variant    selected: true | false.\n * Token      list bg surface (level: surface, glow), radius md, padding 4. item radius sm, padding 12, hover surface-2, selected brand-tint + brand-ink.\n * Structure  List is a role=group (name it with aria-label). ListItem is a button so Tab reaches it; aria-pressed carries selected.\n *            primary text (truncates) + trailing meta (never shrinks). List sits on bg, never inside a Card or Panel.\n * Usage Rule hover and selected are shown by the row background only. no divider lines between rows.\n */\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction List({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div role=\"group\" data-level=\"surface\" className={cn(\"grid rounded-md bg-surface p-1 glow\", className)} {...props} />\n}\n\ninterface ListItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  selected?: boolean\n  meta?: React.ReactNode\n}\n\nconst ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(({ className, selected, meta, children, ...props }, ref) => (\n  <button\n    ref={ref}\n    type=\"button\"\n    aria-pressed={!!selected}\n    className={cn(\n      \"flex w-full cursor-pointer items-center justify-between gap-3 rounded-sm p-3 text-left text-sm font-medium leading-5 text-text transition-colors hover:bg-surface-2\",\n      selected && \"bg-brand-tint text-brand-ink hover:bg-brand-tint\",\n      className\n    )}\n    {...props}\n  >\n    <span className=\"one-line flex-1\">{children}</span>\n    {meta != null && <span className={cn(\"shrink-0 whitespace-nowrap text-sm font-normal tabular\", selected ? \"text-brand-ink\" : \"text-text-3\")}>{meta}</span>}\n  </button>\n))\nListItem.displayName = \"ListItem\"\n\nexport { List, ListItem }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

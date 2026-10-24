@@ -1,7 +1,7 @@
 {
   "name": "pyospectui",
-  "version": "0.2.0",
-  "description": "한국어 제품을 만드는 팀을 위한 디자인 시스템이에요. 브랜드 색 하나만 고르면 pyospect의 규칙이 나머지 색을 만들고 검사해요. npx pyospectui 한 줄로 shadcn 프로젝트에 테마와 컴포넌트를 받아요.",
+  "version": "0.4.0",
+  "description": "한국어 제품을 위한 neutral 디자인 시스템. Pretendard Medium, 24px 코너와 pill 버튼, 다크모드, 배경 실험실을 shadcn 프로젝트에 설치해요.",
   "license": "MIT",
   "author": "Kyoungpyo Koh <pyospect@gmail.com>",
   "homepage": "https://ui.pyospect.com",
@@ -28,9 +28,10 @@
     "theme/",
     "presets/",
     "README.md",
+    "DESIGN.md",
     "LICENSE"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=20.18.1"
   }
 }

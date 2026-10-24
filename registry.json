@@ -7,8 +7,8 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "pyospect theme",
-      "description": "초록(#118846) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #118846. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 초록(#118846)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #118846).\n- ok(성공) 색이 브랜드와 가까워서 hue 150°에서 183°로 옮겼어요(채움 #008578).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pyospect.md",
+      "description": "뉴트럴(#171717) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #171717. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 뉴트럴(#171717)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #171717).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pyospect.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -47,13 +47,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -102,19 +102,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -132,8 +149,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -141,60 +158,60 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
-          "pyo-seed": "#118846",
-          "brand-50": "#E7FBEB",
-          "brand-100": "#CEF7D8",
-          "brand-200": "#AEECBE",
-          "brand-300": "#86DB9D",
-          "brand-400": "#5CC87F",
-          "brand-500": "#3AAF65",
-          "brand-600": "#118846",
-          "brand-700": "#1E7942",
-          "brand-800": "#175F33",
-          "brand-900": "#144927",
-          "brand-950": "#0A2F17",
-          "brand": "var(--brand-600)",
-          "brand-text": "#FFFFFF",
-          "brand-hover": "var(--brand-700)",
-          "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
-          "brand-tint-2-text": "var(--brand-800)",
+          "pyo-seed": "#171717",
+          "brand-50": "#FAFAFA",
+          "brand-100": "#F5F5F5",
+          "brand-200": "#E5E5E5",
+          "brand-300": "#D4D4D4",
+          "brand-400": "#A3A3A3",
+          "brand-500": "#737373",
+          "brand-600": "#525252",
+          "brand-700": "#404040",
+          "brand-800": "#262626",
+          "brand-900": "#171717",
+          "brand-950": "#0A0A0A",
+          "brand": "var(--brand-900)",
+          "brand-text": "#FAFAFA",
+          "brand-hover": "var(--brand-800)",
+          "brand-ink": "var(--brand-800)",
+          "brand-tint": "#EBEBEB",
+          "brand-tint-2": "#E5E5E5",
+          "brand-tint-2-hover": "#D4D4D4",
+          "brand-tint-2-text": "#262626",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
-          "ok": "#00796E",
-          "warn": "#9B5B00",
-          "danger": "#C13C3B",
-          "ok-fill": "#008578",
-          "warn-fill": "#AC6600",
-          "danger-fill": "#CE4846",
+          "ok": "#087D39",
+          "ok-fill": "#1E8843",
           "ok-fill-text": "#FFFFFF",
-          "warn-fill-text": "#FFFFFF",
-          "danger-fill-text": "#FFFFFF",
           "ok-tint": "color-mix(in srgb, var(--ok-fill) 10%, var(--surface))",
+          "warn": "#9B5B00",
+          "warn-fill": "#AC6600",
+          "warn-fill-text": "#FFFFFF",
           "warn-tint": "color-mix(in srgb, var(--warn-fill) 12%, var(--surface))",
+          "danger": "#C13C3B",
+          "danger-fill": "#CE4846",
+          "danger-fill-text": "#FFFFFF",
           "danger-tint": "color-mix(in srgb, var(--danger-fill) 10%, var(--surface))",
-          "chart-1": "var(--brand)",
-          "chart-2": "#0081A2",
-          "chart-3": "#8366C3",
-          "chart-4": "#BE536C",
+          "chart-1": "var(--brand-graphic)",
+          "chart-2": "#2679C5",
+          "chart-3": "#9A5EB4",
+          "chart-4": "#C05550",
           "chart-5": "#9C6E00"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -212,8 +229,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -221,35 +238,36 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
-          "brand": "var(--brand-600)",
-          "brand-text": "#FFFFFF",
-          "brand-hover": "var(--brand-700)",
-          "brand-ink": "var(--brand-300)",
-          "brand-tint": "color-mix(in srgb, var(--brand-400) 14%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-400) 24%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-400) 34%, var(--surface))",
-          "brand-tint-2-text": "var(--brand-300)",
+          "brand": "var(--brand-100)",
+          "brand-text": "#171717",
+          "brand-hover": "var(--brand-200)",
+          "brand-ink": "var(--brand-100)",
+          "brand-tint": "#303030",
+          "brand-tint-2": "#404040",
+          "brand-tint-2-hover": "#525252",
+          "brand-tint-2-text": "#FAFAFA",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
-          "ok": "#00D4C0",
-          "warn": "#F4A437",
-          "danger": "#FF8079",
-          "ok-fill": "#008578",
-          "warn-fill": "#AC6600",
-          "danger-fill": "#CE4846",
+          "ok": "#67D283",
+          "ok-fill": "#1E8843",
           "ok-fill-text": "#FFFFFF",
-          "warn-fill-text": "#FFFFFF",
-          "danger-fill-text": "#FFFFFF",
           "ok-tint": "color-mix(in srgb, var(--ok) 14%, var(--surface))",
+          "warn": "#F4A437",
+          "warn-fill": "#AC6600",
+          "warn-fill-text": "#FFFFFF",
           "warn-tint": "color-mix(in srgb, var(--warn) 14%, var(--surface))",
+          "danger": "#FF8079",
+          "danger-fill": "#CE4846",
+          "danger-fill-text": "#FFFFFF",
           "danger-tint": "color-mix(in srgb, var(--danger) 14%, var(--surface))",
-          "chart-1": "var(--brand)",
-          "chart-2": "#0081A2",
-          "chart-3": "#8366C3",
-          "chart-4": "#BE536C",
-          "chart-5": "#9C6E00"
+          "chart-1": "var(--brand-graphic)",
+          "chart-2": "#2679C5",
+          "chart-3": "#9A5EB4",
+          "chart-4": "#C05550",
+          "chart-5": "#9C6E00",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -257,11 +275,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -288,15 +321,34 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
     {
       "name": "theme-pyospect",
       "type": "registry:theme",
-      "title": "pyospect theme: 초록",
-      "description": "초록(#118846) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #118846. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 초록(#118846)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #118846).\n- ok(성공) 색이 브랜드와 가까워서 hue 150°에서 183°로 옮겼어요(채움 #008578).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pyospect.md",
+      "title": "pyospect theme: 뉴트럴",
+      "description": "뉴트럴(#171717) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #171717. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 뉴트럴(#171717)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #171717).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pyospect.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -335,13 +387,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -390,19 +442,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -420,8 +489,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -429,60 +498,60 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
-          "pyo-seed": "#118846",
-          "brand-50": "#E7FBEB",
-          "brand-100": "#CEF7D8",
-          "brand-200": "#AEECBE",
-          "brand-300": "#86DB9D",
-          "brand-400": "#5CC87F",
-          "brand-500": "#3AAF65",
-          "brand-600": "#118846",
-          "brand-700": "#1E7942",
-          "brand-800": "#175F33",
-          "brand-900": "#144927",
-          "brand-950": "#0A2F17",
-          "brand": "var(--brand-600)",
-          "brand-text": "#FFFFFF",
-          "brand-hover": "var(--brand-700)",
-          "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
-          "brand-tint-2-text": "var(--brand-800)",
+          "pyo-seed": "#171717",
+          "brand-50": "#FAFAFA",
+          "brand-100": "#F5F5F5",
+          "brand-200": "#E5E5E5",
+          "brand-300": "#D4D4D4",
+          "brand-400": "#A3A3A3",
+          "brand-500": "#737373",
+          "brand-600": "#525252",
+          "brand-700": "#404040",
+          "brand-800": "#262626",
+          "brand-900": "#171717",
+          "brand-950": "#0A0A0A",
+          "brand": "var(--brand-900)",
+          "brand-text": "#FAFAFA",
+          "brand-hover": "var(--brand-800)",
+          "brand-ink": "var(--brand-800)",
+          "brand-tint": "#EBEBEB",
+          "brand-tint-2": "#E5E5E5",
+          "brand-tint-2-hover": "#D4D4D4",
+          "brand-tint-2-text": "#262626",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
-          "ok": "#00796E",
-          "warn": "#9B5B00",
-          "danger": "#C13C3B",
-          "ok-fill": "#008578",
-          "warn-fill": "#AC6600",
-          "danger-fill": "#CE4846",
+          "ok": "#087D39",
+          "ok-fill": "#1E8843",
           "ok-fill-text": "#FFFFFF",
-          "warn-fill-text": "#FFFFFF",
-          "danger-fill-text": "#FFFFFF",
           "ok-tint": "color-mix(in srgb, var(--ok-fill) 10%, var(--surface))",
+          "warn": "#9B5B00",
+          "warn-fill": "#AC6600",
+          "warn-fill-text": "#FFFFFF",
           "warn-tint": "color-mix(in srgb, var(--warn-fill) 12%, var(--surface))",
+          "danger": "#C13C3B",
+          "danger-fill": "#CE4846",
+          "danger-fill-text": "#FFFFFF",
           "danger-tint": "color-mix(in srgb, var(--danger-fill) 10%, var(--surface))",
-          "chart-1": "var(--brand)",
-          "chart-2": "#0081A2",
-          "chart-3": "#8366C3",
-          "chart-4": "#BE536C",
+          "chart-1": "var(--brand-graphic)",
+          "chart-2": "#2679C5",
+          "chart-3": "#9A5EB4",
+          "chart-4": "#C05550",
           "chart-5": "#9C6E00"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -500,8 +569,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -509,35 +578,36 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
-          "brand": "var(--brand-600)",
-          "brand-text": "#FFFFFF",
-          "brand-hover": "var(--brand-700)",
-          "brand-ink": "var(--brand-300)",
-          "brand-tint": "color-mix(in srgb, var(--brand-400) 14%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-400) 24%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-400) 34%, var(--surface))",
-          "brand-tint-2-text": "var(--brand-300)",
+          "brand": "var(--brand-100)",
+          "brand-text": "#171717",
+          "brand-hover": "var(--brand-200)",
+          "brand-ink": "var(--brand-100)",
+          "brand-tint": "#303030",
+          "brand-tint-2": "#404040",
+          "brand-tint-2-hover": "#525252",
+          "brand-tint-2-text": "#FAFAFA",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
-          "ok": "#00D4C0",
-          "warn": "#F4A437",
-          "danger": "#FF8079",
-          "ok-fill": "#008578",
-          "warn-fill": "#AC6600",
-          "danger-fill": "#CE4846",
+          "ok": "#67D283",
+          "ok-fill": "#1E8843",
           "ok-fill-text": "#FFFFFF",
-          "warn-fill-text": "#FFFFFF",
-          "danger-fill-text": "#FFFFFF",
           "ok-tint": "color-mix(in srgb, var(--ok) 14%, var(--surface))",
+          "warn": "#F4A437",
+          "warn-fill": "#AC6600",
+          "warn-fill-text": "#FFFFFF",
           "warn-tint": "color-mix(in srgb, var(--warn) 14%, var(--surface))",
+          "danger": "#FF8079",
+          "danger-fill": "#CE4846",
+          "danger-fill-text": "#FFFFFF",
           "danger-tint": "color-mix(in srgb, var(--danger) 14%, var(--surface))",
-          "chart-1": "var(--brand)",
-          "chart-2": "#0081A2",
-          "chart-3": "#8366C3",
-          "chart-4": "#BE536C",
-          "chart-5": "#9C6E00"
+          "chart-1": "var(--brand-graphic)",
+          "chart-2": "#2679C5",
+          "chart-3": "#9A5EB4",
+          "chart-4": "#C05550",
+          "chart-5": "#9C6E00",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -545,11 +615,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -576,6 +661,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -584,7 +688,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 빨강",
       "description": "빨강(#D34342) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #D34342. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 빨강(#D34342)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #D34342).\n- danger(위험) 색이 브랜드와 가까워서 hue 25°에서 10°로 옮겼어요(채움 #CD4666).\n- danger(위험) 색이 브랜드와 15°밖에 떨어지지 않아요. 색만으로는 구분되지 않으니 라벨로 구분해 주세요.\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/red.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 빨강(#D34342)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #D34342).\n- danger(위험) 색이 브랜드와 가까워서 hue 25°에서 10°로 옮겼어요(채움 #CD4666).\n- danger(위험) 색이 브랜드와 15°밖에 떨어지지 않아요. 색만으로는 구분되지 않으니 라벨로 구분해 주세요.\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/red.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -623,13 +727,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -678,19 +782,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -708,8 +829,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -717,7 +838,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#D34342",
           "brand-50": "#FFF2F0",
@@ -760,17 +881,17 @@
           "chart-5": "#985FB6"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -788,8 +909,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -797,7 +918,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -825,7 +946,8 @@
           "chart-2": "#8A7500",
           "chart-3": "#008768",
           "chart-4": "#007DBB",
-          "chart-5": "#985FB6"
+          "chart-5": "#985FB6",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -833,11 +955,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -864,6 +1001,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -872,7 +1028,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 주황",
       "description": "주황(#BC5A29) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #BC5A29. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 주황(#BC5A29)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #BC5A29).\n- danger(위험) 색이 브랜드와 가까워서 hue 25°에서 13°로 옮겼어요(채움 #CD4760).\n- warn(주의) 색이 브랜드와 가까워서 hue 65°에서 76°로 옮겼어요(채움 #A06C00).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/orange.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 주황(#BC5A29)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #BC5A29).\n- danger(위험) 색이 브랜드와 가까워서 hue 25°에서 13°로 옮겼어요(채움 #CD4760).\n- warn(주의) 색이 브랜드와 가까워서 hue 65°에서 76°로 옮겼어요(채움 #A06C00).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/orange.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -911,13 +1067,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -966,19 +1122,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -996,8 +1169,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1005,7 +1178,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#BC5A29",
           "brand-50": "#FFF2ED",
@@ -1023,9 +1196,9 @@
           "brand-text": "#FFFFFF",
           "brand-hover": "var(--brand-700)",
           "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 12.5%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22.5%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32.5%, var(--surface))",
+          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
+          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
+          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
           "brand-tint-2-text": "var(--brand-800)",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
@@ -1048,17 +1221,17 @@
           "chart-5": "#AB599F"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -1076,8 +1249,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1085,7 +1258,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -1113,7 +1286,8 @@
           "chart-2": "#717D00",
           "chart-3": "#00857F",
           "chart-4": "#4575C9",
-          "chart-5": "#AB599F"
+          "chart-5": "#AB599F",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -1121,11 +1295,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -1152,6 +1341,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -1160,7 +1368,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 호박",
       "description": "호박(#FFB020) 브랜드 색으로 만든 테마예요. 검은 글자, 채움 #FFB020. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 호박(#FFB020)에서 규칙이 나머지 색을 만들었어요(검은 글자, 채움 #FFB020).\n- 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 10.33:1이에요.\n- 채움 색은 흰 바탕에서 1.83:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#895B00)을 써요.\n- warn(주의) 색이 브랜드와 가까워서 hue 65°에서 55°로 옮겼어요(채움 #B3611E).\n- warn(주의) 색이 브랜드와 20°밖에 떨어지지 않아요. 색만으로는 구분되지 않으니 라벨로 구분해 주세요.\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/amber.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 호박(#FFB020)에서 규칙이 나머지 색을 만들었어요(검은 글자, 채움 #FFB020).\n- 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 10.33:1이에요.\n- 채움 색은 흰 바탕에서 1.83:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#895B00)을 써요.\n- warn(주의) 색이 브랜드와 가까워서 hue 65°에서 55°로 옮겼어요(채움 #B3611E).\n- warn(주의) 색이 브랜드와 20°밖에 떨어지지 않아요. 색만으로는 구분되지 않으니 라벨로 구분해 주세요.\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/amber.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -1199,13 +1407,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -1254,19 +1462,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -1284,8 +1509,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1293,7 +1518,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#FFB020",
           "brand-50": "#FFF3E4",
@@ -1336,17 +1561,17 @@
           "chart-5": "#BD5374"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -1364,8 +1589,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1373,7 +1598,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-300)",
           "brand-text": "#111111",
@@ -1401,7 +1626,8 @@
           "chart-2": "#2B873D",
           "chart-3": "#00819C",
           "chart-4": "#7C68C6",
-          "chart-5": "#BD5374"
+          "chart-5": "#BD5374",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -1409,11 +1635,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -1440,6 +1681,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -1448,7 +1708,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 노랑",
       "description": "노랑(#FCCA21) 브랜드 색으로 만든 테마예요. 검은 글자, 채움 #FCCA21. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 노랑(#FCCA21)에서 규칙이 나머지 색을 만들었어요(검은 글자, 채움 #FCCA21).\n- 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 12.24:1이에요.\n- 채움 색은 흰 바탕에서 1.54:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#7D6200)을 써요.\n- warn(주의) 색이 브랜드와 가까워서 hue 65°에서 58°로 옮겼어요(채움 #B16317).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/yellow.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 노랑(#FCCA21)에서 규칙이 나머지 색을 만들었어요(검은 글자, 채움 #FCCA21).\n- 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 12.24:1이에요.\n- 채움 색은 흰 바탕에서 1.54:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#7D6200)을 써요.\n- warn(주의) 색이 브랜드와 가까워서 hue 65°에서 58°로 옮겼어요(채움 #B16317).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/yellow.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -1487,13 +1747,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -1542,19 +1802,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -1572,8 +1849,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1581,7 +1858,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#FCCA21",
           "brand-50": "#FFF5DA",
@@ -1624,17 +1901,17 @@
           "chart-5": "#C0545C"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -1652,8 +1929,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1661,7 +1938,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-200)",
           "brand-text": "#111111",
@@ -1689,7 +1966,8 @@
           "chart-2": "#00875C",
           "chart-3": "#007FB0",
           "chart-4": "#9062BC",
-          "chart-5": "#C0545C"
+          "chart-5": "#C0545C",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -1697,11 +1975,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -1728,6 +2021,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -1736,7 +2048,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 라임",
       "description": "라임(#BCEB56) 브랜드 색으로 만든 테마예요. 검은 글자, 채움 #BCEB56. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 라임(#BCEB56)에서 규칙이 나머지 색을 만들었어요(검은 글자, 채움 #BCEB56).\n- 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 13.63:1이에요.\n- 채움 색은 흰 바탕에서 1.39:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#557200)을 써요.\n- ok(성공) 색이 브랜드와 가까워서 hue 150°에서 156°로 옮겼어요(채움 #008850).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/lime.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 라임(#BCEB56)에서 규칙이 나머지 색을 만들었어요(검은 글자, 채움 #BCEB56).\n- 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 13.63:1이에요.\n- 채움 색은 흰 바탕에서 1.39:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#557200)을 써요.\n- ok(성공) 색이 브랜드와 가까워서 hue 150°에서 156°로 옮겼어요(채움 #008850).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/lime.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -1775,13 +2087,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -1830,19 +2142,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -1860,8 +2189,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1869,7 +2198,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#BCEB56",
           "brand-50": "#EFFADE",
@@ -1912,17 +2241,17 @@
           "chart-5": "#B85E14"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -1940,8 +2269,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -1949,7 +2278,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-200)",
           "brand-text": "#111111",
@@ -1977,7 +2306,8 @@
           "chart-2": "#008487",
           "chart-3": "#5772CA",
           "chart-4": "#B15794",
-          "chart-5": "#B85E14"
+          "chart-5": "#B85E14",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -1985,11 +2315,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -2016,6 +2361,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -2024,7 +2388,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 민트",
       "description": "민트(#11866F) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #11866F. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 민트(#11866F)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #11866F).\n- ok(성공) 색이 브랜드와 가까워서 hue 150°에서 143°로 옮겼어요(채움 #388636).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/mint.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 민트(#11866F)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #11866F).\n- ok(성공) 색이 브랜드와 가까워서 hue 150°에서 143°로 옮겼어요(채움 #388636).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/mint.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -2063,13 +2427,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -2118,19 +2482,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -2148,8 +2529,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -2157,7 +2538,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#11866F",
           "brand-50": "#E7FAF4",
@@ -2175,9 +2556,9 @@
           "brand-text": "#FFFFFF",
           "brand-hover": "var(--brand-700)",
           "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 13.5%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 23.5%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 33.5%, var(--surface))",
+          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
+          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
+          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
           "brand-tint-2-text": "var(--brand-800)",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
@@ -2200,17 +2581,17 @@
           "chart-5": "#837800"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -2228,8 +2609,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -2237,7 +2618,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -2265,7 +2646,8 @@
           "chart-2": "#157BC3",
           "chart-3": "#9E5DB0",
           "chart-4": "#C05646",
-          "chart-5": "#837800"
+          "chart-5": "#837800",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -2273,11 +2655,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -2304,6 +2701,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -2312,7 +2728,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 하늘",
       "description": "하늘(#0480A9) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #0480A9. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 하늘(#0480A9)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #0480A9).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/sky.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 하늘(#0480A9)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #0480A9).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/sky.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -2351,13 +2767,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -2406,19 +2822,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -2436,8 +2869,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -2445,7 +2878,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#0480A9",
           "brand-50": "#EAF8FF",
@@ -2463,9 +2896,9 @@
           "brand-text": "#FFFFFF",
           "brand-hover": "var(--brand-700)",
           "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 13%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 23%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 33%, var(--surface))",
+          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
+          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
+          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
           "brand-tint-2-text": "var(--brand-800)",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
@@ -2488,17 +2921,17 @@
           "chart-5": "#008854"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -2516,8 +2949,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -2525,7 +2958,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -2553,7 +2986,8 @@
           "chart-2": "#8B63BF",
           "chart-3": "#C05363",
           "chart-4": "#967100",
-          "chart-5": "#008854"
+          "chart-5": "#008854",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -2561,11 +2995,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -2592,6 +3041,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -2600,7 +3068,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 파랑",
       "description": "파랑(#2679C5) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #2679C5. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 파랑(#2679C5)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #2679C5).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/blue.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 파랑(#2679C5)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #2679C5).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/blue.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -2639,13 +3107,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -2694,19 +3162,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -2724,8 +3209,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -2733,7 +3218,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#2679C5",
           "brand-50": "#EEF6FF",
@@ -2751,9 +3236,9 @@
           "brand-text": "#FFFFFF",
           "brand-hover": "var(--brand-700)",
           "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 13%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 23%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 33%, var(--surface))",
+          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
+          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
+          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
           "brand-tint-2-text": "var(--brand-800)",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
@@ -2776,17 +3261,17 @@
           "chart-5": "#008674"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -2804,8 +3289,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -2813,7 +3298,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -2841,7 +3326,8 @@
           "chart-2": "#A25CAC",
           "chart-3": "#BF573F",
           "chart-4": "#7F7900",
-          "chart-5": "#008674"
+          "chart-5": "#008674",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -2849,11 +3335,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -2880,6 +3381,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -2888,7 +3408,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 남색",
       "description": "남색(#526DE4) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #526DE4. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 남색(#526DE4)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #526DE4).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/indigo.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 남색(#526DE4)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #526DE4).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/indigo.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -2927,13 +3447,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -2982,19 +3502,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -3012,8 +3549,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -3021,7 +3558,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#526DE4",
           "brand-50": "#F1F5FF",
@@ -3039,9 +3576,9 @@
           "brand-text": "#FFFFFF",
           "brand-hover": "var(--brand-700)",
           "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 13%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 23%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 33%, var(--surface))",
+          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
+          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
+          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
           "brand-tint-2-text": "var(--brand-800)",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
@@ -3064,17 +3601,17 @@
           "chart-5": "#008488"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -3092,8 +3629,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -3101,7 +3638,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -3129,7 +3666,8 @@
           "chart-2": "#B25693",
           "chart-3": "#B75F0F",
           "chart-4": "#5F8106",
-          "chart-5": "#008488"
+          "chart-5": "#008488",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -3137,11 +3675,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -3168,6 +3721,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -3176,7 +3748,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 보라",
       "description": "보라(#7E61DF) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #7E61DF. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 보라(#7E61DF)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #7E61DF).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/violet.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 보라(#7E61DF)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #7E61DF).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/violet.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -3215,13 +3787,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -3270,19 +3842,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -3300,8 +3889,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -3309,7 +3898,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#7E61DF",
           "brand-50": "#F5F4FF",
@@ -3352,17 +3941,17 @@
           "chart-5": "#00829B"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -3380,8 +3969,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -3389,7 +3978,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -3417,7 +4006,8 @@
           "chart-2": "#BD5376",
           "chart-3": "#A26B00",
           "chart-4": "#2E873C",
-          "chart-5": "#00829B"
+          "chart-5": "#00829B",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -3425,11 +4015,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -3456,6 +4061,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -3464,7 +4088,7 @@
       "type": "registry:theme",
       "title": "pyospect theme: 분홍",
       "description": "분홍(#C44696) 브랜드 색으로 만든 테마예요. 흰 글자, 채움 #C44696. shadcn 표준 변수와 pyospect 토큰을 모두 정의해요.",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 분홍(#C44696)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #C44696).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pink.md",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 분홍(#C44696)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #C44696).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pink.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -3503,13 +4127,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -3558,19 +4182,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -3588,8 +4229,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -3597,7 +4238,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "pyo-seed": "#C44696",
           "brand-50": "#FFF0F8",
@@ -3640,17 +4281,17 @@
           "chart-5": "#5F70CB"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -3668,8 +4309,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -3677,7 +4318,7 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
           "brand": "var(--brand-600)",
           "brand-text": "#FFFFFF",
@@ -3705,7 +4346,8 @@
           "chart-2": "#B66001",
           "chart-3": "#598214",
           "chart-4": "#00838A",
-          "chart-5": "#5F70CB"
+          "chart-5": "#5F70CB",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -3713,11 +4355,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -3744,6 +4401,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -3803,31 +4479,48 @@
           "shadow-overlay": "var(--pyo-shadow-overlay)"
         },
         "light": {
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none"
         }
       },
@@ -3843,6 +4536,25 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       }
     },
@@ -3870,7 +4582,7 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -3886,11 +4598,31 @@
       "description": "surface with a meaningful 1px line. Field, Label, Help included. label always on top.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
           "path": "registry/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "트리거와 팝업 목록이 같은 테마를 따라요. 키보드 탐색, 선택값, 비활성 항목을 지원해요.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/select.tsx",
           "type": "registry:ui"
         }
       ]
@@ -3905,7 +4637,7 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -3918,10 +4650,10 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "surface level. no border, no shadow, never inside another card. media radius = card radius minus padding.",
+      "description": "surface level with shared 24px corners and 24px body padding. no ordinary border or shadow, never inside another card.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -3940,7 +4672,7 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -3953,13 +4685,13 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "the only place a shadow lives. title is a question, primary button is the answer.",
+      "description": "a question and actions in a viewport-bounded, scrollable overlay.",
       "dependencies": [
         "@radix-ui/react-dialog"
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -3978,7 +4710,7 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -3991,11 +4723,11 @@
       "name": "validation-card",
       "type": "registry:ui",
       "title": "ValidationCard",
-      "description": "one check the agent ran: title, one-line reason, status tag.",
+      "description": "one check the agent ran: title, wrapping explanation and status tag.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json",
-        "https://ui.pyospect.com/r/tag.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json",
+        "https://ui.pyospect.com/r/v0.4.0/tag.json"
       ],
       "files": [
         {
@@ -4014,7 +4746,7 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4033,8 +4765,8 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json",
-        "https://ui.pyospect.com/r/button.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json",
+        "https://ui.pyospect.com/r/v0.4.0/button.json"
       ],
       "files": [
         {
@@ -4050,7 +4782,7 @@
       "description": "rows are buttons. hover and selected shown by row background only, no dividers.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4066,7 +4798,7 @@
       "description": "numbers right and tabular, header surface-2, no lines between rows, scrolls inside its wrap.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4082,7 +4814,7 @@
       "description": "gray bars, no illustration, no spinner.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4095,10 +4827,10 @@
       "name": "empty",
       "type": "registry:ui",
       "title": "Empty",
-      "description": "title, one line of text, one button. left aligned.",
+      "description": "wrapping title and explanation with one action, left aligned.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4114,7 +4846,7 @@
       "description": "JetBrains Mono, additions and deletions by tint only.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4130,7 +4862,7 @@
       "description": "only the current version has a fill.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4143,10 +4875,10 @@
       "name": "chat",
       "type": "registry:ui",
       "title": "Chat",
-      "description": "the person on the brand side, the agent on a plain surface.",
+      "description": "human and agent bubbles with 22px corners, readable copy and 18px conversation spacing.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4162,7 +4894,7 @@
       "description": "tool connection rows: ok dot when connected, ring dot and a ghost action when not.",
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4181,7 +4913,7 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4200,7 +4932,7 @@
       ],
       "registryDependencies": [
         "utils",
-        "https://ui.pyospect.com/r/tokens.json"
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json"
       ],
       "files": [
         {
@@ -4210,39 +4942,98 @@
       ]
     },
     {
+      "name": "wash-engine",
+      "type": "registry:lib",
+      "title": "pyospect 배경 엔진",
+      "description": "시드와 팔레트로 번짐과 종이결 배경을 그려요. 네트워크나 이미지 파일 없이 Canvas에서 동작해요.",
+      "files": [
+        {
+          "path": "registry/lib/wash-engine/engine.ts",
+          "type": "registry:lib",
+          "target": "@lib/wash-engine/engine.ts"
+        },
+        {
+          "path": "registry/lib/wash-engine/draft.ts",
+          "type": "registry:lib",
+          "target": "@lib/wash-engine/draft.ts"
+        },
+        {
+          "path": "registry/lib/wash-engine/recipes.ts",
+          "type": "registry:lib",
+          "target": "@lib/wash-engine/recipes.ts"
+        },
+        {
+          "path": "registry/lib/wash-engine/variants.ts",
+          "type": "registry:lib",
+          "target": "@lib/wash-engine/variants.ts"
+        }
+      ]
+    },
+    {
+      "name": "wash-lab",
+      "type": "registry:ui",
+      "title": "배경 실험실",
+      "description": "12가지 팔레트와 색감 변주를 비교하고, 시안을 보관하거나 PNG와 JSON으로 내보내요. 밝은 모드와 다크 모드를 지원해요.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://ui.pyospect.com/r/v0.4.0/tokens.json",
+        "https://ui.pyospect.com/r/v0.4.0/button.json",
+        "https://ui.pyospect.com/r/v0.4.0/input.json",
+        "https://ui.pyospect.com/r/v0.4.0/wash-engine.json",
+        "https://ui.pyospect.com/r/v0.4.0/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/wash-lab.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui/wash-lab.module.css",
+          "type": "registry:file",
+          "target": "@ui/wash-lab.module.css"
+        }
+      ],
+      "docs": "WashLab을 가져와 페이지에 렌더링하세요. pyospect 테마와 함께 쓰면 밝은 모드와 .dark를 따릅니다. 상태는 현재 브라우저에 저장되며 JSON 파일로 옮길 수 있어요. PNG는 같은 시드와 설정에서 다시 만들 수 있어요."
+    },
+    {
       "name": "pyospect-components",
       "type": "registry:ui",
       "title": "pyospectui 컴포넌트",
-      "description": "테마 없이 20개 컴포넌트만 받아요. 브랜드 색을 따로 정한 프로젝트에 써요.",
+      "description": "테마 없이 22개 컴포넌트만 받아요. 브랜드 색을 따로 정한 프로젝트에 써요.",
       "registryDependencies": [
-        "https://ui.pyospect.com/r/button.json",
-        "https://ui.pyospect.com/r/input.json",
-        "https://ui.pyospect.com/r/switch.json",
-        "https://ui.pyospect.com/r/card.json",
-        "https://ui.pyospect.com/r/tag.json",
-        "https://ui.pyospect.com/r/dialog.json",
-        "https://ui.pyospect.com/r/thinking.json",
-        "https://ui.pyospect.com/r/validation-card.json",
-        "https://ui.pyospect.com/r/steps.json",
-        "https://ui.pyospect.com/r/decision-card.json",
-        "https://ui.pyospect.com/r/list.json",
-        "https://ui.pyospect.com/r/table.json",
-        "https://ui.pyospect.com/r/skeleton.json",
-        "https://ui.pyospect.com/r/empty.json",
-        "https://ui.pyospect.com/r/diff.json",
-        "https://ui.pyospect.com/r/versions.json",
-        "https://ui.pyospect.com/r/chat.json",
-        "https://ui.pyospect.com/r/connection.json",
-        "https://ui.pyospect.com/r/copy-command.json",
-        "https://ui.pyospect.com/r/code-block.json"
+        "https://ui.pyospect.com/r/v0.4.0/button.json",
+        "https://ui.pyospect.com/r/v0.4.0/input.json",
+        "https://ui.pyospect.com/r/v0.4.0/select.json",
+        "https://ui.pyospect.com/r/v0.4.0/switch.json",
+        "https://ui.pyospect.com/r/v0.4.0/card.json",
+        "https://ui.pyospect.com/r/v0.4.0/tag.json",
+        "https://ui.pyospect.com/r/v0.4.0/dialog.json",
+        "https://ui.pyospect.com/r/v0.4.0/thinking.json",
+        "https://ui.pyospect.com/r/v0.4.0/validation-card.json",
+        "https://ui.pyospect.com/r/v0.4.0/steps.json",
+        "https://ui.pyospect.com/r/v0.4.0/decision-card.json",
+        "https://ui.pyospect.com/r/v0.4.0/list.json",
+        "https://ui.pyospect.com/r/v0.4.0/table.json",
+        "https://ui.pyospect.com/r/v0.4.0/skeleton.json",
+        "https://ui.pyospect.com/r/v0.4.0/empty.json",
+        "https://ui.pyospect.com/r/v0.4.0/diff.json",
+        "https://ui.pyospect.com/r/v0.4.0/versions.json",
+        "https://ui.pyospect.com/r/v0.4.0/chat.json",
+        "https://ui.pyospect.com/r/v0.4.0/connection.json",
+        "https://ui.pyospect.com/r/v0.4.0/copy-command.json",
+        "https://ui.pyospect.com/r/v0.4.0/code-block.json",
+        "https://ui.pyospect.com/r/v0.4.0/wash-lab.json"
       ]
     },
     {
       "name": "pyospect",
       "type": "registry:theme",
       "title": "pyospectui (전체)",
-      "description": "테마와 20개 컴포넌트를 한 번에 받아요. npx shadcn add https://ui.pyospect.com/r/pyospect.json",
-      "docs": "pyospect 테마를 넣었어요. 브랜드 색 초록(#118846)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #118846).\n- ok(성공) 색이 브랜드와 가까워서 hue 150°에서 183°로 옮겼어요(채움 #008578).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n규칙 전체는 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pyospect.md",
+      "description": "테마와 22개 컴포넌트를 한 번에 받아요. npx shadcn add https://ui.pyospect.com/r/v0.4.0/pyospect.json",
+      "docs": "pyospect 테마를 넣었어요. 브랜드 색 뉴트럴(#171717)에서 규칙이 나머지 색을 만들었어요(흰 글자, 채움 #171717).\n- 색은 토큰으로만 써요. hex나 bg-green-500 같은 팔레트 색, brand-600 같은 스텝은 컴포넌트에 쓰지 않아요.\n- X-text는 X 위에서 4.5:1을 넘어요. 채움 위 글자는 brand-text, 표면 위 브랜드 글자는 brand-ink, 점과 트랙은 brand-graphic이에요.\n- 표면은 선 대신 bg, surface, surface-2로 나눠요. 그림자는 Dialog에만 있어요.\n- 버튼 라벨은 동사로 끝나요(저장하기). 문장은 해요체예요.\n- 서체는 Pretendard예요. index.html의 <head>에 넣어 주세요: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css\" />\n- 브랜드 색을 바꾸려면 npx pyospectui --brand \"#RRGGBB\", 프리셋 목록은 npx pyospectui presets 예요.\n디자인 기준은 https://ui.pyospect.com/DESIGN.md, 사용 규칙은 https://ui.pyospect.com/TASTE.md, AI용 요약은 https://ui.pyospect.com/llms.txt 에 있어요.\n이 테마의 값과 대비표: https://ui.pyospect.com/themes/pyospect.md",
       "cssVars": {
         "theme": {
           "font-sans": "var(--pyo-font-sans)",
@@ -4281,13 +5072,13 @@
           "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "color-sidebar-border": "var(--sidebar-border)",
           "color-sidebar-ring": "var(--sidebar-ring)",
-          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-sm": "var(--radius)",
           "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 8px)",
+          "radius-lg": "var(--radius)",
           "radius-xl": "var(--radius)",
-          "radius-2xl": "calc(var(--radius) + 8px)",
-          "radius-3xl": "calc(var(--radius) + 8px)",
-          "radius-4xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "var(--radius)",
+          "radius-3xl": "var(--radius)",
+          "radius-4xl": "var(--radius)",
           "color-bg": "var(--bg)",
           "color-surface": "var(--surface)",
           "color-surface-2": "var(--surface-2)",
@@ -4336,19 +5127,36 @@
         },
         "light": {
           "pyo-font-sans": "\"Pretendard Variable\", Pretendard, \"Apple SD Gothic Neo\", system-ui, sans-serif",
-          "pyo-font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
-          "radius": "12px",
+          "pyo-font-mono": "var(--pyo-font-sans)",
+          "radius": "24px",
+          "pyo-heading-size": "36px",
+          "pyo-heading-leading": "1.2",
+          "pyo-heading-tracking": "-0.05em",
+          "pyo-section-gap": "56px",
+          "pyo-bubble-radius": "22px",
+          "pyo-body-size": "16px",
+          "pyo-body-leading": "1.8",
+          "pyo-body-tracking": "-0.015em",
+          "pyo-copy-size": "14px",
+          "pyo-copy-leading": "1.85",
+          "pyo-card-padding": "24px",
+          "pyo-card-gap": "20px",
+          "pyo-chat-gap": "18px",
+          "pyo-chat-size": "15px",
+          "pyo-chat-leading": "1.85",
+          "pyo-chat-padding-block": "16px",
+          "pyo-chat-padding-inline": "18px",
           "bg": "#FAFAFA",
           "surface": "#FFFFFF",
-          "surface-2": "#F2F2F3",
-          "surface-3": "#E6E6E8",
-          "text": "#111111",
-          "text-2": "#5C5C5F",
-          "text-3": "#6D6D71",
+          "surface-2": "#F5F5F5",
+          "surface-3": "#E5E5E5",
+          "text": "#262626",
+          "text-2": "#525252",
+          "text-3": "#606060",
           "line": "#767676",
           "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .32)",
-          "skeleton": "#E6E6E8",
+          "skeleton": "#E5E5E5",
           "pyo-shadow-overlay": "0 4px 12px rgba(0, 0, 0, .08)",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -4366,8 +5174,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(0, 0, 0, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -4375,60 +5183,60 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
-          "pyo-seed": "#118846",
-          "brand-50": "#E7FBEB",
-          "brand-100": "#CEF7D8",
-          "brand-200": "#AEECBE",
-          "brand-300": "#86DB9D",
-          "brand-400": "#5CC87F",
-          "brand-500": "#3AAF65",
-          "brand-600": "#118846",
-          "brand-700": "#1E7942",
-          "brand-800": "#175F33",
-          "brand-900": "#144927",
-          "brand-950": "#0A2F17",
-          "brand": "var(--brand-600)",
-          "brand-text": "#FFFFFF",
-          "brand-hover": "var(--brand-700)",
-          "brand-ink": "var(--brand-700)",
-          "brand-tint": "color-mix(in srgb, var(--brand-500) 12%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-500) 22%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-500) 32%, var(--surface))",
-          "brand-tint-2-text": "var(--brand-800)",
+          "pyo-seed": "#171717",
+          "brand-50": "#FAFAFA",
+          "brand-100": "#F5F5F5",
+          "brand-200": "#E5E5E5",
+          "brand-300": "#D4D4D4",
+          "brand-400": "#A3A3A3",
+          "brand-500": "#737373",
+          "brand-600": "#525252",
+          "brand-700": "#404040",
+          "brand-800": "#262626",
+          "brand-900": "#171717",
+          "brand-950": "#0A0A0A",
+          "brand": "var(--brand-900)",
+          "brand-text": "#FAFAFA",
+          "brand-hover": "var(--brand-800)",
+          "brand-ink": "var(--brand-800)",
+          "brand-tint": "#EBEBEB",
+          "brand-tint-2": "#E5E5E5",
+          "brand-tint-2-hover": "#D4D4D4",
+          "brand-tint-2-text": "#262626",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
-          "ok": "#00796E",
-          "warn": "#9B5B00",
-          "danger": "#C13C3B",
-          "ok-fill": "#008578",
-          "warn-fill": "#AC6600",
-          "danger-fill": "#CE4846",
+          "ok": "#087D39",
+          "ok-fill": "#1E8843",
           "ok-fill-text": "#FFFFFF",
-          "warn-fill-text": "#FFFFFF",
-          "danger-fill-text": "#FFFFFF",
           "ok-tint": "color-mix(in srgb, var(--ok-fill) 10%, var(--surface))",
+          "warn": "#9B5B00",
+          "warn-fill": "#AC6600",
+          "warn-fill-text": "#FFFFFF",
           "warn-tint": "color-mix(in srgb, var(--warn-fill) 12%, var(--surface))",
+          "danger": "#C13C3B",
+          "danger-fill": "#CE4846",
+          "danger-fill-text": "#FFFFFF",
           "danger-tint": "color-mix(in srgb, var(--danger-fill) 10%, var(--surface))",
-          "chart-1": "var(--brand)",
-          "chart-2": "#0081A2",
-          "chart-3": "#8366C3",
-          "chart-4": "#BE536C",
+          "chart-1": "var(--brand-graphic)",
+          "chart-2": "#2679C5",
+          "chart-3": "#9A5EB4",
+          "chart-4": "#C05550",
           "chart-5": "#9C6E00"
         },
         "dark": {
-          "bg": "#0C0C0C",
-          "surface": "#161616",
-          "surface-2": "#1F1F1F",
-          "surface-3": "#2A2A2A",
+          "bg": "#0A0A0A",
+          "surface": "#171717",
+          "surface-2": "#262626",
+          "surface-3": "#404040",
           "text": "#F5F5F5",
-          "text-2": "#A3A3A6",
-          "text-3": "#8E8E92",
-          "line": "#7A7A7E",
-          "glow": "rgba(255, 255, 255, .06)",
+          "text-2": "#D4D4D4",
+          "text-3": "#A3A3A3",
+          "line": "#8A8A8A",
+          "glow": "transparent",
           "scrim": "rgba(0, 0, 0, .56)",
-          "skeleton": "#2A2A2A",
+          "skeleton": "#404040",
           "pyo-shadow-overlay": "none",
           "background": "var(--bg)",
           "foreground": "var(--text)",
@@ -4446,8 +5254,8 @@
           "accent-foreground": "var(--text)",
           "destructive": "var(--danger-fill)",
           "destructive-foreground": "var(--danger-fill-text)",
-          "border": "var(--surface-3)",
-          "input": "var(--line)",
+          "border": "rgba(255, 255, 255, .1)",
+          "input": "var(--border)",
           "ring": "var(--brand-ink)",
           "sidebar": "var(--surface)",
           "sidebar-foreground": "var(--text)",
@@ -4455,35 +5263,36 @@
           "sidebar-primary-foreground": "var(--brand-text)",
           "sidebar-accent": "var(--surface-2)",
           "sidebar-accent-foreground": "var(--text)",
-          "sidebar-border": "var(--surface-3)",
+          "sidebar-border": "var(--border)",
           "sidebar-ring": "var(--brand-ink)",
-          "brand": "var(--brand-600)",
-          "brand-text": "#FFFFFF",
-          "brand-hover": "var(--brand-700)",
-          "brand-ink": "var(--brand-300)",
-          "brand-tint": "color-mix(in srgb, var(--brand-400) 14%, var(--surface))",
-          "brand-tint-2": "color-mix(in srgb, var(--brand-400) 24%, var(--surface))",
-          "brand-tint-2-hover": "color-mix(in srgb, var(--brand-400) 34%, var(--surface))",
-          "brand-tint-2-text": "var(--brand-300)",
+          "brand": "var(--brand-100)",
+          "brand-text": "#171717",
+          "brand-hover": "var(--brand-200)",
+          "brand-ink": "var(--brand-100)",
+          "brand-tint": "#303030",
+          "brand-tint-2": "#404040",
+          "brand-tint-2-hover": "#525252",
+          "brand-tint-2-text": "#FAFAFA",
           "brand-graphic": "var(--brand)",
           "brand-graphic-text": "var(--brand-text)",
-          "ok": "#00D4C0",
-          "warn": "#F4A437",
-          "danger": "#FF8079",
-          "ok-fill": "#008578",
-          "warn-fill": "#AC6600",
-          "danger-fill": "#CE4846",
+          "ok": "#67D283",
+          "ok-fill": "#1E8843",
           "ok-fill-text": "#FFFFFF",
-          "warn-fill-text": "#FFFFFF",
-          "danger-fill-text": "#FFFFFF",
           "ok-tint": "color-mix(in srgb, var(--ok) 14%, var(--surface))",
+          "warn": "#F4A437",
+          "warn-fill": "#AC6600",
+          "warn-fill-text": "#FFFFFF",
           "warn-tint": "color-mix(in srgb, var(--warn) 14%, var(--surface))",
+          "danger": "#FF8079",
+          "danger-fill": "#CE4846",
+          "danger-fill-text": "#FFFFFF",
           "danger-tint": "color-mix(in srgb, var(--danger) 14%, var(--surface))",
-          "chart-1": "var(--brand)",
-          "chart-2": "#0081A2",
-          "chart-3": "#8366C3",
-          "chart-4": "#BE536C",
-          "chart-5": "#9C6E00"
+          "chart-1": "var(--brand-graphic)",
+          "chart-2": "#2679C5",
+          "chart-3": "#9A5EB4",
+          "chart-4": "#C05550",
+          "chart-5": "#9C6E00",
+          "pyo-font-mono": "var(--pyo-font-sans)"
         }
       },
       "css": {
@@ -4491,11 +5300,26 @@
           "*": {
             "@apply min-w-0 border-border": {}
           },
+          "html": {
+            "color-scheme": "light"
+          },
+          "html.dark": {
+            "color-scheme": "dark"
+          },
           "body": {
             "@apply bg-background text-foreground font-sans antialiased": {},
-            "font-weight": "400",
+            "font-weight": "500",
+            "font-size": "var(--pyo-body-size)",
+            "line-height": "var(--pyo-body-leading)",
+            "letter-spacing": "var(--pyo-body-tracking)",
             "word-break": "keep-all",
             "overflow-wrap": "break-word"
+          },
+          "button, input, select, textarea": {
+            "font": "inherit"
+          },
+          "h1, h2, h3, h4, h5, h6": {
+            "font-weight": "500"
           },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
@@ -4522,29 +5346,50 @@
         },
         "@utility tabular": {
           "font-variant-numeric": "tabular-nums"
+        },
+        "@utility brand-heading": {
+          "font-size": "var(--pyo-heading-size)",
+          "line-height": "var(--pyo-heading-leading)",
+          "letter-spacing": "var(--pyo-heading-tracking)",
+          "font-weight": "500"
+        },
+        "@utility section-space": {
+          "padding-block": "var(--pyo-section-gap)"
+        },
+        "@utility brand-body": {
+          "font-size": "var(--pyo-body-size)",
+          "line-height": "var(--pyo-body-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
+        },
+        "@utility brand-copy": {
+          "font-size": "var(--pyo-copy-size)",
+          "line-height": "var(--pyo-copy-leading)",
+          "letter-spacing": "var(--pyo-body-tracking)"
         }
       },
       "registryDependencies": [
-        "https://ui.pyospect.com/r/button.json",
-        "https://ui.pyospect.com/r/input.json",
-        "https://ui.pyospect.com/r/switch.json",
-        "https://ui.pyospect.com/r/card.json",
-        "https://ui.pyospect.com/r/tag.json",
-        "https://ui.pyospect.com/r/dialog.json",
-        "https://ui.pyospect.com/r/thinking.json",
-        "https://ui.pyospect.com/r/validation-card.json",
-        "https://ui.pyospect.com/r/steps.json",
-        "https://ui.pyospect.com/r/decision-card.json",
-        "https://ui.pyospect.com/r/list.json",
-        "https://ui.pyospect.com/r/table.json",
-        "https://ui.pyospect.com/r/skeleton.json",
-        "https://ui.pyospect.com/r/empty.json",
-        "https://ui.pyospect.com/r/diff.json",
-        "https://ui.pyospect.com/r/versions.json",
-        "https://ui.pyospect.com/r/chat.json",
-        "https://ui.pyospect.com/r/connection.json",
-        "https://ui.pyospect.com/r/copy-command.json",
-        "https://ui.pyospect.com/r/code-block.json"
+        "https://ui.pyospect.com/r/v0.4.0/button.json",
+        "https://ui.pyospect.com/r/v0.4.0/input.json",
+        "https://ui.pyospect.com/r/v0.4.0/select.json",
+        "https://ui.pyospect.com/r/v0.4.0/switch.json",
+        "https://ui.pyospect.com/r/v0.4.0/card.json",
+        "https://ui.pyospect.com/r/v0.4.0/tag.json",
+        "https://ui.pyospect.com/r/v0.4.0/dialog.json",
+        "https://ui.pyospect.com/r/v0.4.0/thinking.json",
+        "https://ui.pyospect.com/r/v0.4.0/validation-card.json",
+        "https://ui.pyospect.com/r/v0.4.0/steps.json",
+        "https://ui.pyospect.com/r/v0.4.0/decision-card.json",
+        "https://ui.pyospect.com/r/v0.4.0/list.json",
+        "https://ui.pyospect.com/r/v0.4.0/table.json",
+        "https://ui.pyospect.com/r/v0.4.0/skeleton.json",
+        "https://ui.pyospect.com/r/v0.4.0/empty.json",
+        "https://ui.pyospect.com/r/v0.4.0/diff.json",
+        "https://ui.pyospect.com/r/v0.4.0/versions.json",
+        "https://ui.pyospect.com/r/v0.4.0/chat.json",
+        "https://ui.pyospect.com/r/v0.4.0/connection.json",
+        "https://ui.pyospect.com/r/v0.4.0/copy-command.json",
+        "https://ui.pyospect.com/r/v0.4.0/code-block.json",
+        "https://ui.pyospect.com/r/v0.4.0/wash-lab.json"
       ]
     }
   ]

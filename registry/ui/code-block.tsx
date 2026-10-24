@@ -2,7 +2,7 @@
  * CodeBlock
  * Naming     CodeBlock. a block of code with a copy button.
  * Variant    none. language is a label only.
- * Token      bg surface-2 (level: inset, no glow), radius sm, JetBrains Mono 12/16, padding 16, copy button ghost 32.
+ * Token      bg surface-2 (level: inset, no glow), radius sm, Pretendard Medium 12/16, padding 16, copy button ghost 32.
  * Structure  header (language label + copy button) + pre. long lines scroll sideways inside the block, never the page.
  * Usage Rule for code the reader will paste. for a single terminal command use CopyCommand instead.
  */

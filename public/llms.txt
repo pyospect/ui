@@ -1,66 +1,76 @@
 # pyospectui
 
-> 한국어 제품을 만드는 팀을 위한 디자인 시스템이에요. 브랜드 색 하나만 고르면 pyospect의 규칙이 나머지 색을 만들고 검사해요. 초록은 그 규칙으로 만든 pyospect 자신의 프리셋이에요. 고경표(pyospect)가 만들고, shadcn 레지스트리 형식이라 코드가 프로젝트 안에 파일로 들어와요.
+> 한국어 제품을 만드는 팀을 위한 디자인 시스템이에요. 브랜드 색 하나만 고르면 pyospect의 규칙이 나머지 색을 만들고 검사해요. 기본 pyospect는 neutral 테마예요. 고경표(pyospect)가 만들고, shadcn 레지스트리 형식이라 코드가 프로젝트 안에 파일로 들어와요.
 
-## 한 줄 규칙
-Pretendard에 본문 400, UI 500, 제목 600, 4배수 간격, 무채색 면의 톤 차이로 영역 구분, 장식용 선과 그림자와 카드 중첩 금지, radius는 full, lg 20, md 12, sm 8이고 중첩 시 바깥 r = 안쪽 r + padding, 유채색은 브랜드 색 하나에서 규칙으로 만든 brand 토큰뿐(fill은 흰 글자가 4.5:1을 넘는 가장 밝은 톤이고 밝은 브랜드는 검은 글자, 글자는 brand-ink), 단어 단위 줄바꿈에 한 줄 UI는 말줄임, 문장은 해요체에 버튼은 동사, em dash와 가운뎃점 금지, UI 문장에 monospace 금지, AA 대비, 에이전트 처리와 사람 결정은 모양이 다르고 brand fill은 에이전트 쪽이다.
+## 기본 디자인과 밀도
+- 한글과 영문 모두 Pretendard Medium 500이에요. 기본 font-mono도 Pretendard sans 별칭이에요.
+- 제목은 36px / 1.2 / -0.05em, 기본 본문은 16px / 1.8 / -0.015em, 작은 설명은 14px / 1.85예요. 워드마크 자간은 0이에요.
+- 홈 주 섹션은 위아래 56px, 좌우 48px(작은 화면 24px), 패널 사이 24px, 다열 그리드 간격 28px예요. 카드와 CardBody의 패딩은 24px, 내부 간격은 20px예요.
+- 독립된 카드, 입력창, 패널의 기본 바깥 radius는 24px, 버튼은 full, 말풍선은 22px예요. 질문은 14px / 1.5와 패딩 12×18px, 답변은 15px / 1.85와 패딩 16×18px, 말풍선 사이는 18px예요.
+- 56px는 섹션 여백이에요. 모든 라벨과 컨트롤의 내부 패딩이 아니에요. 일반 컴팩트 라벨은 14px / 1.5 기준이에요. Input.Label과 Button md는 명시적 14px / 20px, Input 높이는 40px, Button 높이는 32/40/48px를 유지해요.
+- 긴 제목과 문서 본문은 줄바꿈해요. 말줄임은 폭이 제한된 버튼 라벨이나 보조 메타데이터 등 한 줄이 필요한 자리에만 써요.
+- 브랜드 스튜디오와 밀도 기준은 공유하고, 포트폴리오, 문서, 편집기의 배치는 목적에 맞춰 달라요. 토큰만 정의하고 예전 leading-5/p-5로 덮어쓰지 않아요. 본문은 brand-body, 작은 설명은 brand-copy를 써요.
+- 무채색 면의 톤 차이로 영역을 구분해요. 일반 border는 없거나 10%예요. 명확한 focus와 상태 표시는 별도 토큰을 써요. 문장은 해요체, 버튼은 동사예요. 글자 굵기는 500을 유지하고 크기, 여백, 명도로 위계를 만들어요.
+- 에이전트 처리와 사람 결정은 모양이 다르고 brand fill은 에이전트 쪽이에요. AA 대비와 모션 줄이기를 지켜요.
 
 ## 고르는 것은 브랜드 색 하나
 - 브랜드 색만 고를 수 있어요. radius, 서체, 뉴트럴, 모션, 대비 기준은 옵션이 아니에요.
 - 규칙이 색보다 먼저예요. fill은 흰 글자가 4.5:1을 넘는 가장 밝은 톤으로 옮기고, 원래 색은 brand 스케일 안에 남겨요. 노랑처럼 밝은 색은 그대로 fill이 되고 글자가 검은색으로 바뀌어요.
-- 회색에 가까운 색(OKLCH 채도 0.04 미만)은 받지 않아요.
+- 기본 neutral #171717은 별도 규칙이에요. 그 외 회색에 가까운 색(OKLCH 채도 0.04 미만)은 받지 않아요.
 - 상태색(ok, warn, danger)은 브랜드와 hue가 30° 이상 떨어지게 자기 범위 안에서 옮겨요. 자리가 없으면 경고하고, 뜻은 라벨이 전해요.
 - 설치된 CSS의 `:root`에 `--pyo-seed`로 어떤 브랜드 색에서 만들었는지 기록돼요.
 
 ## 설치
-- 전부 (테마 + 컴포넌트 20개): `npx pyospectui`. shadcn init이 만든 기본 button.tsx처럼 pyospect 파일이 아닌 같은 이름의 파일이 있으면 CLI가 설치 전에 멈춰요. 그때는 `npx pyospectui --overwrite`.
+- 전부 (테마 + 컴포넌트와 배경 실험실): `npx pyospectui`. shadcn init이 만든 기본 button.tsx처럼 pyospect 파일이 아닌 같은 이름의 파일이 있으면 CLI가 설치 전에 멈춰요. 그때는 `npx pyospectui --overwrite`.
 - 브랜드 색으로: `npx pyospectui --brand "#3366FF"`. 테마를 만들고 모드(흰 글자나 검은 글자), fill, 대비표, 옮긴 상태색과 경고를 보여 준 뒤 테마와 컴포넌트를 설치해요. pyospect가 이미 있는 프로젝트면 테마만 바꿔요. `npx pyospectui --brand "#3366FF" button card`처럼 컴포넌트를 고를 수도 있어요.
-- 프리셋으로: `npx pyospectui --preset <프리셋>`. 목록은 `npx pyospectui presets`나 https://ui.pyospect.com/themes/index.md 예요. pyospect가 이미 있는 프로젝트에서는 CSS 변수만 바꾸고 컴포넌트는 그대로 둬요. 초록으로 돌아가려면 `--preset pyospect`.
+- 프리셋으로: `npx pyospectui --preset <프리셋>`. 목록은 `npx pyospectui presets`나 https://ui.pyospect.com/themes/index.md 예요. pyospect가 이미 있는 프로젝트에서는 CSS 변수만 바꾸고 컴포넌트는 그대로 둬요. neutral로 돌아가려면 `--preset pyospect`.
 - 컴포넌트만: `npx pyospectui button card`. 프로젝트 CSS에 v0.3 테마가 기록하는 `--pyo-seed`가 없으면 테마를 먼저 넣고, 있으면 컴포넌트만 넣어요. 이미 고른 브랜드 색은 그대로예요. `--brand`만 있고 `--pyo-seed`가 없는 예전 테마도 테마를 같이 받아요.
 - 테마만: `npx pyospectui theme`은 기록된 `--pyo-seed`로 테마를 다시 만들고, `npx pyospectui theme --brand "#3366FF"`는 브랜드 색을 바꿔요.
 - 다른 폴더: `--cwd ./app`. 모르는 옵션과 `--` 뒤의 인자는 shadcn에 그대로 넘어가요. 레지스트리 주소는 환경변수 `PYOSPECTUI_REGISTRY`로 바꿔요.
 - 새 프로젝트: `npx shadcn@~4.21 init -t vite -b radix -p nova -y --no-monorepo -n my-app` 다음 `npx pyospectui --overwrite`. `index.html`의 `<head>`에 Pretendard를 불러와요(`<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />`). 테마는 글꼴 파일을 불러오지 않아요.
 - shadcn 버전: pyospectui는 shadcn 4.21로 시험해요. 버전마다 덮어쓰기 규칙이 달라서 shadcn 명령은 `shadcn@~4.21`로 써요.
 - shadcn 명령으로 URL을 직접 쓰려면:
-  - 테마 + 전부: `npx shadcn add https://ui.pyospect.com/r/pyospect.json`
-  - 테마 없이 컴포넌트 전부: `https://ui.pyospect.com/r/pyospect-components.json`
-  - 프리셋 테마: `https://ui.pyospect.com/r/theme-<preset>.json` (`theme.json`은 pyospect 프리셋)
-- 레지스트리 이름으로: components.json의 registries에 `"@pyospect": "https://ui.pyospect.com/r/{name}.json"`를 넣고 (첫 설치는 `--overwrite`):
+  - 테마 + 전부: `npx shadcn add https://ui.pyospect.com/r/v0.4.0/pyospect.json`
+  - 테마 없이 컴포넌트 전부: `https://ui.pyospect.com/r/v0.4.0/pyospect-components.json`
+  - 프리셋 테마: `https://ui.pyospect.com/r/v0.4.0/theme-<preset>.json` (`theme.json`은 pyospect 프리셋)
+- 레지스트리 이름으로: components.json의 registries에 `"@pyospect": "https://ui.pyospect.com/r/v0.4.0/{name}.json"`를 넣고 (첫 설치는 `--overwrite`):
   - `npx shadcn add @pyospect/theme`
-  - `npx shadcn add @pyospect/button @pyospect/input @pyospect/switch @pyospect/card @pyospect/tag @pyospect/dialog @pyospect/list @pyospect/table @pyospect/skeleton @pyospect/empty @pyospect/copy-command @pyospect/code-block`
+  - `npx shadcn add @pyospect/button @pyospect/input @pyospect/select @pyospect/switch @pyospect/card @pyospect/tag @pyospect/dialog @pyospect/list @pyospect/table @pyospect/skeleton @pyospect/empty @pyospect/copy-command @pyospect/code-block`
   - `npx shadcn add @pyospect/thinking @pyospect/validation-card @pyospect/steps @pyospect/decision-card @pyospect/diff @pyospect/versions @pyospect/chat @pyospect/connection` (AI 협업 패턴)
 - `npx shadcn add @pyospect/<name>`은 테마를 넣지 않아요. 의존하는 `tokens`는 pyospect 토큰 이름, 뉴트럴 값, 유틸리티만 채우고 브랜드와 상태색 값은 넣지 않아요. 테마가 없는 프로젝트에서는 brand, brand-graphic, ok-fill 같은 색이 비어서 primary 버튼, 스위치, 상태 Tag가 색 없이 나와요. 테마가 없는 프로젝트면 `npx pyospectui <name>`을 쓰거나 같은 명령 맨 앞에 `@pyospect/theme`을 적어요. shadcn은 명령에 직접 적은 항목이 테마일 때만 기존 CSS 변수를 덮어써요.
-- 주의: `shadcn apply`는 반드시 `--only theme`와 같이 써요 (`npx shadcn@~4.21 apply https://ui.pyospect.com/r/theme-blue.json --only theme`). 빼면 button, input, switch, card, dialog, table, skeleton, empty처럼 shadcn과 이름이 같은 파일을 shadcn 것으로 덮어써요.
+- 주의: `shadcn apply`는 반드시 `--only theme`와 같이 써요 (`npx shadcn@~4.21 apply https://ui.pyospect.com/r/v0.4.0/theme-blue.json --only theme`). 빼면 button, input, switch, card, dialog, table, skeleton, empty처럼 shadcn과 이름이 같은 파일을 shadcn 것으로 덮어써요.
 
 ## 토큰 (Tailwind 클래스로 그대로 씀)
 - 면: bg, surface, surface-2, surface-3. 영역은 이 톤 차이로만 나눠요.
-- 글자: text, text-2, text-3. 위계는 크기보다 톤과 굵기. text-3는 brand tint 위에 두지 않아요.
-- 선: line. input 테두리와 스위치 off 트랙에만 써요 (3:1). focus ring은 brand-ink예요.
+- 글자: text, text-2, text-3. 굵기는 500을 유지하고 크기, 여백, 명도로 위계를 만들어요. text-3는 brand tint 위에 두지 않아요.
+- 선: 일반 border/input은 light black10%, dark white10%예요. line은 스위치 off 트랙처럼 의미 있는 상태선에 써요(3:1). focus ring은 brand-ink예요.
 - brand:
   - brand (fill), brand-text (fill 위 글자, 보통 흰색이고 밝은 브랜드면 검은색), brand-hover
   - brand-ink (surface 위 글자, 링크, 선택, focus)
   - brand-tint, brand-tint-2 (면), brand-tint-2-hover, brand-tint-2-text (tint 버튼과 사람 말풍선의 글자). brand-tint-2 위에는 brand-tint-2-text만 써요. text-2, text-3는 다크에서 4.5:1이 안 나와요.
   - brand-graphic, brand-graphic-text (스위치 on 트랙, 에이전트 원과 점처럼 글자가 아닌 표시. bg와 surface 위에서 3:1)
 - 상태: ok, warn, danger는 글자와 점 색이에요. ok-fill, warn-fill, danger-fill은 pill fill이고 그 위 글자는 ok-fill-text, warn-fill-text, danger-fill-text예요. ok-tint, warn-tint, danger-tint는 면이에요.
-- 그 밖: glow (다크에서만 보이는 1px 테두리 색), scrim (dialog 뒤 가림막), skeleton (로딩 바).
+- 그 밖: glow (기본 transparent), scrim (dialog 뒤 가림막), skeleton (로딩 바).
 - 이름 약속: `X-text`는 `X` 위에서, `X-hover`가 있으면 그 위에서도 4.5:1이에요. 글자색을 `text-white`로 고정하지 말고 항상 이 짝을 써요.
 - brand-50~950 스케일도 등록돼 있지만 컴포넌트에서는 쓰지 않아요. 역할 토큰만 써요.
 - shadcn 표준 이름(background, foreground, card, primary, secondary, muted, accent, destructive, border, input, ring, radius, chart, sidebar)도 전부 정의돼 있어요. shadcn의 accent는 hover 배경이라 브랜드 색이 아니에요. destructive는 danger-fill이에요.
 - shadcn 기본 컴포넌트도 pyospect 색과 글꼴로 나오지만 모양 규칙까지 따르지는 않아요. 기본 Card는 테두리와 shadow-sm이 남아요. 같은 이름이 있으면 pyospect 컴포넌트를 써요.
 - shadcn 기본 컴포넌트의 `hover:bg-primary/90` 같은 투명 hover는 흰 글자 대비가 3.8:1 정도로 떨어져요. pyospect Button을 쓰거나 `hover:bg-brand-hover`로 바꿔요.
-- radius: rounded-sm 8 (input, 면 안의 요소, row), rounded-md 12 (card, list, table), rounded-lg 20 (dialog, 말풍선), rounded-full (버튼, tag, 스위치). 겹치면 바깥 r = 안쪽 r + padding.
-- 간격: Tailwind 기본 4px 단위 그대로. 1.5, 2.5, 3.5는 쓰지 않고 0.5는 2px 선에만 써요.
+- radius: 독립된 바깥 면의 rounded-sm/md/lg는 기본 24px, 버튼은 rounded-full, 말풍선은 --pyo-bubble-radius 22px예요.
+- 바깥 윤곽에 맞물리는 안쪽 면은 동심형(concentric)으로 계산해요. 안쪽 반경 = max(0, 바깥 반경 - 간격). 미디어 카드 24px / inset 4px는 이미지 20px, 실험실 카드 24px / inset 12px는 캔버스 12px, List와 Select 팝업 24px / inset 4px는 행 20px예요. 독립된 입력창, 버튼, 중앙 썸네일에는 무조건 빼기를 적용하지 않아요.
+- 간격: 4px 단위를 기준으로 해요. 본문 행간, 대화의 15px 글자와 18px 패딩, 간격은 명시적 예외예요. 그 밖의 임의 중간값은 늘리지 않아요.
 - 모션: transition은 120ms ease-out 하나이고 테마에 기본값으로 들어 있어요. `duration-[...]`를 붙이지 않아요.
-- 유틸: one-line (한 줄 말줄임), glow (다크에서만 보이는 1px), tabular.
+- 유틸: brand-heading(제목), brand-body(본문 16px/1.8), brand-copy(설명 14px/1.85), section-space(위아래 56px), one-line(제한된 한 줄 UI만), glow(기본 효과 없음), tabular.
 
 ## 컴포넌트
-- registry/ui: button, input, switch, card, tag, dialog, list, table, skeleton, empty, copy-command, code-block.
+- registry/ui: button, input, select, switch, card, tag, dialog, list, table, skeleton, empty, copy-command, code-block, wash-lab.
 - registry/ai (AI 협업 패턴): thinking, validation-card, steps, decision-card, diff, versions, chat, connection.
 - shadcn과 다른 점:
   - Button은 `variant`가 아니라 `hierarchy`: primary, secondary, ghost, tint. outline 버튼은 없어요. tint는 brand-tint 면 위에서 secondary 대신 써요.
   - Card는 CardHeader, CardContent가 아니라 CardTitle, CardText, CardMedia, CardBody예요.
   - Tag는 `tone`: neutral, brand, ok, warn, danger. 상태는 Tag로만 보여 줘요.
   - Input은 Field > Label + Input + Help로 쓰고, 오류는 aria-invalid와 Help 자리의 문장으로 알려요.
+  - Select는 Select > SelectTrigger + SelectContent, 선택값은 SelectValue, 항목은 SelectItem으로 조합해요. value/defaultValue/onValueChange를 지원해요. 트리거와 팝업 모두 역할 토큰으로 테마를 따르고, 방향키, Enter, Escape와 비활성 항목을 유지해요. 일부 영역만 다른 테마라면 Content의 container를 그 범위로 지정해요. native select의 OS 팝업까지 같은 모양이라고 가정하지 않아요.
   - Chat의 Bubble은 `who="agent" | "human"`. 사람은 brand-tint-2 말풍선(오른쪽), 에이전트는 surface-2 말풍선(왼쪽)이에요.
   - Steps는 `who="agent" | "human"`. 채운 원은 에이전트가 처리, 점선 원은 사람이 결정, tint 원은 완료. StepsLegend를 항상 같이 써요.
 - 모든 컴포넌트 파일 맨 위 주석에 Naming, Variant, Token, Structure, Usage Rule 다섯 줄이 있어요. 새 컴포넌트를 만들 때도 같은 형식으로 써요.
@@ -69,12 +79,18 @@ Pretendard에 본문 400, UI 500, 제목 600, 4배수 간격, 무채색 면의 �
 - 브랜드 hex를 코드에 쓰기, brand-600 같은 스케일 단계, bg-green-500 같은 Tailwind 기본 유채색, `text-white`. 역할 토큰만 써요.
 - 사람 쪽을 brand fill로 칠하기. 누가 했는지 보여 주는 표시에서 brand fill은 에이전트가 처리한 것이에요.
 - outline 버튼, `variant` prop, 카드 속 카드, 카드 외곽선, 리스트 구분선, 카드 그림자, 반투명 tint pill, 회색 배경을 brand-tint 면 위에 올리기.
-- 700 이상 weight, rounded-2xl 같은 중간 radius, `duration-[...]`.
+- 500 이외의 UI weight, 동심형 계산 근거가 없는 임의의 중간 radius, `duration-[...]`.
 - 명사로 끝나는 UI 문장("저장 완료"), 영어 직역("성공적으로 삭제되었습니다"), "확인 / 취소" 버튼, em dash와 가운뎃점, UI 문장의 monospace.
 - 라벨과 컨트롤을 두 줄로 가르기. 콘텐츠가 카드 밖으로 나가기.
 - `--only theme` 없이 `shadcn apply` 쓰기.
 
+## 배경 실험실
+- `npx pyospectui wash-lab`, `import { WashLab } from "@/components/ui/wash-lab"`, `<WashLab />`. 사이트 `#/lab`에서 미리 봐요.
+- 12개 팔레트, 5개 명도/채도 변주, seed와 blur/warp/grain/texture, 현재 작업과 시안 보관함 로컬 저장, JSON 교환과 PNG 내보내기를 지원해요.
+- 렌더러만 쓰려면 `@/lib/wash-engine/engine`의 `renderWash`를 가져와요.
+
 ## 더 읽기
+- 디자인 정본: https://ui.pyospect.com/DESIGN.md
 - 전체 규칙(문법): https://ui.pyospect.com/TASTE.md
 - 프리셋 목록: https://ui.pyospect.com/themes/index.md
 - 프리셋별 생성 값과 대비표: https://ui.pyospect.com/themes/<프리셋>.md (기본은 https://ui.pyospect.com/themes/pyospect.md)

@@ -1,0 +1,107 @@
+[
+  {
+    "slug": "button",
+    "title": "Button",
+    "group": "기본"
+  },
+  {
+    "slug": "input",
+    "title": "Input",
+    "group": "기본"
+  },
+  {
+    "slug": "select",
+    "title": "Select",
+    "group": "기본"
+  },
+  {
+    "slug": "switch",
+    "title": "Switch",
+    "group": "기본"
+  },
+  {
+    "slug": "card",
+    "title": "Card",
+    "group": "기본"
+  },
+  {
+    "slug": "tag",
+    "title": "Tag",
+    "group": "기본"
+  },
+  {
+    "slug": "dialog",
+    "title": "Dialog",
+    "group": "기본"
+  },
+  {
+    "slug": "list",
+    "title": "List",
+    "group": "기본"
+  },
+  {
+    "slug": "table",
+    "title": "Table",
+    "group": "기본"
+  },
+  {
+    "slug": "skeleton",
+    "title": "Skeleton",
+    "group": "기본"
+  },
+  {
+    "slug": "empty",
+    "title": "Empty",
+    "group": "기본"
+  },
+  {
+    "slug": "copy-command",
+    "title": "CopyCommand",
+    "group": "기본"
+  },
+  {
+    "slug": "code-block",
+    "title": "CodeBlock",
+    "group": "기본"
+  },
+  {
+    "slug": "thinking",
+    "title": "Thinking",
+    "group": "AI 협업 패턴"
+  },
+  {
+    "slug": "validation-card",
+    "title": "ValidationCard",
+    "group": "AI 협업 패턴"
+  },
+  {
+    "slug": "steps",
+    "title": "Steps",
+    "group": "AI 협업 패턴"
+  },
+  {
+    "slug": "decision-card",
+    "title": "DecisionCard",
+    "group": "AI 협업 패턴"
+  },
+  {
+    "slug": "diff",
+    "title": "Diff",
+    "group": "AI 협업 패턴"
+  },
+  {
+    "slug": "versions",
+    "title": "Versions",
+    "group": "AI 협업 패턴"
+  },
+  {
+    "slug": "chat",
+    "title": "Chat",
+    "group": "AI 협업 패턴"
+  },
+  {
+    "slug": "connection",
+    "title": "Connection",
+    "group": "AI 협업 패턴"
+  }
+]

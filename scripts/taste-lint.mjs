@@ -19,20 +19,25 @@ const COLOR_UTIL = "bg|text|border(?:-[xytrblse])?|ring|ring-offset|outline|fill
 const RE = {
   palette: new RegExp(`^(${COLOR_UTIL})-((${PALETTE})-\\d{2,3}|black|white)(/\\d+)?$`),
   half: /^(p[xytrblse]?|m[xytrblse]?|gap(?:-[xy])?|space-[xy]|inset(?:-[xy])?|top|right|bottom|left|start|end|w|h|size|min-[wh]|max-[wh]|translate-[xy]|scroll-[mp][xytrblse]?|indent|basis)-(\d+\.5)$/,
-  weight: /^font-(bold|extrabold|black|thin|extralight|light)$/,
+  weight: /^font-(normal|semibold|bold|extrabold|black|thin|extralight|light)$/,
   radius: /^rounded(-[trblse]{1,2})?(-(xs|xl|2xl|3xl|4xl))?$/,
   shadow: /^(shadow|drop-shadow)(-(2xs|xs|sm|md|lg|xl|2xl|overlay|\[.*\]))?$/,
   duration: /^duration-(\[.*\]|\d+)$/,
   stepClass: /(^|-)brand-(50|[1-9]00|950)(\/\d+)?$/,
   arbRadius: /^rounded(-[trblse]{1,2})?-\[(.+)\]$/,
 }
-// an arbitrary radius resolved in px (radius 12, lg 20, md 12, sm 8), or null when it is not plain arithmetic
+// an arbitrary radius resolved in px (all common radius aliases are 24px), or null when it is not plain arithmetic
 function radiusPx(expr) {
-  const v = expr.replace(/var\(--radius(-(sm|md|lg|xl))?\)/g, (_, _s, t) => String({ sm: 8, md: 12, lg: 20, xl: 12 }[t] ?? 12))
+  const v = expr.replace(/var\(--radius(-(sm|md|lg|xl))?\)/g, (_, _s, t) => String({ sm: 24, md: 24, lg: 24, xl: 24 }[t] ?? 24))
     .replace(/calc\((.*)\)/, "$1").replace(/_/g, " ").replace(/px/g, "")
   return /^[\d.\s+-]+$/.test(v) ? v.match(/[+-]?\s*[\d.]+/g).reduce((a, x) => a + +x.replace(/\s/g, ""), 0) : null
 }
-const TIERS = new Set([0, 8, 12, 20, 9999])
+// A concentric media or row may use outer radius minus its actual inset. The max
+// clamps small custom radii to zero; this does not permit arbitrary literal tiers.
+const INSET_RADIUS = /^max\(0px,\s*calc\(var\(--radius(?:-(?:sm|md|lg|xl))?\)\s*-\s*(?:\d+(?:\.\d+)?px|var\(--pyo-card-padding\))\)\)$/
+const insetRadius = (expr) => INSET_RADIUS.test(expr.replace(/_/g, " "))
+const knownRadiusVar = (expr) => /^var\(--(?:radius(?:-(?:sm|md|lg|xl))?|pyo-bubble-radius)\)$/.test(expr)
+const TIERS = new Set([0, 22, 24, 9999])
 const HEX = /(?<![\w&/-])#(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{3,4})\b/
 const RAW_COLOR = /\b(rgba?|hsla?|oklch|oklab|color-mix)\(/
 const OVERLAY = /(dialog|popover|sheet|drawer|dropdown|menu|tooltip|toast|command)\.tsx$/
@@ -125,10 +130,10 @@ for (const f of files) {
         if (RE.stepClass.test(u) && inRegistry) continue // reported above
         const half = u.match(RE.half)
         if (half && !(half[2] === "0.5" && /^(h|w)$/.test(half[1]))) { H("grid/half", "error", f, n, tok, "off the 4px grid (0.5 only as h-0.5 / w-0.5 for 2px lines)"); continue }
-        if (RE.weight.test(u)) { H("type/weight", "error", f, n, tok, "weights are 400 / 500 / 600 (font-normal, font-medium, font-semibold)"); continue }
+        if (RE.weight.test(u)) { H("type/weight", "error", f, n, tok, "weight is 500 (font-medium)"); continue }
         if (RE.radius.test(u)) { H("radius/tier", "error", f, n, tok, "radius tiers are full / lg / md / sm (rounded-xl is a shadcn compat alias only)"); continue }
         const arb = u.match(RE.arbRadius), px = arb && radiusPx(arb[2])
-        if (px != null && !TIERS.has(px)) { H("radius/tier", "error", f, n, tok, `resolves to ${px}px; radius tiers are 0 / 8 / 12 / 20 / full`); continue }
+        if (arb && !insetRadius(arb[2]) && (px != null ? !TIERS.has(px) : !knownRadiusVar(arb[2]))) { H("radius/tier", "error", f, n, tok, px != null ? `resolves to ${px}px; use a base tier or max(0px, calc(var(--radius) - inset)) for concentric geometry` : "use a base radius token or max(0px, calc(var(--radius) - inset))"); continue }
         if (RE.shadow.test(u) && !/^shadow-\[inset/.test(u) && !overlay) { H("elevation/shadow", "error", f, n, tok, "shadows only on overlays; lines are inset shadows, depth is surfaces"); continue }
         if (RE.duration.test(u)) { H("motion/duration", "error", f, n, tok, "motion is the default 120ms token; drop the duration class"); continue }
       }

@@ -14,8 +14,8 @@ export const TEMPLATE = {
 }
 // FIXED neutrals the rules solve against (src/index.css holds the same values)
 export const NEUTRAL = {
-  light: { bg: "#FAFAFA", surface: "#FFFFFF", "surface-2": "#F2F2F3", "surface-3": "#E6E6E8", text: "#111111", "text-2": "#5C5C5F", "text-3": "#6D6D71", line: "#767676" },
-  dark: { bg: "#0C0C0C", surface: "#161616", "surface-2": "#1F1F1F", "surface-3": "#2A2A2A", text: "#F5F5F5", "text-2": "#A3A3A6", "text-3": "#8E8E92", line: "#7A7A7E" },
+  light: { bg: "#FAFAFA", surface: "#FFFFFF", "surface-2": "#F5F5F5", "surface-3": "#E5E5E5", text: "#262626", "text-2": "#525252", "text-3": "#606060", line: "#767676" },
+  dark: { bg: "#0A0A0A", surface: "#171717", "surface-2": "#262626", "surface-3": "#404040", text: "#F5F5F5", "text-2": "#D4D4D4", "text-3": "#A3A3A3", line: "#8A8A8A" },
 }
 // status defaults: fill = white-AA boundary at (C, h); dark = dark-theme text; tint = light mix % of the fill
 export const STATUS = {
@@ -117,6 +117,8 @@ export function generate(seed, opts = {}) {
   let hex = seed.trim().replace(/^#?/, "#").toUpperCase()
   if (hex.length === 4) hex = "#" + [...hex.slice(1)].map((c) => c + c).join("")
   const [sL, sC, rawH] = hexToOklch(hex)
+  // The approved neutral default has its own grammar; chromatic custom seeds keep R1.
+  if (hex === "#171717") return neutralTheme(wantReport)
   // R1
   if (sC < RULES.minC) throw new SeedError(`이 색(${hex})은 채도가 너무 낮아서(OKLCH C ${sC.toFixed(3)}) 브랜드 색으로 쓸 수 없어요. 채도가 ${RULES.minC} 이상인 색을 골라 주세요.`)
   const h = Math.round(rawH * 2) / 2
@@ -251,6 +253,35 @@ export function generate(seed, opts = {}) {
     seed: hex, mode, scale: byStep, light, dark, warnings, report: [],
     fill, fillStep: STEPS[fillIdx], k, hue: h, tintPct: { light: tL.p, dark: tD.p }, status,
   }
+  if (wantReport) out.report = selfReport(out)
+  return out
+}
+
+// A fixed neutral identity lets light and dark primary fills reverse without tinting the UI.
+// This is deliberately explicit: near-gray custom colors do not enter the chromatic solver.
+function neutralTheme(wantReport) {
+  const values = ["#FAFAFA", "#F5F5F5", "#E5E5E5", "#D4D4D4", "#A3A3A3", "#737373", "#525252", "#404040", "#262626", "#171717", "#0A0A0A"]
+  const scale = Object.fromEntries(STEPS.map((step, i) => [step, values[i]]))
+  const light = { "pyo-seed": "#171717", ...Object.fromEntries(STEPS.map((step) => [`brand-${step}`, scale[step]])),
+    brand: "var(--brand-900)", "brand-text": "#FAFAFA", "brand-hover": "var(--brand-800)", "brand-ink": "var(--brand-800)",
+    "brand-tint": "#EBEBEB", "brand-tint-2": "#E5E5E5", "brand-tint-2-hover": "#D4D4D4", "brand-tint-2-text": "#262626",
+    "brand-graphic": "var(--brand)", "brand-graphic-text": "var(--brand-text)" }
+  const dark = { brand: "var(--brand-100)", "brand-text": "#171717", "brand-hover": "var(--brand-200)", "brand-ink": "var(--brand-100)",
+    "brand-tint": "#303030", "brand-tint-2": "#404040", "brand-tint-2-hover": "#525252", "brand-tint-2-text": "#FAFAFA",
+    "brand-graphic": "var(--brand)", "brand-graphic-text": "var(--brand-text)" }
+  const status = {}
+  for (const name of ["ok", "warn", "danger"]) {
+    const s = STATUS[name], t = statusTokens(name, s.h, 0)
+    status[name] = { ...t, h: s.h, moved: 0, dist: 180, gapOk: true }
+    light[name] = t.text; dark[name] = t.dark
+    light[`${name}-fill`] = dark[`${name}-fill`] = t.fill
+    light[`${name}-fill-text`] = dark[`${name}-fill-text`] = WHITE
+    light[`${name}-tint`] = `color-mix(in srgb, var(--${name}-fill) ${s.tint}%, var(--surface))`
+    dark[`${name}-tint`] = `color-mix(in srgb, var(--${name}) 14%, var(--surface))`
+  }
+  light["chart-1"] = dark["chart-1"] = "var(--brand-graphic)"
+  ;[250, 315, 25, 80].map(chartColor).forEach((color, i) => { light[`chart-${i + 2}`] = dark[`chart-${i + 2}`] = color })
+  const out = { seed: "#171717", mode: "white", scale, light, dark, warnings: [], report: [], fill: "#171717", fillStep: 900, k: 0, hue: 0, tintPct: { light: 0, dark: 0 }, status }
   if (wantReport) out.report = selfReport(out)
   return out
 }

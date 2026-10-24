@@ -4,7 +4,7 @@
  * Variant    who: agent | human. done: true | false.
  * Token      circle 40 full. agent = brand-graphic + brand-graphic-text. human = surface + 2px dashed brand-ink. done = brand-tint + brand-ink.
  *            line surface-3 2px. legend dots 12: brand-graphic and dashed brand-ink.
- * Structure  a horizontal row of Step (circle + title + text). always render the Legend with it.
+ * Structure  a horizontal row of Step (circle + title + text), one column on narrow screens. always render the Legend with it.
  * Usage Rule filled circle = the agent handles it, dashed circle = a person decides. the shapes must differ; never rely on color alone.
  */
 import * as React from "react"
@@ -24,7 +24,7 @@ function Step({ index, who, done, title, text, className, ...props }: StepProps)
     <div className={cn("relative grid justify-items-start gap-2", className)} {...props}>
       <span
         className={cn(
-          "grid size-10 place-items-center rounded-full text-sm font-semibold leading-5",
+          "grid size-10 place-items-center rounded-full text-sm font-medium leading-5",
           done ? "bg-brand-tint text-brand-ink"
             : who === "agent" ? "bg-brand-graphic text-brand-graphic-text"
             : "bg-surface text-text outline-2 outline-dashed -outline-offset-2 outline-brand-ink"
@@ -33,16 +33,16 @@ function Step({ index, who, done, title, text, className, ...props }: StepProps)
       >
         {done ? <Check className="size-4" /> : index}
       </span>
-      <h4 className="one-line mt-1 max-w-full text-sm font-semibold leading-5 text-text">{title}</h4>
-      <p className="text-xs leading-4 text-text-2 text-pretty">{text}</p>
+      <h4 className="one-line mt-1 max-w-full text-sm font-medium leading-5 text-text">{title}</h4>
+      <p className="text-xs leading-[1.7] text-text-2 text-pretty">{text}</p>
     </div>
   )
 }
 
 function Steps({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("relative grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4", className)} {...props}>
-      <span className="absolute left-5 right-5 top-5 h-0.5 -translate-y-px bg-surface-3" aria-hidden />
+    <div className={cn("relative grid grid-cols-1 gap-6 sm:grid-cols-[repeat(auto-fit,minmax(min(100%,160px),1fr))]", className)} {...props}>
+      <span className="absolute left-5 right-5 top-5 hidden h-0.5 -translate-y-px bg-surface-3 sm:block" aria-hidden />
       {children}
     </div>
   )
