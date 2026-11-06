@@ -66,6 +66,12 @@ export const DEMOS: Demo[] = [
         <div className="flex flex-wrap items-center gap-2">
           <Button>저장하기</Button><Button hierarchy="secondary">되돌리기</Button><Button hierarchy="tint">검토하기</Button><Button hierarchy="ghost">더 보기</Button>
         </div>
+        <div className="rounded-lg border border-line bg-surface p-5">
+          <p className="mb-3 text-sm font-medium text-text-2">강의 시연용 가상 예시</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button>실습 저장하기</Button><Button hierarchy="secondary">실습 되돌리기</Button>
+          </div>
+        </div>
         <div className="flex flex-wrap items-center gap-2">
           <Button size="sm">작게</Button><Button>기본</Button><Button size="lg">크게</Button><Button disabled>비활성</Button>
         </div>
@@ -80,7 +86,11 @@ export const DEMOS: Demo[] = [
 <Button hierarchy="secondary">되돌리기</Button>
 <Button hierarchy="tint">검토하기</Button>
 <Button hierarchy="ghost">더 보기</Button>
-<Button size="sm">작게</Button>`,
+<Button size="sm">작게</Button>
+
+{/* 강의 시연용 가상 예시 */}
+<Button>실습 저장하기</Button>
+<Button hierarchy="secondary">실습 되돌리기</Button>`,
   },
   {
     slug: "input", title: "Input", group: "기본",
