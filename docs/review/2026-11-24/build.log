@@ -1,0 +1,20 @@
+
+> pyospectui@0.4.0 build
+> tsc -b && vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1770 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                       2.41 kB │ gzip:   0.83 kB
+dist/assets/Themes-DtjipMXC.css       0.39 kB │ gzip:   0.20 kB
+dist/assets/Docs-eV1yVPbf.css         3.62 kB │ gzip:   1.05 kB
+dist/assets/Lab-DQKGvztL.css          9.39 kB │ gzip:   2.25 kB
+dist/assets/index-BJntTig7.css       51.59 kB │ gzip:  10.45 kB
+dist/assets/Themes-BTTJD7kI.js       20.43 kB │ gzip:   7.53 kB
+dist/assets/Lab-3zx5bpT0.js          27.89 kB │ gzip:  10.72 kB
+dist/assets/connection-MuZmPO2a.js   43.75 kB │ gzip:  13.89 kB
+dist/assets/Docs-CXVNWgVw.js         67.79 kB │ gzip:  18.80 kB
+dist/assets/index-DDxHRfet.js       424.80 kB │ gzip: 136.60 kB
+✓ built in 1.32s

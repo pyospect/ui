@@ -1,0 +1,41 @@
+.preview { background: var(--surface); color: var(--text); border-radius: var(--radius); padding: 24px; font-size: 14px; line-height: 1.5; }
+.workspace { display: flex; align-items: center; gap: 8px; color: var(--text-2); font-size: 12px; line-height: 16px; }
+.workspaceIcon { display: grid; place-items: center; width: 32px; height: 32px; background: var(--surface-2); border-radius: 50%; }
+.active { display: flex; align-items: center; gap: 4px; color: var(--ok); margin-left: auto; }
+.heading { margin-block: 20px; }
+.heading h3 { font-size: 20px; line-height: 1.5; letter-spacing: -0.035em; }
+.heading p { color: var(--text-3); font-size: 12px; line-height: 20px; margin-top: 4px; }
+.preview form { display: grid; gap: 16px; }
+.identityFields { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 16px; }
+.selects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.checkboxRow { display: flex; position: relative; align-items: center; width: fit-content; gap: 8px; min-height: 32px; color: var(--text-2); font-size: 12px; line-height: 20px; cursor: pointer; }
+.checkboxRow input { position: absolute; width: 24px; height: 24px; opacity: 0; margin: 0; cursor: pointer; }
+.checkboxVisual { display: grid; place-items: center; flex-shrink: 0; width: 20px; height: 20px; border: 1px solid var(--line); border-radius: 4px; color: var(--brand-graphic-text); }
+.checkboxRow input:checked + .checkboxVisual { border-color: var(--brand-graphic); background: var(--brand-graphic); }
+.checkboxRow input:focus-visible + .checkboxVisual { outline: 2px solid var(--brand-ink); outline-offset: 2px; }
+.formFooter { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+.saveStatus { display: flex; gap: 4px; align-items: start; min-height: 20px; font-size: 12px; line-height: 20px; color: var(--text-3); }
+.saveStatus svg { margin-top: 3px; flex-shrink: 0; }
+.actions { display: flex; justify-content: end; gap: 8px; }
+.contrast { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--border); margin-top: 20px; padding-top: 16px; font-size: 12px; line-height: 20px; color: var(--text-2); }
+.contrastSample { display: grid; place-items: center; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; color: var(--brand-text); background: var(--brand); }
+.contrast strong { font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; margin-left: 4px; }
+.pass { display: flex; align-items: center; gap: 4px; color: var(--ok); margin-left: auto; }
+@media (max-width: 1023px) and (min-width: 768px) {
+  .preview { padding: 20px; }
+  .selects { grid-template-columns: 1fr; }
+  .pass { margin-left: 0; }
+}
+@media (max-width: 1023px) {
+  .identityFields { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .preview form input, .preview form button { min-height: 44px; }
+  .checkboxRow { min-height: 44px; }
+}
+@media (max-width: 359px) {
+  .preview { padding: 20px; }
+  .selects { grid-template-columns: 1fr; }
+  .workspace { flex-wrap: wrap; }
+  .pass { margin-left: 0; }
+}

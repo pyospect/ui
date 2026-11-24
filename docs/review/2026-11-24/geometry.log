@@ -1,0 +1,8 @@
+
+> pyospectui@0.4.0 check:geometry
+> node scripts/geometry-check.mjs docs/review/2026-11-24/geometry.json
+
+PASS dark-select-mobile-320: 바깥 24px − 간격 4px → 안쪽 20px (기대 20px)
+PASS save-button-mobile-320-0: pill 반경 22px, 짧은 변의 절반 22px
+PASS save-button-mobile-320-1: pill 반경 22px, 짧은 변의 절반 22px
+geometry-check: 3개 측정, 통과 3, 실패 0; 허용 오차 0.5px

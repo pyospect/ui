@@ -54,17 +54,28 @@ export default function App() {
   const docSlug = docs ? path.slice("/docs".length).replace(/^\/|\/$/g, "") || "button" : ""
   // #/themes is a full-width app shell, one viewport tall from 1024 up: the nav spans it and the footer steps aside
   const shell = path === "/themes"
+  const home = !docs && !shell && path !== "/lab"
   // the nav entry that holds this page: #/docs/<any> is 문서
   const section = docs ? "/docs/button" : path
   // "/install", "/rules" and friends are home sections: render Home, then scroll to the section
   useEffect(() => {
-    const id = path.match(/^\/(install|components|ai|rules)$/)?.[1]
-    if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }))
+    const id = path.match(/^\/(install|components|ai|rules|demo|main-content)$/)?.[1]
+    if (id) requestAnimationFrame(() => {
+      const target = document.getElementById(id)
+      target?.scrollIntoView({ block: "start" })
+      if (id === "main-content") target?.focus({ preventScroll: true })
+    })
   }, [path])
 
   return (
     <div className="min-h-dvh">
-      <nav className="sticky top-0 z-40 bg-bg/90 backdrop-blur">
+      {home && <a href={href("/main-content")} onClick={(event) => {
+        event.preventDefault()
+        const main = document.getElementById("main-content")
+        main?.scrollIntoView({ block: "start" })
+        main?.focus({ preventScroll: true })
+      }} className="sr-only fixed left-4 top-4 z-50 rounded-full bg-surface px-4 py-3 text-sm text-text focus:not-sr-only">본문으로 건너뛰기</a>}
+      <nav aria-label="주 메뉴" className="sticky top-0 z-40 bg-bg/90 backdrop-blur">
         <div className={cn("relative mx-auto flex max-w-[1160px] flex-wrap items-center gap-x-2 gap-y-1 px-4 py-2 sm:h-16 sm:flex-nowrap sm:gap-6 sm:px-6 sm:py-0", shell && "lg:max-w-none")}>
           <a href={href("/")} className="order-1 flex min-w-0 flex-1 items-center gap-2 text-sm font-medium leading-6 tracking-normal text-text sm:flex-none sm:text-base">
             <span className="hidden size-4 rounded-full bg-brand-graphic sm:inline-block" aria-hidden />pyospectui
@@ -77,16 +88,16 @@ export default function App() {
                 target={to.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
                 aria-current={to === `#${section}` ? "page" : undefined}
-                className="shrink-0 rounded-full px-3 py-2 transition-colors hover:bg-surface-2 hover:text-text aria-[current=page]:text-text"
+                className="shrink-0 rounded-full px-3 py-3 transition-colors hover:bg-surface-2 hover:text-text aria-[current=page]:text-text sm:py-2"
               >
                 {label}
               </a>
             ))}
           </div>
-          <div className="order-2 shrink-0 sm:order-3"><BrandMenu /></div>
+          {!home && <div className="order-2 shrink-0 sm:order-3"><BrandMenu /></div>}
           <span className="order-3 w-32 shrink-0 sm:order-4">
             <Select value={mode} onValueChange={(value) => setMode(value as "light" | "dark" | "system")}>
-              <SelectTrigger aria-label="화면 테마" className="h-10 rounded-full"><SelectValue /></SelectTrigger>
+              <SelectTrigger aria-label="화면 테마" className="h-11 rounded-full sm:h-10"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="light">밝게</SelectItem>
                 <SelectItem value="dark">어둡게</SelectItem>
@@ -97,7 +108,7 @@ export default function App() {
         </div>
       </nav>
 
-      <RouteBoundary key={path}>
+      <RouteBoundary key={home ? "home" : path}>
         <Suspense fallback={<main role="status" className="brand-body mx-auto min-h-[50dvh] max-w-[1160px] px-6 py-14 text-text-2">화면을 불러오고 있어요.</main>}>
           {docs ? <Docs slug={docSlug} /> : path === "/themes" ? <Themes /> : path === "/lab" ? <Lab /> : <Home />}
         </Suspense>

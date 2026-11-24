@@ -1,0 +1,38 @@
+[
+  {
+    "kind": "concentric",
+    "id": "dark-select-mobile-320",
+    "outer": {
+      "radius": 24,
+      "width": 248,
+      "height": 128
+    },
+    "inner": {
+      "radius": 20,
+      "width": 240,
+      "height": 40
+    },
+    "inset": {
+      "x": 4,
+      "y": 4
+    }
+  },
+  {
+    "kind": "pill",
+    "id": "save-button-mobile-320-0",
+    "outer": {
+      "radius": 33554400,
+      "width": 87.453125,
+      "height": 44
+    }
+  },
+  {
+    "kind": "pill",
+    "id": "save-button-mobile-320-1",
+    "outer": {
+      "radius": 33554400,
+      "width": 87.453125,
+      "height": 44
+    }
+  }
+]

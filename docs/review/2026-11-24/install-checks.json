@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-24",
+  "version": "0.4.0",
+  "registry": "https://ui.pyospect.com/r/v0.4.0/",
+  "checks": [
+    {
+      "command": "npm run registry:build",
+      "exitCode": 0,
+      "generatedTrackedFilesChanged": false
+    },
+    {
+      "command": "bash scripts/e2e-install.sh",
+      "exitCode": 0,
+      "result": "e2e passed"
+    },
+    {
+      "command": "E2E_TEMPLATE=<install-test-directory>/base/app bash scripts/e2e-release-compat.sh",
+      "exitCode": 0,
+      "finalOutput": "release compatibility passed: published 0.2.0 + packed 0.4.0"
+    }
+  ],
+  "published": false,
+  "deployed": false
+}

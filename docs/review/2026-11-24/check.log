@@ -1,0 +1,78 @@
+
+> pyospectui@0.4.0 check
+> npm run theme:check && npm run lint:taste && node scripts/catalog-check.mjs && node --test scripts/geometry-check.test.mjs scripts/component-identity.test.mjs
+
+
+> pyospectui@0.4.0 theme:check
+> node scripts/theme-check.mjs
+
+0. copies of src/index.css: generate.mjs NEUTRAL, packages/pyospectui/theme/base.json
+  in sync
+
+1. golden: generate(#171717) vs src/index.css
+  78 match, 0 mismatch
+
+2. contract
+  src/index.css: 164/164 pass, 0 fail, 0 warn, 11 within 0.05 of the minimum
+  preset amber #FFB020 (dark, fill #FFB020): 162/164 pass, 0 fail, 2 warn, 11 within 0.05 of the minimum
+    warn light brand vs warn-fill (hue gap): #FFB020 / #B3611E = 20.56 (min 29.5)
+    warn dark brand vs warn-fill (hue gap): #FFB020 / #B3611E = 20.56 (min 29.5)
+    - 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 10.33:1이에요.
+    - 채움 색은 흰 바탕에서 1.83:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#895B00)을 써요.
+    - warn(주의) 색이 브랜드와 가까워서 hue 65°에서 55°로 옮겼어요(채움 #B3611E).
+    - warn(주의) 색이 브랜드와 20°밖에 떨어지지 않아요. 색만으로는 구분되지 않으니 라벨로 구분해 주세요.
+  preset blue #2679C5 (white, fill #2679C5): 164/164 pass, 0 fail, 0 warn, 19 within 0.05 of the minimum
+  preset indigo #526DE4 (white, fill #526DE4): 164/164 pass, 0 fail, 0 warn, 19 within 0.05 of the minimum
+  preset lime #BCEB56 (dark, fill #BCEB56): 164/164 pass, 0 fail, 0 warn, 11 within 0.05 of the minimum
+    - 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 13.63:1이에요.
+    - 채움 색은 흰 바탕에서 1.39:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#557200)을 써요.
+    - ok(성공) 색이 브랜드와 가까워서 hue 150°에서 156°로 옮겼어요(채움 #008850).
+  preset mint #11866F (white, fill #11866F): 164/164 pass, 0 fail, 0 warn, 19 within 0.05 of the minimum
+    - ok(성공) 색이 브랜드와 가까워서 hue 150°에서 143°로 옮겼어요(채움 #388636).
+  preset orange #BC5A29 (white, fill #BC5A29): 164/164 pass, 0 fail, 0 warn, 19 within 0.05 of the minimum
+    - danger(위험) 색이 브랜드와 가까워서 hue 25°에서 13°로 옮겼어요(채움 #CD4760).
+    - warn(주의) 색이 브랜드와 가까워서 hue 65°에서 76°로 옮겼어요(채움 #A06C00).
+  preset pink #C44696 (white, fill #C44696): 164/164 pass, 0 fail, 0 warn, 19 within 0.05 of the minimum
+  preset pyospect #171717 (white, fill #171717): 164/164 pass, 0 fail, 0 warn, 11 within 0.05 of the minimum
+  preset red #D34342 (white, fill #D34342): 162/164 pass, 0 fail, 2 warn, 19 within 0.05 of the minimum
+    warn light brand vs danger-fill (hue gap): #D34342 / #CD4666 = 15.13 (min 29.5)
+    warn dark brand vs danger-fill (hue gap): #D34342 / #CD4666 = 15.13 (min 29.5)
+    - danger(위험) 색이 브랜드와 가까워서 hue 25°에서 10°로 옮겼어요(채움 #CD4666).
+    - danger(위험) 색이 브랜드와 15°밖에 떨어지지 않아요. 색만으로는 구분되지 않으니 라벨로 구분해 주세요.
+  preset sky #0480A9 (white, fill #0480A9): 164/164 pass, 0 fail, 0 warn, 19 within 0.05 of the minimum
+  preset violet #7E61DF (white, fill #7E61DF): 164/164 pass, 0 fail, 0 warn, 19 within 0.05 of the minimum
+  preset yellow #FCCA21 (dark, fill #FCCA21): 164/164 pass, 0 fail, 0 warn, 11 within 0.05 of the minimum
+    - 밝은 브랜드 색이라 채움 위 글자를 흰색 대신 검은색(#111111)으로 써요. 대비는 12.24:1이에요.
+    - 채움 색은 흰 바탕에서 1.54:1이라 스위치와 점 같은 그래픽에는 brand-graphic(#7D6200)을 써요.
+    - warn(주의) 색이 브랜드와 가까워서 hue 65°에서 58°로 옮겼어요(채움 #B16317).
+
+3. sweep
+  368 seeds (white 28, light 28, preset 12, random 300): white mode 208, dark-text mode 148, refused (C < 0.04) 12; fill differs from seed 169
+  32752 contract checks on generated tokens, 0 fail
+  tightest passing pairs: light warn on warn-tint 4.600/4.6 (#DA7213); light warn-fill-text on warn-fill 4.500/4.5 (#FCCA21); dark warn-fill-text on warn-fill 4.500/4.5 (#FCCA21); light brand-text on brand 4.500/4.5 (#526DE4); light brand-graphic-text on brand-graphic 4.500/4.5 (#526DE4); dark brand-text on brand 4.500/4.5 (#526DE4)
+  hue-gap warnings (status cannot clear 30° from the brand inside its band; labels carry the meaning): 48
+    danger x33: #C05361 (h15) 20°, #C05550 (h25) 15°, #C05647 (h30) 20°, #FFBDC1 (h15) 20°, #FFBEB8 (h25) 15°, #FFBFB4 (h30) 20°, #D34342 15°, #FA4580 29°, #ED4C66 20°, #EB0B6B 28°, ...
+    warn x15: #A16C00 (h75) 20°, #FFC673 (h75) 20°, #FFB020 20°, #FEA912 23°, #AC6E14 26°, #F8C674 24°, #FDC45B 25°, #D38E23 23°, #D29626 22°, #F0A838 21°, ...
+
+theme:check passed
+
+> pyospectui@0.4.0 lint:taste
+> node scripts/taste-lint.mjs
+
+taste-lint: 32 files, 0 errors, 0 warnings
+catalog-check: 21 documentation links match
+✔ installed Select remains identifiable after shadcn removes its header (0.9425ms)
+✔ legacy tokens identify owned components without accepting generic shadcn roles (0.079833ms)
+✔ card, canvas and zero-radius insets retain their measured centers (1.708125ms)
+✔ CSS height limits apply to both sides before comparing a small nested field (0.103625ms)
+✔ pill controls follow their shorter dimension without making large boxes round (0.111958ms)
+✔ malformed, hidden and ambiguous measurements fail instead of disappearing (0.237417ms)
+✔ CLI requires actual input and reports invalid JSON and failed geometry with nonzero status (726.148625ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 864.249708

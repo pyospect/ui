@@ -16,6 +16,7 @@ npx pyospectui
 - 규칙: [docs/TASTE.md](docs/TASTE.md) (문법만 있어요. 프리셋별 실제 값은 https://ui.pyospect.com/themes/pyospect.md)
 - AI용 요약: [public/llms.txt](public/llms.txt)
 - 컴포넌트: `registry/ui` (기본), `registry/ai` (AI 협업 패턴)
+- 로컬 첫 화면 리디자인: [실행 방법과 검증 기록](docs/REDESIGN-REVIEW.md)
 
 ## 기본 디자인
 
