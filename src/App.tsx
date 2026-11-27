@@ -6,6 +6,10 @@ import { cn } from "@/lib/utils"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { version } from "../package.json"
 
+const Install = lazy(() => import("@/pages/Install").then((module) => ({ default: module.Install })))
+const Rules = lazy(() => import("@/pages/Rules").then((module) => ({ default: module.Rules })))
+const ComponentExamples = lazy(() => import("@/pages/Examples").then((module) => ({ default: module.ComponentExamples })))
+const AiExamples = lazy(() => import("@/pages/Examples").then((module) => ({ default: module.AiExamples })))
 const Docs = lazy(() => import("@/pages/Docs").then((module) => ({ default: module.Docs })))
 const Themes = lazy(() => import("@/pages/Themes").then((module) => ({ default: module.Themes })))
 const Lab = lazy(() => import("@/pages/Lab").then((module) => ({ default: module.Lab })))
@@ -56,15 +60,18 @@ export default function App() {
   const shell = path === "/themes"
   // the nav entry that holds this page: #/docs/<any> is 문서
   const section = docs ? "/docs/button" : path
-  // "/install", "/rules" and friends are home sections: render Home, then scroll to the section
-  useEffect(() => {
-    const id = path.match(/^\/(install|components|ai|rules)$/)?.[1]
-    if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }))
-  }, [path])
+  const screen = docs ? <Docs slug={docSlug} />
+    : path === "/install" ? <Install />
+    : path === "/rules" ? <Rules />
+    : path === "/themes" ? <Themes />
+    : path === "/lab" ? <Lab />
+    : path === "/components" ? <ComponentExamples />
+    : path === "/ai" ? <AiExamples />
+    : <Home />
 
   return (
     <div className="min-h-dvh">
-      <nav className="site-chrome sticky top-0 z-40 bg-bg/90 backdrop-blur">
+      <nav aria-label="주 메뉴" className="site-chrome sticky top-0 z-40 bg-bg/90 backdrop-blur">
         <div className={cn("relative mx-auto flex max-w-[1160px] flex-wrap items-center gap-x-2 gap-y-1 px-4 py-2 sm:h-16 sm:flex-nowrap sm:gap-6 sm:px-6 sm:py-0", shell && "lg:max-w-none")}>
           <a href={href("/")} className="order-1 flex min-w-0 flex-1 items-center gap-2 text-sm font-medium leading-6 tracking-normal text-text sm:flex-none sm:text-base">
             <span className="hidden size-4 rounded-full site-emblem sm:inline-block" aria-hidden />pyospectui
@@ -99,7 +106,7 @@ export default function App() {
 
       <RouteBoundary key={path}>
         <Suspense fallback={<main role="status" className="site-copy brand-body mx-auto min-h-[50dvh] max-w-[1160px] px-6 py-14 text-text-2">화면을 불러오고 있어요.</main>}>
-          {docs ? <Docs slug={docSlug} /> : path === "/themes" ? <Themes /> : path === "/lab" ? <Lab /> : <Home />}
+          {screen}
         </Suspense>
       </RouteBoundary>
 

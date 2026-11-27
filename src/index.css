@@ -281,3 +281,8 @@
 .site-link, .site-nav-link[aria-current="page"] { color: var(--site-ink); }
 .site-chrome, .site-copy { font-weight: 400; letter-spacing: 0; }
 .site-heading { font-weight: 500; line-height: 1.2; letter-spacing: 0; }
+
+/* The hosted laboratory shares editorial typography without changing the installable Wash Lab. */
+.site-lab p { font-weight: 400; letter-spacing: 0; }
+.site-lab h1 { font-weight: 500; line-height: 1.2; letter-spacing: 0; }
+.site-lab p:has(+ h1) { display: none; }

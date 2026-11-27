@@ -1,5 +1,5 @@
 import { WashLab } from "@/components/ui/wash-lab"
 
 export function Lab() {
-  return <WashLab />
+  return <WashLab className="site-lab" />
 }
