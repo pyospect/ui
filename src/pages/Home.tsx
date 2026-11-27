@@ -29,9 +29,9 @@ import DOC_CATALOG from "@/docs/catalog.json"
 function Section({ id, title, sub, children }: { id: string; title: string; sub: string; children: React.ReactNode }) {
   return (
     <section id={id} className="grid scroll-mt-[116px] gap-6 px-6 py-[var(--pyo-section-gap)] sm:scroll-mt-24 sm:px-12">
-      <h2 className="text-[23px] font-medium leading-[1.5] tracking-[-0.045em]">
+      <h2 className="site-heading text-[23px] font-medium">
         {title}
-        <small className="brand-copy mt-3 block font-medium text-text-2 text-pretty">{sub}</small>
+        <small className="site-copy brand-copy mt-3 block text-text-2 text-pretty">{sub}</small>
       </h2>
       {children}
     </section>
@@ -94,9 +94,8 @@ export function Home() {
   return (
     <div className="mx-auto grid max-w-[1160px] gap-6 px-4 pb-14 sm:px-6">
       <header className="grid justify-items-center gap-7 section-space px-6 text-center sm:px-12">
-        <div className="text-xs font-medium leading-4 tracking-wide text-text-3">생각을 만들고 다듬어요</div>
-        <h1 className="brand-heading font-medium tracking-normal">pyospectui</h1>
-        <div className="brand-body grid max-w-[640px] gap-7 text-text-2">
+        <h1 className="site-heading brand-heading font-medium">pyospectui</h1>
+        <div className="site-copy brand-body grid max-w-[640px] gap-7 text-text-2">
           {HERO.map((para, i) => (
             <p key={i}>
               {para.map((seg, j) => (
@@ -113,12 +112,12 @@ export function Home() {
 
       <Section id="install" title="시작하기" sub="Node.js만 있으면 돼요. 새 프로젝트를 만들고, 전부 받고, 화면을 만들면 끝이에요.">
         <div className="grid gap-6">
-          <p className="brand-body text-text text-pretty">{POSITIONING}</p>
+          <p className="site-copy brand-body text-text text-pretty">{POSITIONING}</p>
           {INSTALL.map(([title, text, cmd]) => (
             <div key={cmd} data-level="surface" className={concentric.insetEnd + " grid gap-5 rounded-md bg-surface p-[var(--pyo-card-padding)] glow"}>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <h4 className="text-sm font-medium leading-[1.5] text-text [overflow-wrap:anywhere]">{title}</h4>
-                <p className="brand-copy text-text-2">{text}</p>
+                <p className="site-copy brand-copy text-text-2">{text}</p>
               </div>
               <CopyCommand command={cmd} />
             </div>
@@ -126,12 +125,12 @@ export function Home() {
           <div data-level="surface" className="grid gap-5 rounded-md bg-surface p-[var(--pyo-card-padding)] glow">
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <h4 className="text-sm font-medium leading-[1.5] text-text [overflow-wrap:anywhere]">내 브랜드 색으로</h4>
-              <p className="brand-copy text-text-2">2번 대신 써요. 규칙이 나머지 색을 만들고 대비를 검사한 뒤에 설치해요.</p>
+              <p className="site-copy brand-copy text-text-2">2번 대신 써요. 규칙이 나머지 색을 만들고 대비를 검사한 뒤에 설치해요.</p>
             </div>
             <CopyCommand command={'cd my-app && npx pyospectui --brand "#3366FF" --overwrite'} />
-            <p className="brand-copy text-text-2 text-pretty">미리 만든 프리셋 {PRESETS.length}개와 미리보기는 <a href={href("/themes")} className="font-medium text-brand-ink underline underline-offset-4">테마 페이지</a>에 있어요. 이미 설치한 프로젝트에서 이 명령을 쓰면 색 변수만 바뀌어요.</p>
+            <p className="site-copy brand-copy text-text-2 text-pretty">미리 만든 프리셋 {PRESETS.length}개와 미리보기는 <a href={href("/themes")} className="site-link font-medium underline underline-offset-4">테마 페이지</a>에 있어요. 이미 설치한 프로젝트에서 이 명령을 쓰면 색 변수만 바뀌어요.</p>
           </div>
-          <p className="brand-copy text-text-2 text-pretty">몇 개만 고르려면 <code className="font-mono text-xs">npx pyospectui button card</code>처럼 이름을 붙여요. shadcn 명령을 그대로 쓰고 싶으면 레지스트리 주소는 <code className="font-mono text-xs">{REGISTRY_BASE}pyospect.json</code>이에요.</p>
+          <p className="site-copy brand-copy text-text-2 text-pretty">몇 개만 고르려면 <code className="font-mono text-xs">npx pyospectui button card</code>처럼 이름을 붙여요. shadcn 명령을 그대로 쓰고 싶으면 레지스트리 주소는 <code className="font-mono text-xs">{REGISTRY_BASE}pyospect.json</code>이에요.</p>
         </div>
       </Section>
 

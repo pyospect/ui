@@ -37,9 +37,8 @@ export function Docs({ slug }: { slug: string }) {
 
       {demo ? <DocArticle key={demo.slug} demo={demo} /> : <article className={styles.article}>
         <header className={styles.pageHeading}>
-          <p className="text-xs leading-4 text-text-3">컴포넌트 문서</p>
-          <h1 className="brand-heading">문서를 찾을 수 없어요</h1>
-          <p className="brand-body text-text-2">주소를 확인하거나 컴포넌트 목록에서 보고 싶은 문서를 골라 주세요.</p>
+          <h1 className="site-heading brand-heading">문서를 찾을 수 없어요</h1>
+          <p className="site-copy brand-body text-text-2">주소를 확인하거나 컴포넌트 목록에서 보고 싶은 문서를 골라 주세요.</p>
         </header>
         <a href={href("/docs/button")} className={styles.returnLink}>첫 컴포넌트 문서 보기</a>
       </article>}
@@ -57,16 +56,16 @@ function DocArticle({ demo }: { demo: Demo }) {
   return (
       <article className={styles.article}>
         <header className={styles.pageHeading}>
+          <h1 className="site-heading brand-heading font-medium">{demo.title}</h1>
           <div className="text-xs font-medium leading-4 text-text-3">{demo.group}</div>
-          <h1 className="brand-heading font-medium">{demo.title}</h1>
-          <p className="brand-body text-text-2 text-pretty">{demo.summary}</p>
+          <p className="site-copy brand-body text-text-2 text-pretty">{demo.summary}</p>
         </header>
 
         <section className={styles.section} aria-labelledby="doc-install-title">
           <h2 id="doc-install-title" className={styles.sectionTitle}>설치</h2>
           <CopyCommand command={`npx pyospectui ${demo.slug}`} />
-          <p className="brand-copy text-text-2 text-pretty">
-            프로젝트에 pyospect 테마가 없으면 테마를 먼저 같이 받아요. 이미 있으면 컴포넌트만 받고 색은 그대로예요. 브랜드 색은 <a href={href("/themes")} className="font-medium text-brand-ink underline underline-offset-4">테마 페이지</a>에서 골라요.
+          <p className="site-copy brand-copy text-text-2 text-pretty">
+            프로젝트에 pyospect 테마가 없으면 테마를 먼저 같이 받아요. 이미 있으면 컴포넌트만 받고 색은 그대로예요. 브랜드 색은 <a href={href("/themes")} className="site-link font-medium underline underline-offset-4">테마 페이지</a>에서 골라요.
           </p>
         </section>
 
@@ -86,7 +85,7 @@ function DocArticle({ demo }: { demo: Demo }) {
 
         <section className={styles.section} aria-labelledby="doc-contract-title">
           <h2 id="doc-contract-title" className={styles.sectionTitle}>다섯 줄 문서</h2>
-          <p className="brand-copy text-text-2">컴포넌트 파일 맨 위 주석을 그대로 읽어온 거예요. 그래서 문서와 코드가 어긋나지 않아요.</p>
+          <p className="site-copy brand-copy text-text-2">컴포넌트 파일 맨 위 주석을 그대로 읽어온 거예요. 그래서 문서와 코드가 어긋나지 않아요.</p>
           <dl className={styles.metadata}>
             {DOC_KEYS.map((k) => (
               <div key={k} className={styles.metadataRow}>

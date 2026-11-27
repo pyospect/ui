@@ -266,3 +266,18 @@
 @utility brand-copy {
   font-size: var(--pyo-copy-size); line-height: var(--pyo-copy-leading); letter-spacing: var(--pyo-body-tracking);
 }
+
+/* Website identity only. Component, registry, and preset tokens remain independent. */
+:root {
+  --site-vermilion: #F0522B;
+  --site-ink: #A22F17;
+  --site-tint: #FCEAE5;
+}
+.dark {
+  --site-ink: #FFA38B;
+  --site-tint: #39221D;
+}
+.site-emblem { background-color: var(--site-vermilion); }
+.site-link, .site-nav-link[aria-current="page"] { color: var(--site-ink); }
+.site-chrome, .site-copy { font-weight: 400; letter-spacing: 0; }
+.site-heading { font-weight: 500; line-height: 1.2; letter-spacing: 0; }

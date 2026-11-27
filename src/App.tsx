@@ -14,7 +14,7 @@ class RouteBoundary extends Component<{ children: ReactNode }, { failed: boolean
   state = { failed: false }
   static getDerivedStateFromError() { return { failed: true } }
   render() {
-    if (this.state.failed) return <main className="mx-auto grid max-w-[1160px] gap-6 px-6 py-14"><h1 className="brand-heading">화면을 불러오지 못했어요</h1><p className="brand-body text-text-2">연결 상태를 확인하고 다시 시도해 주세요.</p><button type="button" className="w-fit rounded-full bg-brand px-6 py-3 text-sm font-medium text-brand-text" onClick={() => window.location.reload()}>다시 불러오기</button></main>
+    if (this.state.failed) return <main className="mx-auto grid max-w-[1160px] gap-6 px-6 py-14"><h1 className="site-heading brand-heading">화면을 불러오지 못했어요</h1><p className="site-copy brand-body text-text-2">연결 상태를 확인하고 다시 시도해 주세요.</p><button type="button" className="w-fit rounded-full bg-brand px-6 py-3 text-sm font-medium text-brand-text" onClick={() => window.location.reload()}>다시 불러오기</button></main>
     return this.props.children
   }
 }
@@ -64,12 +64,12 @@ export default function App() {
 
   return (
     <div className="min-h-dvh">
-      <nav className="sticky top-0 z-40 bg-bg/90 backdrop-blur">
+      <nav className="site-chrome sticky top-0 z-40 bg-bg/90 backdrop-blur">
         <div className={cn("relative mx-auto flex max-w-[1160px] flex-wrap items-center gap-x-2 gap-y-1 px-4 py-2 sm:h-16 sm:flex-nowrap sm:gap-6 sm:px-6 sm:py-0", shell && "lg:max-w-none")}>
           <a href={href("/")} className="order-1 flex min-w-0 flex-1 items-center gap-2 text-sm font-medium leading-6 tracking-normal text-text sm:flex-none sm:text-base">
-            <span className="hidden size-4 rounded-full bg-brand-graphic sm:inline-block" aria-hidden />pyospectui
+            <span className="hidden size-4 rounded-full site-emblem sm:inline-block" aria-hidden />pyospectui
           </a>
-          <div className="order-4 flex min-w-0 basis-full items-center gap-1 overflow-x-auto text-sm font-medium leading-5 text-text-2 [scrollbar-width:none] sm:order-2 sm:flex-1 sm:basis-0">
+          <div className="order-4 flex min-w-0 basis-full items-center gap-1 overflow-x-auto text-sm leading-5 text-text-2 [scrollbar-width:none] sm:order-2 sm:flex-1 sm:basis-0">
             {NAV.map(([label, to]) => (
               <a
                 key={to}
@@ -77,7 +77,7 @@ export default function App() {
                 target={to.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
                 aria-current={to === `#${section}` ? "page" : undefined}
-                className="shrink-0 rounded-full px-3 py-2 transition-colors hover:bg-surface-2 hover:text-text aria-[current=page]:text-text"
+                className="shrink-0 rounded-full px-3 py-2 transition-colors hover:bg-surface-2 hover:text-text site-nav-link"
               >
                 {label}
               </a>
@@ -98,19 +98,19 @@ export default function App() {
       </nav>
 
       <RouteBoundary key={path}>
-        <Suspense fallback={<main role="status" className="brand-body mx-auto min-h-[50dvh] max-w-[1160px] px-6 py-14 text-text-2">화면을 불러오고 있어요.</main>}>
+        <Suspense fallback={<main role="status" className="site-copy brand-body mx-auto min-h-[50dvh] max-w-[1160px] px-6 py-14 text-text-2">화면을 불러오고 있어요.</main>}>
           {docs ? <Docs slug={docSlug} /> : path === "/themes" ? <Themes /> : path === "/lab" ? <Lab /> : <Home />}
         </Suspense>
       </RouteBoundary>
 
-      <footer className={cn("bg-surface", shell && "lg:hidden")}>
+      <footer className={cn("site-chrome bg-surface", shell && "lg:hidden")}>
         <div className="mx-auto grid max-w-[1160px] gap-8 px-4 py-12 sm:grid-cols-[1fr_auto] sm:px-6">
           <div className="grid gap-2">
-            <div className="flex items-center gap-2 text-base font-medium leading-6 tracking-normal text-text"><span className="size-4 rounded-full bg-brand-graphic" aria-hidden />pyospectui</div>
+            <div className="flex items-center gap-2 text-base font-medium leading-6 tracking-normal text-text"><span className="size-4 rounded-full site-emblem" aria-hidden />pyospectui</div>
             <p className="text-sm leading-5 text-text-2 text-pretty">생각한 것을 직접 만들어요. 쓰는 사람이 이해하고 결정하기 쉽게 다듬어요.</p>
             <p className="text-xs leading-4 text-text-3">고경표 Kyoungpyo Koh, Product Designer. MIT License. v{version}</p>
           </div>
-          <div className="grid content-start gap-1 text-sm font-medium leading-5 text-text-2">
+          <div className="grid content-start gap-1 text-sm leading-5 text-text-2">
             {FOOTER.map(([label, to]) => (
               <a key={to} href={to} target="_blank" rel="noreferrer" className="rounded-sm py-1 transition-colors hover:text-text">{label}</a>
             ))}
