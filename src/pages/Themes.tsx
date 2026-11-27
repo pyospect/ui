@@ -202,7 +202,7 @@ function ShadcnCommand({ theme }: { theme: Theme }) {
     <section aria-labelledby="shadcn-cmd" className="grid gap-2">
       <h2 id="shadcn-cmd" className="text-xs font-medium leading-4 text-text-3">shadcn 명령으로 받기</h2>
       <CopyCommand command={`npx shadcn@~4.21 add ${REGISTRY_BASE}theme-${p.name}.json`} />
-      <p className="text-sm leading-6 text-text-2 text-pretty">테마만 받아요. CSS 변수만 바뀌고 컴포넌트 파일은 그대로예요.</p>
+      <p className="site-copy text-sm leading-6 text-text-2 text-pretty">테마만 받아요. CSS 변수만 바뀌고 컴포넌트 파일은 그대로예요.</p>
     </section>
   )
 }
@@ -222,7 +222,7 @@ function Actions({ theme }: { theme: Theme }) {
     <section aria-labelledby="install-cmd" className="grid gap-2">
       <h2 id="install-cmd" className="text-xs font-medium leading-4 text-text-3">설치 명령</h2>
       <CopyCommand command={command} label="설치 명령 복사하기" />
-      <p className="text-sm leading-6 text-text-2 text-pretty">pyospect가 있으면 테마만 바꿔요. 새 프로젝트는 컴포넌트까지 받으니 <span className="whitespace-nowrap">--overwrite</span>를 붙여요.</p>
+      <p className="site-copy text-sm leading-6 text-text-2 text-pretty">pyospect가 있으면 테마만 바꿔요. 새 프로젝트는 컴포넌트까지 받으니 <span className="whitespace-nowrap">--overwrite</span>를 붙여요.</p>
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
         <Button hierarchy="secondary" size="sm" onClick={() => setBrand(nextPreset(key))}><Shuffle aria-hidden />무작위로 고르기</Button>
         <Button hierarchy="ghost" size="sm" onClick={resetBrand} disabled={key === DEFAULT_BRAND && !invalid}>기본으로 되돌리기</Button>
@@ -475,9 +475,8 @@ export function Themes() {
   return (
     <div className="mx-auto grid gap-4 px-4 pb-16 sm:px-6 lg:h-[max(840px,calc(100dvh-64px))] lg:grid-cols-[280px_minmax(0,1fr)] lg:grid-rows-[auto_auto_minmax(0,1fr)_auto] lg:gap-x-6 lg:gap-y-4 lg:overflow-hidden lg:pb-4 lg:pt-2">
       <header className="grid gap-1 pt-4 lg:col-start-1 lg:pt-0">
-        <p className="text-xs font-medium leading-4 text-text-3">테마</p>
-        <h1 className="brand-heading text-text">테마 만들기</h1>
-        <p className="text-sm leading-6 text-text-2 text-pretty">색을 고르면 규칙이 나머지 색을 만들고 검사해요. 사이트 전체가 바로 바뀌고 주소에 남아요.</p>
+        <h1 className="site-heading brand-heading text-text">테마 만들기</h1>
+        <p className="site-copy text-sm leading-6 text-text-2 text-pretty">색을 고르면 규칙이 나머지 색을 만들고 검사해요. 사이트 전체가 바로 바뀌고 주소에 남아요.</p>
       </header>
 
       <div className="sticky top-[100px] z-30 sm:top-16 -mx-4 flex items-center gap-2 bg-bg/90 px-4 py-2 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:col-start-1 lg:mx-0 lg:grid lg:gap-3 lg:bg-transparent lg:p-0 lg:backdrop-blur-none">
