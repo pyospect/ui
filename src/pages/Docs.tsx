@@ -37,7 +37,6 @@ export function Docs({ slug }: { slug: string }) {
 
       {demo ? <DocArticle key={demo.slug} demo={demo} /> : <article className={styles.article}>
         <header className={styles.pageHeading}>
-          <p className="text-xs leading-4 text-text-3">컴포넌트 문서</p>
           <h1 className="site-heading brand-heading">문서를 찾을 수 없어요</h1>
           <p className="site-copy brand-body text-text-2">주소를 확인하거나 컴포넌트 목록에서 보고 싶은 문서를 골라 주세요.</p>
         </header>
@@ -57,8 +56,8 @@ function DocArticle({ demo }: { demo: Demo }) {
   return (
       <article className={styles.article}>
         <header className={styles.pageHeading}>
-          <div className="text-xs font-medium leading-4 text-text-3">{demo.group}</div>
           <h1 className="site-heading brand-heading font-medium">{demo.title}</h1>
+          <div className="text-xs font-medium leading-4 text-text-3">{demo.group}</div>
           <p className="site-copy brand-body text-text-2 text-pretty">{demo.summary}</p>
         </header>
 
